@@ -22,11 +22,8 @@ import com.example.dto.PageDataBody;
 import com.example.dto.Result;
 
 /**
- * 
- * @author sen
- * 2018年7月3日
- * 上午10:15:55
- * TODO
+ * @author Jiangshan
+ * 10/11/2020
  */
 @Controller
 public class FollowController extends BaseController{
@@ -41,7 +38,7 @@ public class FollowController extends BaseController{
 	private NoticeService rootNoticeService;
 	
 	/**
-	 * 是否已关注
+	 * Check if it is followed
 	 * @param fid
 	 * @param request
 	 * @return
@@ -50,19 +47,19 @@ public class FollowController extends BaseController{
 	@ResponseBody
 	private Result<Integer> isFollow(Integer fid,HttpServletRequest request){
 		User user = getUser(request);
-		if(user == null) return new Result<>(false, "未关注");
+		if(user == null) return new Result<>(false, "Unfollow");
 		if(user.getUserId() == fid) {
-			return new Result<>(false, "同一用户");
+			return new Result<>(false, "The Same user");
 		}
 		int follow = followService.isFollow(user.getUserId(), fid);
 		if(follow == 0) {
-			return new Result<>(false, "未关注");
+			return new Result<>(false, "Unfollow");
 		}
 		return new Result<>(true, follow);
 	}
 	
 	/**
-	 * 关注
+	 * follow
 	 * @param fid
 	 * @param request
 	 * @return
@@ -76,35 +73,25 @@ public class FollowController extends BaseController{
 		follow.setCreateDate(new Date());
 		int insert = followService.insert(follow);
 		if(insert == 1) {
-			String info = "关注成功";
+			String info = "Follow Success";
 			return new Result<Integer>(true,info);
 		}
-		return new Result<>(false,"关注失败");
+		return new Result<>(false,"Follow Failed");
 	};
 	
-	/**
-	 * 取消关注
-	 * @param fid
-	 * @param request
-	 * @return
-	 */
+	// Cancel Follow
 	@RequestMapping(value = "/follow/delete",method = RequestMethod.POST)
 	@ResponseBody
 	private Result<Integer> delete(Integer fid,HttpServletRequest request){
 		int delete = followService.delete(getUser(request).getUserId(), fid);
 		if(delete == 1) {
-			String info = "取消关注成功";
+			String info = "Cancel Follow Success";
 			return new Result<Integer>(true,info);
 		}
-		return new Result<>(false,"取消关注失败");
+		return new Result<>(false,"Cancel Follow Fails");
 	}
 	
-	/**
-	 * 我关注的数量
-	 * @param fid
-	 * @param request
-	 * @return
-	 */
+	/* number of follow	*/
 	@RequestMapping(value = "/follow/count/for",method = RequestMethod.GET)
 	@ResponseBody
 	private Result<Integer> countByUid(Integer uid,HttpServletRequest request){
@@ -112,12 +99,7 @@ public class FollowController extends BaseController{
 		return new Result<Integer>(true,countByUid);
 	}
 	
-	/**
-	 * 关注我的数量
-	 * @param uid
-	 * @param request
-	 * @return
-	 */
+	// The number of people who follows me
 	@RequestMapping(value = "/follow/count/to",method = RequestMethod.GET)
 	@ResponseBody
 	private Result<Integer> countByFid(Integer fid,HttpServletRequest request){
@@ -126,19 +108,16 @@ public class FollowController extends BaseController{
 	}
 	
 	/**
-	 * 特别关注
-	 * @param request
-	 * @param p
-	 * @return
+	 * topics
 	 */
 	@RequestMapping(value = "/follow/topics",method = RequestMethod.GET)
 	private String followTopics(HttpServletRequest request,@RequestParam(value = "p",defaultValue = "1")Integer p) {
 		User user = getUser(request);
 		if(user == null) return "error-page/404.jsp";
-		int countCollect = collectDaoService.count(user.getUserId());//用户收藏话题的数量
-		int countTopicByUserName = rootTopicService.countByUserName(user.getUserName());//用户发布的主题的数量
-		int notReadNotice = rootNoticeService.countNotReadNotice(user.getUserName());//未读通知的数量
-		PageDataBody<Topic> pageTopic = followService.pageTopic(p, 20, user.getUserId());
+		int countCollect = collectDaoService.count(user.getUserId());// Number of collection
+		int countTopicByUserName = rootTopicService.countByUserName(user.getUserName());// Numebr of Topics
+		int notReadNotice = rootNoticeService.countNotReadNotice(user.getUserName());// Number of unread message
+		PageDataBody<Topic> pageTopic = followService.pageTopic(p, 5, user.getUserId());
 		BaseEntity baseEntity = new BaseEntity();
 		request.setAttribute("baseEntity", baseEntity);
 		request.setAttribute("countCollect", countCollect);
