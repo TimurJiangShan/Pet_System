@@ -180,7 +180,8 @@ public class IndexController extends BaseController {
 	 */
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	@ResponseBody
-	private Result<User> login(@RequestParam("username") String username, @RequestParam("password") String password,
+	private Result<User> login(@RequestParam("username") String username,
+							   @RequestParam("password") String password,
 			HttpServletRequest request, HttpServletResponse response) {
 		User user = userService.findByName(username);
 		ApiAssert.notNull(user, "用户不存在");

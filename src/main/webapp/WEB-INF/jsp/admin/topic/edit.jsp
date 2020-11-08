@@ -8,35 +8,35 @@
 <div class="content-wrapper" style="padding: 50px 0 40px;">
 	<section class="content-header">
     <h1>
-      帖子
-      <small>编辑</small>
+      Post
+      <small>Edit</small>
     </h1>
     <ol class="breadcrumb">
-      <li><a href="/admin/index"><i class="fa fa-dashboard"></i> 首页</a></li>
-      <li><a href="/admin/topic/list">帖子</a></li>
-      <li class="active">编辑</li>
+      <li><a href="/admin/index"><i class="fa fa-dashboard"></i> Index</a></li>
+      <li><a href="/admin/topic/list">Post</a></li>
+      <li class="active">Edit</li>
     </ol>
   </section>
   <section class="content">
     <div class="box box-warning">
       <div class="box-header with-border">
-        <h3 class="box-title">帖子编辑</h3>
+        <h3 class="box-title">Post Edit</h3>
       </div>
       <!-- /.box-header -->
       <div class="box-body">
         <form id="from">
           <div class="form-group" style="margin-bottom: 10px;">
           	<div class="form-group">
-            	<label for="title">标题</label>
-            	<input type="text" name="title" id="title" value="${topic.title}" class="form-control" placeholder="标题"/>
+            	<label for="title">Title</label>
+            	<input type="text" name="title" id="title" value="${topic.title}" class="form-control" placeholder="Title"/>
           	</div>
           	<div class="form-group">
-            	<label for="content">内容</label>
+            	<label for="content">Content</label>
             	<div id="editor" style="margin-bottom: 10px;"></div>
           	</div>
             <c:if test="${fn:length(nodes) > 0}">
          	<div class="form-group">
-          		<label for="node">节点</label>
+          		<label for="node">Node</label>
           		<select id="node" class="form-control" name="node">
           			<c:forEach var="item" items="${nodes}" varStatus="status">
                  		<c:choose>
@@ -51,7 +51,7 @@
           		</select>
         	</div>
         	</c:if>
-            <button type="submit" class="btn btn-warning btn-sm">更新帖子</button>
+            <button type="submit" class="btn btn-warning btn-sm">Update posts</button>
           </div>
         </form>
       </div>
@@ -84,15 +84,15 @@
   	    editor.create();
   	    editor.txt.html('${fn:replace(topic.content,vEnter,'')}');
   	  $("#from").submit(function() {
-  		if (confirm("确定编辑此帖子吗？")) {
+  		if (confirm("Edit confirm？")) {
   			var title = $("#title").val();
   			var contentHtml = editor.txt.html();
   			var nodeTitle = $("#node option:selected").val();
   			if (!title || title.length > 120) {
-  				alert('请输入标题，且最大长度在120个字符以内');
+  				alert('Please type title, words < 120');
   				return false;
   			} else if (!nodeTitle) {
-  				alert('请选择一个节点');
+  				alert('Please choose a node');
   				return false;
   			} else {
   				$.ajax({

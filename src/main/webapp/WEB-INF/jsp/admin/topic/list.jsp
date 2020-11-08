@@ -8,42 +8,42 @@
 <div class="content-wrapper" style="padding: 50px 0 40px;">
 	<section class="content-header">
     <h1>
-      帖子
-      <small>列表</small>
+      Post
+      <small>List</small>
     </h1>
     <ol class="breadcrumb">
-      <li><a href="/admin/index"><i class="fa fa-dashboard"></i> 首页</a></li>
-      <li><a href="/admin/topic/list">帖子</a></li>
-      <li class="active">列表</li>
+      <li><a href="/admin/index"><i class="fa fa-dashboard"></i> Index</a></li>
+      <li><a href="/admin/topic/list">Post</a></li>
+      <li class="active">List</li>
     </ol>
   </section>
   <section class="content">
     <div class="box box-warning">
       <div class="box-header with-border">
-        <h3 class="box-title">帖子列表</h3>
+        <h3 class="box-title">Post List</h3>
       </div>
       <!-- /.box-header -->
       <div class="box-body">
         <form action="/admin/topic/list" method="get" class="form-inline">
           <div class="form-group" style="margin-bottom: 10px;">
             <input type="text" readonly id="startDate" name="startDate" value="${startDate}"
-                   class="form-control" placeholder="开始时间">
+                   class="form-control" placeholder="Begin time">
             <input type="text" readonly id="endDate" name="endDate" value="${endDate}"
-                   class="form-control" placeholder="结束时间">
-            <input type="text" name="author" value="${author}" class="form-control" placeholder="用户名">
-            <button type="submit" class="btn btn-warning btn-sm">搜索</button>
+                   class="form-control" placeholder="End time">
+            <input type="text" name="author" value="${author}" class="form-control" placeholder="Username">
+            <button type="submit" class="btn btn-warning btn-sm">Search</button>
           </div>
         </form>
         <table class="table table-bordered">
           <thead>
           <tr>
             <th>#</th>
-            <th>标题</th>
-            <th>用户</th>
-            <th>状态</th>
-            <th>节点</th>
-            <th>时间</th>
-            <th>操作</th>
+            <th>Title</th>
+            <th>User</th>
+            <th>Status</th>
+            <th>Node</th>
+            <th>Time</th>
+            <th>Operation</th>
           </tr>
           </thead>
           <tbody>
@@ -53,8 +53,8 @@
               <td><a href="/topic/${topic.topicId}" target="_blank">${topic.title}</a></td>
               <td><a href="/user/${topic.author}" target="_blank">${topic.author}</a></td>
               <td>
-              <c:if test="${topic.top}">置顶</c:if>
-              <c:if test="${topic.good}">精华</c:if>
+              <c:if test="${topic.top}">Top</c:if>
+              <c:if test="${topic.good}">Popular</c:if>
                   &nbsp;
               </td>
               <td>${topic.nodeTitle}</td>
@@ -62,18 +62,18 @@
               <td>
                   	<button onclick="actionBtn('${topic.topicId}', 'top', this)" class="btn btn-xs btn-primary">
                   		<c:choose>
-                  			<c:when test="${topic.top}">取消置顶</c:when>
-                  			<c:otherwise>置顶</c:otherwise>
+                  			<c:when test="${topic.top}">Cancel top</c:when>
+                  			<c:otherwise>Top</c:otherwise>
                   		</c:choose>
                   	</button>
                   	<button onclick="actionBtn('${topic.topicId}', 'good', this)" class="btn btn-xs btn-primary">
                   		<c:choose>
-                  			<c:when test="${topic.good}"> 取消加精</c:when>
-                  			<c:otherwise> 加精</c:otherwise>
+                  			<c:when test="${topic.good}"> Cancel popular</c:when>
+                  			<c:otherwise> Popular</c:otherwise>
                   		</c:choose>
                   	</button>
-                  	<a href="/admin/topic/edit?id=${topic.topicId}" class="btn btn-xs btn-warning">编辑</a>
-                  	<button onclick="actionBtn('${topic.topicId}', 'delete', this)" class="btn btn-xs btn-danger">删除</button>
+                  	<a href="/admin/topic/edit?id=${topic.topicId}" class="btn btn-xs btn-warning">Edit</a>
+                  	<button onclick="actionBtn('${topic.topicId}', 'delete', this)" class="btn btn-xs btn-danger">Delete</button>
               </td>
             </tr>
 			</c:forEach>
@@ -118,13 +118,13 @@
   		var tip = $(self).text().replace(/[\r\n]/g, '').trim();
   		if(action === 'top'){
   			url = '/admin/topic/top?id=' + id;
-  			msg = '确定' + tip + '这条帖子吗？';
+  			msg = 'Confirm' + tip + 'this post？';
   		}else if(action === 'good'){
   			url = '/admin/topic/good?id=' + id;
-  	        msg = '确定'+tip+'这条帖子吗？';
+  	        msg = 'Confirm'+tip+'this post？';
   		}else if(action === 'delete'){
   			url = '/admin/topic/delete?id=' + id;
-  	        msg = '确定要删除这条帖子吗？';
+  	        msg = 'Confirm to delete this post？';
   		}
   		if(confirm(msg)){
   			$.get(url,function(data){
