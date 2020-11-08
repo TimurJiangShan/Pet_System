@@ -8,49 +8,49 @@
 <div class="content-wrapper" style="padding: 50px 0 40px;">
 	<section class="content-header">
     <h1>
-     板块
-      <small>列表</small>
+     Node
+      <small>List</small>
     </h1>
     <ol class="breadcrumb">
-      <li><a href="/admin/index"><i class="fa fa-dashboard"></i> 首页</a></li>
-      <li><a href="/admin/node/list">板块</a></li>
-      <li class="active">添加</li>
+      <li><a href="/admin/index"><i class="fa fa-dashboard"></i> HomePage</a></li>
+      <li><a href="/admin/node/list">Node</a></li>
+      <li class="active">Add</li>
     </ol>
   </section>
   <section class="content">
     <div class="box box-warning">
       <div class="box-header with-border">
-        <h3 class="box-title">板块添加</h3>
+        <h3 class="box-title">Add Node</h3>
       </div>
       <!-- /.box-header -->
       <div class="box-body">
         <form id="form" action="/admin/tag/edit" method="post" enctype="multipart/form-data">
           <input type="hidden" value="${node.nodeId}" name="nodeId" class="node-id">
           <div class="form-group">
-            <label>名称</label>
+            <label>Name</label>
             <input type="text" name="name" value="${node.nodeTitle}" class="form-control node-name">
           </div>
           <div class="form-group">
-            <label>图标</label>
+            <label>Icon</label>
             <input type="hidden" value="${node.avatarNormal}" name="avatarNormal" class="avatarNormal">
             <input type="file" name="file" id="icon-upload"><br>
             <a href="${node.avatarNormal}" target="_blank" id="icon-href"><img src="${node.avatarNormal}" width="50" alt="" id="icon-img"></a>
           </div>
           <div class="form-group">
-            <label>背景图</label>
+            <label>Background Image</label>
             <input type="hidden" value="${node.avatarLarge}" name="avatarLarge" class="avatarLarge">
             <input type="file" name="file" id="background-upload"><br>
             <a href="${node.avatarLarge}" target="_blank" id="background-href"><img src="${node.avatarLarge}" width="50" alt="" id="background-img"></a>
           </div>
           <div class="form-group">
-            <label>排序</label>
+            <label>Order by</label>
             <input type="text" name="sort" value="${node.sort}" class="form-control node-sort">
           </div>
           <div class="form-group">
-            <label for="">描述</label>
+            <label for="">Description</label>
             <textarea name="description" rows="7" class="form-control node-desc">${node.nodeDesc}</textarea>
           </div>
-          <button type="submit" id="btn" class="btn btn-warning">提交</button>
+          <button type="submit" id="btn" class="btn btn-warning">Submit</button>
         </form>
       </div>
     </div>
@@ -110,9 +110,9 @@
   			var sort = $(".node-sort").val();
   			
   			var data = {nodeTitle, avatarNormal, avatarLarge, nodeDesc, sort};
-  			if(confirm("确定要添加此板块吗？")){
+  			if(confirm("Are your sure to add this node？")){
   				if(!nodeTitle){
-  					toast('板块名称不能为空');
+  					toast('Node name cannot be empty');
   					return false;
   				}
   				console.log(data);
@@ -123,7 +123,7 @@
   					data: data,
   					success: function(data){
   						if(data.success == true){
-  							toast('添加成功','success');
+  							toast('Add Success','success');
   	  						setTimeout(function(){
   	  							window.location.href = "/admin/node/list";
   	  						},1000);
