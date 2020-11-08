@@ -3,13 +3,13 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-  <title>Pet Forum-板块</title>
+  <title>Pet Forum-Section</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- 引入 Bootstrap -->
+  <!-- Quote Bootstrap -->
   <link href="/resources/css/bootstrap.min.css" rel="stylesheet">
   <link href="/resources/css/app.css" rel="stylesheet" type="text/css">
   <link rel="shortcut icon" href="/resources/images/favicon.ico">
-  <!-- 引入layui.css -->
+  <!-- Quotelayui.css -->
   <link rel="stylesheet" href="/resources/layui/css/layui.css" media="all">
 </head>
 <body>
@@ -17,7 +17,7 @@
 <jsp:include page="../components/head.jsp"></jsp:include>
 <div class="row">
   <div class="box box-primary">
-  <div class="box-header with-border">全部板块</div>
+  <div class="box-header with-border">All sections</div>
     <div class="box-body">
       <div class="row">
       <c:forEach var="item" items="${nodeList}">

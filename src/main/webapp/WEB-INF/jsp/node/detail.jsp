@@ -4,7 +4,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-  <title>宠物信息服务平台-${node.nodeTitle}</title>
+  <title>PetGo-${node.nodeTitle}</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="/resources/css/bootstrap.min.css" rel="stylesheet">
   <link href="/resources/css/app.css" rel="stylesheet" type="text/css">
@@ -23,8 +23,8 @@
              <img src="${node.avatarNormal}" border="0" align="default" width="72"></div>
            </div>
            <div class="node_info">
-             <div class="fr f12"><span>主题总数</span> <strong>${countTopicByNode}</strong></div>
-             <a href="/">主页</a> <span class="chevron">&nbsp;›&nbsp;</span> ${node.nodeTitle}
+             <div class="fr f12"><span>Themes</span> <strong>${countTopicByNode}</strong></div>
+             <a href="/">Homepage</a> <span class="chevron">&nbsp;›&nbsp;</span> ${node.nodeTitle}
              <div class="sep10"></div>
              <div class="sep5"></div>
              <span class="f12">${node.nodeDesc}</span>
@@ -57,31 +57,31 @@
                 	</c:otherwise>
                 </c:choose>
           </div>
-          <!-- 摘录 -->
+          <!-- summary -->
           <%-- <div class="excerpt"><span>${item.excerpt}</span></div> --%>
           <div class="tip">
           <p class="gray">
             <c:if test="${item.top}">
-            <span class="label label-warning">置顶</span> <span>•</span>
+            <span class="label label-warning">Put on top</span> <span>•</span>
           </c:if>
           <c:if test="${item.good}">
-          <span class="label label-warning">精华</span> <span>•</span>
+          <span class="label label-warning">Selection</span> <span>•</span>
         </c:if>
         <a href="/user/${item.author}">${item.author}</a>
         <span class="hidden-sm hidden-xs">•</span>
-        <span class="hidden-sm hidden-xs">${item.viewCount}次点击</span>
-        <!-- 评论 -->
+        <span class="hidden-sm hidden-xs">${item.viewCount}clicks</span>
+        <!-- comment -->
         <!-- <span class="hidden-sm hidden-xs">•</span> -->
-        <%-- <span class="hidden-sm hidden-xs"><a href="/topic/${item.topicId}">${item.replyCount}个评论</a></span> --%>
+        <%-- <span class="hidden-sm hidden-xs"><a href="/topic/${item.topicId}">${item.replyCount}comments</a></span> --%>
         <span>•</span>
         <span><fmt:formatDate type="date" 
           value="${item.createDate}" /></span>
-          <!-- 最后回复用户 -->
+          <!-- last replier -->
           <%-- <c:if test="${item.lastReplyAuthor != null}">
           <span>•</span>
-          <span>最后回复来自 <a href="/user/${item.lastReplyAuthor}">${item.lastReplyAuthor}</a></span>
+          <span>Last reply from <a href="/user/${item.lastReplyAuthor}">${item.lastReplyAuthor}</a></span>
         </c:if> --%>
-        <!-- 标签 -->
+        <!-- label -->
         <!-- <span>•</span> -->
         <%-- <a href="/topic/tag/${item.tag}"><span class="label label-success">${item.tag}</span></a> --%>
       </p>
@@ -97,21 +97,21 @@
 </div>
 <div class="col-md-3 hidden-sm hidden-xs">
   <jsp:include page="../components/seesion.jsp"></jsp:include>
-  <!-- 相邻节点 -->
+  <!-- adjacent nodes -->
   <div class="panel panel-default">
-    <!-- <div class="panel-heading"><span style="color: #ccc;">相关节点</span></div> -->
+    <!-- <div class="panel-heading"><span style="color: #ccc;">relevant nodes</span></div> -->
     <div class="panel-body">
       <div class="row">
       <c:if	test="${parentNode != null}">
       	<div class="cell" style="padding: 0 10px;border-bottom: 0px solid #eee;">
-        	<strong class="gray">父板块</strong>
+        	<strong class="gray">Parent section</strong>
         	<div class="sep10"></div>
         	<img src="${parentNode.avatarMini}" border="0" align="absmiddle" width="24">&nbsp; <a href="${parentNode.url}">${parentNode.nodeTitle}</a>
     	</div>
       </c:if>
       <c:if test="${fn:length(adjacencyNode) > 0}">
         <div class="cell" style="padding: 0 10px;border-bottom: 0px solid #eee;">
-          <strong class="gray">相关板块</strong>
+          <strong class="gray">relevant section</strong>
           <c:forEach var="item" items="${adjacencyNode}" varStatus="status">
           <div class="sep10"></div>
           <img src="${item.avatarMini}" border="0" align="absmiddle" width="24">&nbsp; <a href="${item.url}">${item.nodeTitle}</a>
@@ -121,7 +121,7 @@
     </c:if>
     <c:if test="${fn:length(childrenNode) > 0}">
     	<div class="cell" style="padding: 0 10px;border-bottom: 0px solid #e2e2e2;border-top: 1px solid #e2e2e2;">
-          <strong class="gray">子板块</strong>
+          <strong class="gray">Child section</strong>
           <c:forEach var="item" items="${childrenNode}" varStatus="status">
           <div class="sep10"></div>
           <img src="${item.avatarMini}" border="0" align="absmiddle" width="24">&nbsp; <a href="${item.url}">${item.nodeTitle}</a>
@@ -132,7 +132,7 @@
   </div>
 </div>
 </div>
-<!-- 相邻节点 -->
+<!-- adjacent nodes -->
 </div>
 </div>
 </div>
@@ -150,21 +150,21 @@
 <script src="/resources/js/formatDate.js"></script>
 <script src="/resources/js/node/changeSectionClass.js"></script>
 <script type="text/javascript">
- var nodeTitle = "${node.nodeTitle}";//节点名称
- var nodeCode = "${node.nodeCode}";//节点编码
- var nodeURL = "${node.url}";//节点url
- var avatarLarge = "${node.avatarLarge}";//节点背景
+ var nodeTitle = "${node.nodeTitle}";//node name
+ var nodeCode = "${node.nodeCode}";//node code
+ var nodeURL = "${node.url}";//node URL
+ var avatarLarge = "${node.avatarLarge}";//node background
  $(".wrapper").css({"background-image":"url("+avatarLarge+")"});
  // console.log(avatarLarge)
- var nodeTabCode = "${nodeTab}";//节点板块
- var count = ${page.totalRow};//数据总量
- var limit = ${page.pageSize};//每页显示的条数
+ var nodeTabCode = "${nodeTab}";//node section
+ var count = ${page.totalRow};//data amount
+ var limit = ${page.pageSize};//entries per page
  var url = nodeURL+"?s="+nodeTabCode+"&p=";//url
  function page(){
    var page = location.search.match(/p=(\d+)/);  
    return page ? page[1] : 1;  
  }
- var p = page();//当前页数
+ var p = page();//current page
  paginate(count,limit,p,url);
 </script>
 </body>
