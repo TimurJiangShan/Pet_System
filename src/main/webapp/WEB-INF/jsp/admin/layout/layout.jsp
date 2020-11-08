@@ -7,7 +7,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <title>宠物信息服务平台后台管理</title>
+  <title>PetGo - backend Management</title>
   <link rel="stylesheet" href="/resources/layui/css/layui.css">
 </head>
 <body class="layui-layout-body">
@@ -19,14 +19,15 @@
   
   <div class="layui-body">
     <!-- 内容主体区域 -->
-    <div style="padding: 15px;">aaa内容主体区域</div>
+    <div style="padding: 15px;">Main Content Area</div>
   </div>
   <!-- 底部 -->
   <jsp:include page="../../admin/layout/footer.jsp"></jsp:include>
 </div>
 <script src="/resources/layui/layui.js"></script>
 <script>
-//JavaScript代码区域
+
+//JavaScript
 layui.use('element', function(){
   var element = layui.element;
   

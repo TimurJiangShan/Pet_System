@@ -9,7 +9,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>宠物信息服务平台-后台管理</title>
+    <title>PetGo-Backend Management</title>
     <link rel="icon" href="/resources/images/favicon.ico">
     <link rel="stylesheet" href="/resources/layui/css/layui.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" />
@@ -23,6 +23,7 @@
     <link rel="stylesheet" href="/resources/css/admin.css">
     <link rel="stylesheet" href="/resources/wangEditor/wangEditor.min.css">
     <link rel="stylesheet" href="/resources/cropper/cropper.css">
+<%--    Add responsive Design--%>
     <style>
       @media screen and (max-width: 768px) {
         .content-header {
@@ -46,7 +47,7 @@
       function toast(txt, icon) {
         $.toast({
           text: txt, // Text that is to be shown in the toast
-          heading: '系统提醒', // Optional heading to be shown on the toast
+          heading: 'System Notice', // Optional heading to be shown on the toast
           icon: icon || 'error', // Type of toast icon warning, info, success, error
           showHideTransition: 'slide', // fade, slide or plain
           allowToastClose: true, // Boolean value true or false
@@ -62,8 +63,8 @@
     <header class="main-header" style="position: fixed; width: 100%">
   <!-- Logo -->
   <a href="/admin/index" class="logo">
-    <span class="logo-mini"><b>宠物信息服务平台</b></span>
-    <span class="logo-lg"><b>宠物信息服务平台</b>后台管理</span>
+    <span class="logo-mini"><b>PetGo</b></span>
+    <span class="logo-lg"><b>PetGo</b>Backend Management</span>
   </a>
   <!-- Header Navbar: style can be found in header.less -->
   <nav class="navbar navbar-static-top">
@@ -71,10 +72,10 @@
     <a href="/admin/index" class="sidebar-toggle" data-toggle="offcanvas" role="button">
       <span class="sr-only">Toggle navigation</span>
     </a>
-    <div class="pull-right" style="line-height: 50px; padding-right: 15px;">
-      <a href="/changeLanguage?lang=zh" style="color: #fff;">中文</a>&nbsp;&nbsp;
-      <a href="/changeLanguage?lang=en" style="color: #fff;">English</a>
-    </div>
+<%--    <div class="pull-right" style="line-height: 50px; padding-right: 15px;">--%>
+<%--      <a href="/changeLanguage?lang=zh" style="color: #fff;">中文</a>&nbsp;&nbsp;--%>
+<%--      <a href="/changeLanguage?lang=en" style="color: #fff;">English</a>--%>
+<%--    </div>--%>
   </nav>
 </header>
   <%@ include file="side.jsp"%>
