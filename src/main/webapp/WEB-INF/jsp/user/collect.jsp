@@ -4,7 +4,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>${user.userName}Collecting Posts</title>
+    <title>${user.userName} Collecting Posts</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- into Bootstrap -->
     <link href="/resources/css/bootstrap.min.css" rel="stylesheet">
@@ -49,7 +49,7 @@
                                         <span>•</span>
                                         <strong><a href="/user/${item.author}">${item.author}</a></strong>
                                         <span class="hidden-sm hidden-xs">•</span>
-                                        <span class="hidden-sm hidden-xs">${item.viewCount}Clicks</span>
+                                        <span class="hidden-sm hidden-xs">${item.viewCount} Clicks</span>
                                         <!-- <span class="hidden-sm hidden-xs">•</span> -->
                                             <%-- <span class="hidden-sm hidden-xs"><a href="/topic/${item.topicId}">${item.replyCount}个评论</a></span> --%>
                                         <span>•</span>
