@@ -36,21 +36,7 @@ public class TabCookieUtil {
 				return str = Base64Util.decode(CookieAndSessionUtil.getCookie(request, "tab"));
 			}
 		}
-		
-		
-		
-		
-		
-		/*String str = Base64Util.decode(CookieAndSessionUtil.getCookie(request, "ptab"));
-		if(str == null) {
-			setPtab(ptab,response);
-			return Base64Util.decode(CookieAndSessionUtil.getCookie(request, "ptab"));
-		}else if(str != null && str.equals(ptab)) {
-			return str;
-		}else {
-			CookieAndSessionUtil.editCookie(request,response, "ptab", Base64Util.encode(ptab));
-			return Base64Util.decode(CookieAndSessionUtil.getCookie(request, "ptab"));
-		}*/
+
 	}
 	
 	public static void removePtab(HttpServletResponse response) {

@@ -57,27 +57,17 @@ private Logger logger = LoggerFactory.getLogger(this.getClass());
 	@Autowired
 	private FollowService followService;
 	
-	/**
-	 * 话题详情
-	 * @param id
-	 * @param model
-	 * @return
-	 */
+
 	@RequestMapping(value = "/topic/{id}", method = RequestMethod.GET)
 	private String detail(@PathVariable Integer id, Model model,@RequestParam(value = "p", defaultValue = "1") Integer p,HttpServletRequest request) {
 		Topic topic = rootTopicService.findByTopicId(id);
 		User user = getUser(request);
-		/*if(topic == null) {
-			//return "error-page/404";
-			throw new RuntimeException("话题不存在");
-		}*/
-		ApiAssert.notNull(topic, "话题消失了~");
-		//浏览量+1
+
+		ApiAssert.notNull(topic, "Topic disappear~");
 		topic.setViewCount(topic.getViewCount()+ 1);
-		rootTopicService.updateTopic(topic);//更新话题数据
-		//分页查询回复
-		PageDataBody<Reply> replyPage = rootReplyService.page(p, 50, id);
-		int countByTid = collectDaoService.countByTid(id);//话题被收藏的数量
+		rootTopicService.updateTopic(topic);
+		PageDataBody<Reply> replyPage = rootReplyService.page(p, 5, id);
+		int countByTid = collectDaoService.countByTid(id);
 		if (user != null) {
 			int countTopic = rootTopicService.countByUserName(user.getUserName());
 			int countCollect = collectDaoService.count(user.getUserId());
@@ -91,8 +81,6 @@ private Logger logger = LoggerFactory.getLogger(this.getClass());
 			request.setAttribute("countNotReadNotice", countNotReadNotice);
 			request.setAttribute("countScore", countScore);
 		}
-		//BaseEntity baseEntity = new BaseEntity();
-		//model.addAttribute("baseEntity", baseEntity);
 		model.addAttribute("topic", topic);
 		model.addAttribute("replyPage", replyPage);
 		model.addAttribute("user", user);
@@ -100,11 +88,6 @@ private Logger logger = LoggerFactory.getLogger(this.getClass());
 		return "topic/detail";
 	}
 	
-	/**
-	 * 发布话题
-	 * @param request
-	 * @return
-	 */
 	@RequestMapping(value = "/topic/create", method = RequestMethod.GET)
 	private String create(String n,HttpServletRequest request){
 		List<Tab> tabList = tabService.selectAll();
@@ -117,38 +100,19 @@ private Logger logger = LoggerFactory.getLogger(this.getClass());
 		return "topic/create";
 	}
 	
-	/**
-	 * 发布话题逻辑
-	 * @param title
-	 * @param content
-	 * @param nodeTitle
-	 * @param tag:标签，暂时只能输入一个
-	 * @param request
-	 * @return
-	 */
+
 	@RequestMapping(value = "/topic/save", method = RequestMethod.POST)
 	@ResponseBody
-	private Result<TopicExecution> save(String title, String content, String statusCd, /*String nodeCode,*/String nodeTitle, String tag, HttpServletRequest request){
+	private Result<TopicExecution> save(String title, String content, String statusCd, String nodeTitle, String tag, HttpServletRequest request){
 		User user = getUser(request);
-		ApiAssert.notNull(user, "请先登录");
-		ApiAssert.notNull(title, "标题不能为空");
-		// ApiAssert.notNull(tab, "板块不能为空");
-		// ApiAssert.notNull(nodeCode, "节点不能为空");
-		// ApiAssert.notNull(tag, "标签不能为空");
-		//TopicExecution saveTopic = rootTopicService.saveTopic(topic);
+		ApiAssert.notNull(user, "Please Login First");
+		ApiAssert.notNull(title, "Title cannot be empty");
 		if(StringUtils.isEmpty(tag)) tag = null;
 		TopicExecution saveTopic = rootTopicService.createTopic(title, content, statusCd, null, nodeTitle, tag ,user);
 		//logger.debug(saveTopic.toString());
 		return new Result<TopicExecution>(true, saveTopic);
 	}
-	
-	/**
-	 * 根据标签分页查找话题
-	 * @param name
-	 * @param model
-	 * @param p
-	 * @return
-	 */
+
 	@RequestMapping(value = "/tag/{name}", method = RequestMethod.GET)
 	private String tag(@PathVariable String name, Model model,@RequestParam(value = "p", defaultValue = "1") Integer p) {
 		PageDataBody<Topic> pageByTag = rootTopicService.pageByTag(name, p, 20);

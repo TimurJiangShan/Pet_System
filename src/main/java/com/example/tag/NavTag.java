@@ -12,12 +12,7 @@ import com.example.entity.Node;
 import com.example.service.NodeService;
 import com.example.util.ApplicationContextUtil;
 
-/**
- * 导航标签
- * 
- * @author miansen.wang
- * @date 2020-04-15
- */
+
 public class NavTag extends SimpleTagSupport {
 
 	@Override
@@ -35,14 +30,14 @@ public class NavTag extends SimpleTagSupport {
 		sb.append("<ul style=\"padding-left: 0px\">");
 		sb.append("\t\n");
 		if ("index".equals(nodeName)) {
-			sb.append("<li class=\"li-cate\"><a href=\"/\" class=\"li-cate-active\" style=\"padding-left: 0px;\">首页</a></li>");
+			sb.append("<li class=\"li-cate\"><a href=\"/\" class=\"li-cate-active\" style=\"padding-left: 0px;\">HomePage</a></li>");
 		} else {
-			sb.append("<li class=\"li-cate\"><a href=\"/\" class=\"li-cate-a\" style=\"padding-left: 0px;\">首页</a></li>");
+			sb.append("<li class=\"li-cate\"><a href=\"/\" class=\"li-cate-a\" style=\"padding-left: 0px;\">HomePage</a></li>");
 		}
-		if ("全部".equals(nodeName)) {
-			sb.append("<li class=\"li-cate\"><a href=\"/?node=全部\" class=\"li-cate-active\">全部</a></li>");
+		if ("All".equals(nodeName)) {
+			sb.append("<li class=\"li-cate\"><a href=\"/?node=All\" class=\"li-cate-active\">All</a></li>");
 		} else {
-			sb.append("<li class=\"li-cate\"><a href=\"/?node=全部\" class=\"li-cate-a\">全部</a></li>");
+			sb.append("<li class=\"li-cate\"><a href=\"/?node=All\" class=\"li-cate-a\">All</a></li>");
 		}
 		sb.append("\t\n");
 		for (Node node : nodes) {

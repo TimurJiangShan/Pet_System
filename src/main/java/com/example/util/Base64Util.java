@@ -9,11 +9,6 @@ public class Base64Util {
 
 	private Base64Util() {}
 
-	/**
-	 * base64编码
-	 * @param str
-	 * @return
-	 */
 	public static String encode(String str) {
 		byte[] encode = null;
 		String string = null;
@@ -26,12 +21,7 @@ public class Base64Util {
 		}
 		return string;
 	}
-	
-	/**
-	 * base64解码
-	 * @param str
-	 * @return
-	 */
+
 	public static String decode(String str) {
 		String string = null;
 		byte[] decode = null;
@@ -44,14 +34,7 @@ public class Base64Util {
 		}
 		return string;
 	}
-	
-	/*public static void main(String[] args) {
-		String str = "一颗协议";
-		String encode = encode(str);
-		System.out.println(encode);
-		String decode = decode("5LiA6aKX5Y2P6K6u");
-		System.out.println(decode);
-	}*/
+
 	private static char[] base64EncodeChars = new char[]{'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J',
 		      'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'a', 'b', 'c',
 		      'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v',
@@ -63,12 +46,7 @@ public class Base64Util {
 		      22, 23, 24, 25, -1, -1, -1, -1, -1, -1, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39,
 		      40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, -1, -1, -1, -1, -1};
 
-		  /**
-		   * 加密
-		   *
-		   * @param data
-		   * @return
-		   */
+		  // Enctypt
 		  public static String encode(byte[] data) {
 		    StringBuffer sb = new StringBuffer();
 		    int len = data.length;
@@ -100,7 +78,7 @@ public class Base64Util {
 		  }
 
 		  /**
-		   * 解密
+		   * Decrypt
 		   *
 		   * @param str
 		   * @return

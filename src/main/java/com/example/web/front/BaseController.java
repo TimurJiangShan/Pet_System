@@ -41,12 +41,6 @@ public class BaseController {
 	private SiteConfig siteConfig;
 
 
-	/**
-	 * 获取登录用户的信息
-	 *
-	 * @param request
-	 * @return
-	 */
 	public User getUser(HttpServletRequest request) {
 		return CookieAndSessionUtil.getSession(request, "user");
 	}
@@ -59,36 +53,18 @@ public class BaseController {
 		return suesscePage;
 	}
 
-	/**
-	 * 未读通知的数量
-	 * 
-	 * @param request
-	 * @return
-	 */
 	public int getNotReadNotice(HttpServletRequest request) {
 		int notReadNotice = 0;
 		notReadNotice = rootNoticeService.countNotReadNotice(getUser(request).getUserName());
 		return notReadNotice;
 	}
 
-	/**
-	 * 发布的主题的数量
-	 * 
-	 * @param request
-	 * @return
-	 */
 	public int getCountTopicByUserName(HttpServletRequest request) {
 		int countTopicByUserName = 0;
 		countTopicByUserName = rootTopicService.countByUserName(getUser(request).getUserName());
 		return countTopicByUserName;
 	}
 
-	/**
-	 * 收藏话题的数量
-	 * 
-	 * @param request
-	 * @return
-	 */
 	public int getCountCollect(HttpServletRequest request) {
 		int countCollect = 0;
 		collectDaoService.count(getUser(request).getUserId());

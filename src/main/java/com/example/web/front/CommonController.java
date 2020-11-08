@@ -52,7 +52,7 @@ public class CommonController {
 	@RequestMapping(value = "/upload/base64",method = RequestMethod.POST)
 	@ResponseBody
 	public Result<String> uploadBase64(String base64, String path){
-		ApiAssert.notEmpty(base64, "文件不能为空");
+		ApiAssert.notEmpty(base64, "File cannot be empty");
 		String url = storageService.store(base64, Paths.get(path));
 		return new Result<>(true, url);
 	}
