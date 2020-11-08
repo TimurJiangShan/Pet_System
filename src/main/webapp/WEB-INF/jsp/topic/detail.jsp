@@ -162,7 +162,7 @@
 	editor.customConfig.uploadImgServer = '/common/upload';
 	// Limitation of picture is 5MB
 	editor.customConfig.uploadImgMaxSize = 5 * 1024 * 1024;
-	// Limitation of uploading is 5 pictures one time
+	// Uploading maximum 5 pictures one time
 	editor.customConfig.uploadImgMaxLength = 10;
 	// Timeout is 10 s
 	editor.customConfig.uploadImgTimeout = 10000;
