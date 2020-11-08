@@ -79,9 +79,6 @@ CREATE TABLE `node` (
 -- ----------------------------
 BEGIN;
 INSERT INTO `node` VALUES (1, 'Dog', 'Dog', '/resources/images/node/java_normal.png', '/resources/images/node/java_mini.png', NULL, 'Dog', 14, '/n/Dog', 'Dog', '2020-11-03 11:50:18', '2020-11-06 23:48:45', 0, NULL, NULL, NULL);
--- INSERT INTO `node` VALUES (2, '辟谣', '辟谣', NULL, NULL, NULL, NULL, NULL, '/n/辟谣', NULL, '2020-05-02 12:01:07', NULL, 0, 1, 1, 1);
--- INSERT INTO `node` VALUES (3, '每日萌宠', '每日萌宠', NULL, NULL, NULL, '每日萌宠', NULL, '/n/每日萌宠', NULL, '2020-05-02 12:03:14', NULL, 0, 1, 1, 2);
--- INSERT INTO `node` VALUES (4, '宠物百科', '宠物百科', NULL, NULL, NULL, NULL, NULL, '/n/宠物百科', NULL, '2020-05-02 12:03:51', NULL, 0, 1, 1, 3);
 COMMIT;
 
 -- ----------------------------
@@ -257,7 +254,7 @@ CREATE TABLE `tab` (
 -- Records of tab
 -- ----------------------------
 BEGIN;
-INSERT INTO `tab` VALUES (1, 'all', 'all', 0, '2018-07-15 15:59:48', 1);
+INSERT INTO `tab` VALUES (1, 'all', 'all', 0, '2020-10-25 15:39:48', 1);
 
 COMMIT;
 
@@ -304,7 +301,6 @@ CREATE TABLE `topic` (
 -- ----------------------------
 BEGIN;
 INSERT INTO `topic` VALUES (1, NULL, NULL, 'abc', NULL, '<p>abc</p>', NULL, '2020-10-22 13:00:22', '020-10-22 12:14:54', NULL, NULL, 1, 'jiangshan', 1, 1, 1, 0, 0, 1, NULL, NULL, '', NULL, 'Java', NULL, '/resources/images/default-avatar.jpg', NULL);
--- INSERT INTO `topic` VALUES (3, NULL, NULL, '1111', NULL, '<p><iframe src=\"/static/84de141fc74a4c5a96f3cca2bb774be7.mp4\" style=\"width:650px;height: 366px\" frameborder=\"0\"></iframe></p>', NULL, '2020-05-02 13:39:34', '2020-05-02 13:39:34', NULL, NULL, 2, 'zhangsan', 0, 0, 1, 0, 0, 1, NULL, NULL, '', NULL, 'Java', NULL, '/resources/images/default-avatar.jpg', NULL);
 COMMIT;
 
 -- ----------------------------
