@@ -46,7 +46,7 @@
 			  <span class="label label-warning">Top</span> <span>•</span>
 			  </c:if>
 			  <c:if test="${item.good}">
-			  <span class="label label-warning">Excellent</span> <span>•</span>
+			  <span class="label label-warning">Highlight</span> <span>•</span>
 			  </c:if>
 			  
 			  <c:if test="${not empty item.nodeTitle}">

@@ -52,7 +52,7 @@
 							<span>•</span>
 						</c:if>
 						<c:if test="${topic.good}">
-						<span class="label label-success">Excellent</span>
+						<span class="label label-success">Highlight</span>
 						<span>•</span>
 					</c:if>
 					<span><a href="/user/${topic.author}">${topic.author}</a></span>
