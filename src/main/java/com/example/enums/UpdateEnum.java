@@ -1,18 +1,11 @@
 package com.example.enums;
 
-/**
- * 修改操作数据字典
- * @author sen
- * 2018年5月12日
- * 上午11:36:31
- * TODO
- */
 public enum UpdateEnum {
 
-	SUCCESS(1, "更新成功"), NO_USER(0,"更新失败"),REPEAT_USER(-1, "重复操作"),INNER_ERROR(-2, "系统异常");
+	SUCCESS(1, "update successful"), NO_USER(0,"update failure"),REPEAT_USER(-1, "repeat operation"),INNER_ERROR(-2, "system error");
 	
-	private int state;// 信息代码
-	private String stateInfo;// 信息说明
+	private int state;
+	private String stateInfo;
 	
 	private UpdateEnum(int state,String stateInfo) {	
 		this.state = state;

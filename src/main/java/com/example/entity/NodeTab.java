@@ -2,24 +2,17 @@ package com.example.entity;
 
 import java.util.Date;
 
-/**
- * 节点板块实体
- * Table: node_tab
- * @author sen
- * 2018年5月5日
- * 下午8:58:27
- * TODO
- */
+
 public class NodeTab {
 
-	private Integer nodeTabId;//节点板块id
-	private String nodeTabCode;//节点板块编码
-	private String nodeTabTitle;//节点板块名称
-	private String nodeTabDesc;//板块描述
-	private boolean isDelete;//是否删除，false:否 true:是'
-	private Integer nodeTabOrder;//节点板块排序
-	private Date createDate;//创建时间
-	private Date updateDate;//更新时间
+	private Integer nodeTabId;
+	private String nodeTabCode;
+	private String nodeTabTitle;
+	private String nodeTabDesc;
+	private boolean isDelete;
+	private Integer nodeTabOrder;
+	private Date createDate;
+	private Date updateDate;
 	public Integer getNodeTabId() {
 		return nodeTabId;
 	}

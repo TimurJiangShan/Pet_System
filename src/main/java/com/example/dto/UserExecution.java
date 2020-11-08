@@ -4,11 +4,9 @@ import com.example.entity.User;
 import com.example.enums.InsertUserEnum;
 import com.example.enums.UpdateUserEnum;
 
-/**
- * 存储操作用户的结果
- * @author Jiangshan
- * TBD
- */
+
+
+//Store the results of operating users
 public class UserExecution {
 
 	private String userName;

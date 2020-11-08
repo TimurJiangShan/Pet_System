@@ -8,39 +8,39 @@
           var pattern=/^\w+$/;
           var myreg = /^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/;
           if (!username) {
-            alert('用户名不能为空哦');
+            alert('The user name cannot be empty');
             return false;
           }
           if(!pattern.test(username)){
-        	  alert("您的用户名只能为0-9a-zA-Z格式");
+        	  alert("ç");
               return false;
           }
           if (username.length < 2) {
-              alert('用户名的长度不能少于2位');
+              alert('Length of user name should larger than 2');
               return false;
             }
           if (!password) {
-            alert('密码不能为空哦');
+            alert('Password can not be empty');
             return false;
           }
           if (password.length < 6) {
-              alert('密码的长度不能少于6位');
+              alert('The length of the password cannot be less than 6 bits');
               return false;
             }
           if (password.length > 16) {
-              alert('密码的长度不能大于16位');
+              alert('The length of the password cannot be greater than 16 bits');
               return false;
             }
           if (!email) {
-            alert('邮箱不能为空哦');
+            alert('Email cannot be empty');
             return false;
           }
           if(!myreg.test(email)){
-        	  alert('邮箱格式不正确');
+        	  alert('The mailbox format is incorrect');
               return false;
           }
             if (!userType) {
-                alert('类型不能为空哦');
+                alert('Type cannot be empty');
                 return false;
             }
           $.ajax({
@@ -59,7 +59,6 @@
                 alert(data.error);
                 return false;
               }else{
-            	  // alert('注册成功，点击去登录');
                   location.href = "/";
               }
             },

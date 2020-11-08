@@ -2,6 +2,7 @@ package com.example.entity;
 
 import java.util.Date;
 
+
 /**
  * @author Jiangshan Zhao
  */
@@ -11,14 +12,11 @@ public class Follow {
 	 * Primary Key
 	 */
 	private Integer id;
-	/**
-	 * 关注者ID
-	 */
+
 	private Integer uid;
-	/**
-	 * 被关注者ID
-	 */
+
 	private Integer fid;
+
 	private Date createDate;
 	
 	public Integer getId() {

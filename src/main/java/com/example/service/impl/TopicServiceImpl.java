@@ -36,10 +36,7 @@ public class TopicServiceImpl implements TopicService{
 	@Autowired
 	@Qualifier("systemConfigServiceImpl")
 	private SystemConfigService systemConfigService;
-	
-	/**
-	 * 根据节点和节点板块查询话题
-	 */
+
 	@Override
 	public PageDataBody<Topic> pageByNodeAndNodeTab(Integer pageNumber, Integer pageSize, String nodeTab,String nodeTitle) {
 		if(nodeTab.equals("all")) {
@@ -53,9 +50,6 @@ public class TopicServiceImpl implements TopicService{
 		}
 	}
 
-	/**
-	 * 根据板块查询所有话题
-	 */
 	@Override
 	public PageDataBody<Topic> pageAllByTabAndNode(Integer pageNumber, Integer pageSize,String tab, String node) {
 		List<Topic> list = rootTopicDao.selectAllByTabAndNode((pageNumber - 1) * pageSize, pageSize,tab, node);
@@ -63,9 +57,7 @@ public class TopicServiceImpl implements TopicService{
 		return new PageDataBody<>(list, pageNumber, pageSize, total);
 	}
 	
-	/**
-	 * 根据节点查询所有话题
-	 */
+
 	@Override
 	public PageDataBody<Topic> pageAllByNode(Integer pageNumber, Integer pageSize, String nodeTitle) {
 		List<Topic> list = rootTopicDao.selectAllByNode((pageNumber - 1) * pageSize, pageSize,nodeTitle);
@@ -73,9 +65,7 @@ public class TopicServiceImpl implements TopicService{
 		return new PageDataBody<>(list, pageNumber, pageSize, total);
 	}
 
-	/**
-	 * 根据节点查询精华话题
-	 */
+
 	@Override
 	public PageDataBody<Topic> pageGood(Integer pageNumber, Integer pageSize,String nodeTitle) {
 		List<Topic> list = rootTopicDao.selectAllGood((pageNumber - 1) * pageSize, pageSize,nodeTitle);
@@ -83,9 +73,7 @@ public class TopicServiceImpl implements TopicService{
 		return new PageDataBody<>(list, pageNumber, pageSize, total);
 	}
 
-	/**
-	 * 根据节点查询无人回复的话题
-	 */
+
 	@Override
 	public PageDataBody<Topic> pageNoReply(Integer pageNumber, Integer pageSize,String nodeTitle) {
 		List<Topic> list = rootTopicDao.selectAllNoReply((pageNumber - 1) * pageSize, pageSize,nodeTitle);
@@ -93,26 +81,18 @@ public class TopicServiceImpl implements TopicService{
 		return new PageDataBody<>(list, pageNumber, pageSize, total);
 	}
 
-	/**
-	 * 根据ID查询话题
-	 */
 	@Override
 	public Topic findByTopicId(Integer topicId) {
 		return rootTopicDao.selectByTopicId(topicId);
 	}
 
-	/**
-	 * 查询当前作者的其他话题
-	 */
+
 	@Override
 	public List<Topic> findOtherTopicByAuthor(Integer currentTopicId, String author, Integer limit) {
 		//return rootTopicDao.selectByAuthor(currentTopicId, author, 0, limit);
 		return null;
 	}
 
-	/**
-	 * 根据昵称分页查询用户的所有话题
-	 */
 	@Override
 	public PageDataBody<Topic> pageByAuthor(Integer pageNumber, Integer pageSize, String author) {
 		int totalRow = rootTopicDao.countAllByName(author);
@@ -120,33 +100,24 @@ public class TopicServiceImpl implements TopicService{
 		return new PageDataBody<>(list, pageNumber, pageSize, totalRow);
 	}
 
-	/**
-	 * 查询所有话题
-	 */
+
 	@Override
 	public List<Topic> findAll() {
 		return rootTopicDao.selectAll();
 	}
 
-	/**
-	 * 根据ID删除话题
-	 */
+
 	@Override
 	public void deleteByTopicId(Integer topicId) {
 		rootTopicDao.deleteById(topicId);
 	}
 
-	/**
-	 * 根据作者删除话题
-	 */
+
 	@Override
 	public void deleteByAuthor(String author) {
 		rootTopicDao.deleteByAuthor(author);
 	}
 
-	/**
-	 * 置顶话题
-	 */
 	@Override
 	public void topByTopicId(Integer topicId) {
 		Topic topic = rootTopicDao.selectByTopicId(topicId);
@@ -156,9 +127,6 @@ public class TopicServiceImpl implements TopicService{
 		}
 	}
 
-	/**
-	 * 话题加精
-	 */
 	@Override
 	public void goodByTopicId(Integer topicId) {
 		Topic topic = rootTopicDao.selectByTopicId(topicId);
@@ -168,33 +136,25 @@ public class TopicServiceImpl implements TopicService{
 		}
 	}
 
-	/**
-	 * 发布话题
-	 */
+
 	@Transactional
 	@Override
 	public TopicExecution saveTopic(Topic topic) {
 		try {
 			int insert = rootTopicDao.insert(topic);
-			/**
-			 * 根据话题名称、话题作者、话题标签、话题内容查询话题
-			 * 如果上面四个参数已存在于数据库中，则此处会报错
-			 * 2018.06.03 16：35
-			 */
-			// Topic rootTopic = rootTopicDao.selectByNameAndAuthorAndTagAndContent(topic.getTitle(), topic.getAuthor(),  topic.getTag(),topic.getContent());
 			if(insert <= 0) {
 				throw new OperationFailedException("发布话题失败！");
 			}else {
-				//发贴加积分
+
 				rootUserDao.updateScoreByName(Integer.valueOf(systemConfigService.getByKey("create_topic_score").getValue()), topic.getAuthor());
 				// Topic rootTopic = rootTopicDao.selectByTitleAndDate(topic.getTitle(), topic.getCreateDate());
 				return new TopicExecution(topic.getTitle(), InsertTopicEnum.SUCCESS, topic);
 			}
 		}catch (OperationFailedException e1) {
-			log.error("发布话题报错，错误信息: {}", e1.getMessage());
-			// throw e1;
+			log.error("post wrong: {}", e1.getMessage());
+
 		}catch (Exception e) {
-			log.error("发布话题报错，错误信息: {}", e.getMessage());
+			log.error("post wrong: {}", e.getMessage());
 			// throw new OperationSystemException("insert into RootTopic error "+e.getMessage());
 		}
 		return null;
@@ -233,33 +193,24 @@ public class TopicServiceImpl implements TopicService{
 		return saveTopic;
 	}
 
-	/**
-	 * 更新话题
-	 */
 	@Override
 	public void updateTopic(Topic topic) {
 		rootTopicDao.updateByTopicId(topic);
 	}
 
-	/**
-	 * 收藏话题列表
-	 */
+
 	@Override
 	public PageDataBody<Topic> findCollectsById(Integer pageNumber, Integer pageSize, Integer uid) {
 		return null;
 	}
 
-	/**
-	 * 查询用户发布主题的数量
-	 */
+
 	@Override
 	public int countByUserName(String userName) {
 		return rootTopicDao.countAllByName(userName);
 	}
 
-	/**
-	 * 根据节点查询最新话题
-	 */
+
 	@Override
 	public PageDataBody<Topic> pageAllNewest(Integer pageNumber, Integer pageSize,String nodeTitle) {
 		List<Topic> list = rootTopicDao.selectAllNewest((pageNumber - 1) * pageSize, pageSize,nodeTitle);
@@ -267,17 +218,13 @@ public class TopicServiceImpl implements TopicService{
 		return new PageDataBody<>(list, pageNumber, pageSize, total);
 	}
 
-	/**
-	 * 热门话题
-	 */
+
 	@Override
 	public List<Topic> findHot(Integer start, Integer limit) {
 		return rootTopicDao.selectHot(start, limit);
 	}
 
-	/**
-	 * 分页查询所有标签
-	 */
+
 	@Override
 	public PageDataBody<Tag> findByTag(Integer pageNumber, Integer pageSize) {
 		int totalRow = rootTopicDao.countTag();
@@ -285,9 +232,7 @@ public class TopicServiceImpl implements TopicService{
 		return new PageDataBody<>(list, pageNumber, pageSize, totalRow);
 	}
 
-	/**
-	 * 根据标签查询话题
-	 */
+
 	@Override
 	public PageDataBody<Topic> pageByTag(String tag, Integer pageNumber, Integer pageSize) {
 		int totalRow = rootTopicDao.countByTag(tag);
@@ -295,33 +240,24 @@ public class TopicServiceImpl implements TopicService{
 		return new PageDataBody<>(list, pageNumber, pageSize, totalRow);
 	}
 
-	/**
-	 * 更新主题作者的头像
-	 */
+
 	@Override
 	public void updateTopicAvatar(User user) {
 		rootTopicDao.updateTopicAvatar(user);
 	}
 
-	/**
-	 * 更新节点名称
-	 */
+
 	@Override
 	public void updateNodeTitile(String oldNodeTitle, String newNodeTitle) {
 		rootTopicDao.updateNodeTitile(oldNodeTitle, newNodeTitle);
 	}
 
-	/**
-	 * 统计所有话题
-	 */
+
 	@Override
 	public int countAllTopic(String tab, String statusCd) {
 		return rootTopicDao.countTopicByTabAndStatusCd(tab, statusCd);
 	}
 
-	/**
-	 * 分页模糊查询
-	 */
 	@Override
 	public PageDataBody<Topic> pageLike(Integer pageNumber, Integer pageSize, String like) {
 		List<Topic> list = rootTopicDao.selectByLike(like, (pageNumber - 1) * pageSize, pageSize);
@@ -329,9 +265,7 @@ public class TopicServiceImpl implements TopicService{
 		return new PageDataBody<>(list, pageNumber, pageSize, totalRow);
 	}
 
-	/**
-	 * 根据板块和昵称分页查询话题
-	 */
+
 	@Override
 	public PageDataBody<Topic> pageAllByPtabAndAuthor(Integer pageNumber, Integer pageSize, String ptab, String author) {
 		int totalRow = rootTopicDao.countAllByNameAndPtab(author, ptab);
@@ -339,9 +273,7 @@ public class TopicServiceImpl implements TopicService{
 		return new PageDataBody<>(list, pageNumber, pageSize, totalRow);
 	}
 
-	/**
-	 * 首页-最热话题
-	 */
+
 	@Override
 	public PageDataBody<Topic> findIndexHot(Integer pageNumber, Integer pageSize, String tab) {
 		int totalRow = rootTopicDao.countIndexHot(tab);
@@ -349,25 +281,17 @@ public class TopicServiceImpl implements TopicService{
 		return new PageDataBody<>(list, pageNumber, pageSize, totalRow);
 	}
 
-	/**
-	 * 侧边栏-今日等待回复的话题
-	 */
 	@Override
 	public List<Topic> findTodayNoReply(Integer start, Integer limit) {
 		return rootTopicDao.selectTodayNoReply(start, limit);
 	}
 
-	/**
-	 * 作者的其他话题
-	 */
+
 	@Override
 	public List<Topic> findOther(String userName, Integer topicId) {
 		return rootTopicDao.selectOther(userName, topicId);
 	}
 
-	/**
-	 * 根据节点统计所有话题
-	 */
 	@Override
 	public int countTopicByNode(String nodeTitle) {
 		return rootTopicDao.countTopicByNode(nodeTitle);

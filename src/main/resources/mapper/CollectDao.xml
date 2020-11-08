@@ -2,20 +2,9 @@
 <!DOCTYPE mapper
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-    
-    <!-- Mybatis会动态实现daoImpl,不过需要在mapper文件夹下创建BookDao.xml和AppointmentDao.xml
-  		spring-dao.xml文件会自动扫描mapper文件夹下的配置 -->
-    <!-- 
-    1.namespace是该xml对应的接口的全名
-    2.select和update中的id对应方法名
-    3.resultType是返回值类型
-    4.parameterType是参数类型(可选)
-    5.#{...}填写的是方法的参数 
-    6.parameterType:输入参数类型
-    7.resultType:输出参数类型
-    -->
+
 <mapper namespace="com.example.dao.CollectDao">
-	<!-- 目的：为dao接口方法提供sql语句配置 -->
+    <!-- Provide sql statement configuration for dao interface method -->
 	<resultMap id="BaseResultMap" type="com.example.entity.Topic">
         <id column="topic_id" jdbcType="INTEGER" property="topicId"/>
         <result column="ptab" jdbcType="VARCHAR" property="ptab"/>
@@ -50,7 +39,7 @@
         a.view_count,a.author,a.top,a.good,a.show_status,a.reply_count,a.is_delete,a.tag_is_count,a.post_good_count,a.post_bad_count,
         a.status_cd,a.node_slug,a.node_title,a.remark,a.avatar,a.url
     </sql>
-	<!-- 查询收藏话题 -->
+	<!-- Search favorite topics -->
 	<select id="selectAllByCollect" resultType="Topic">
 		SELECT
         <include refid="Base_Column_List"/>
@@ -66,7 +55,7 @@
             </if>
         </if>
      </select>
-     <!-- 添加收藏 -->
+     <!-- Add collection -->
      <insert id="insert" parameterType="com.example.entity.Collect" keyProperty="id" useGeneratedKeys="true">
      	insert into collect
      	(uid,
@@ -77,33 +66,33 @@
      	 #{tid},
      	 #{createDate})
      </insert>
-     <!-- 取消收藏 -->
+     <!-- Delete collection -->
      <delete id="delete">
      	delete from collect
      	where uid = #{uid}
      	and tid = #{tid}
      </delete>
      
-     <!-- 根据用户 ID 删除收藏 -->
+     <!-- Delete collection based on id -->
      <delete id="deleteByUid">
      	delete from collect
      	where uid = #{uid}
      </delete>
      
-     <!-- 统计用户收藏话题的数量 -->
+     <!-- Count the number of user favorite topics -->
      <select id="count" resultType="java.lang.Integer">
      	select count(1)
      	from collect a,topic b
      	where uid = #{uid}
      	and a.tid = b.topic_id
      </select>
-     <!-- 统计话题被收藏的数量 -->
+     <!-- Count the number of topics collected -->
      <select id="countByTid" resultType="java.lang.Integer">
      	select count(1)
      	from collect
      	where tid = #{tid}
      </select>
-     <!-- 判断用户是否已收藏此话题 0:否 1:是 -->
+     <!-- Determine whether the user has bookmarked this topic 0:No 1:Yes -->
      <select id="isCollect" resultType="java.lang.Integer">
      	select count(1)
      	from collect

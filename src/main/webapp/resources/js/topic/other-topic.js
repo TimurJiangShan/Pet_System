@@ -3,7 +3,7 @@ $(function() {
 		var userName = $('.media-body span').eq(2).text();
 		$(".col-md-3").append('\
 				<div class="panel panel-default">\
-				  <div class="panel-heading"><span style="color: #ccc;">作者其它话题</span></div>\
+				  <div class="panel-heading"><span style="color: #ccc;">Other topics of the author</span></div>\
 				  <table class="table" style="font-size: 14px;">\
 				    <tbody></tbody>\
 				  </table>\

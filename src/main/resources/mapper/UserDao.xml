@@ -2,20 +2,9 @@
 <!DOCTYPE mapper
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-    
-    <!-- Mybatis会动态实现daoImpl,不过需要在mapper文件夹下创建BookDao.xml和AppointmentDao.xml
-  		spring-dao.xml文件会自动扫描mapper文件夹下的配置 -->
-    <!-- 
-    1.namespace是该xml对应的接口的全名
-    2.select和update中的id对应方法名
-    3.resultType是返回值类型
-    4.parameterType是参数类型(可选)
-    5.#{...}填写的是方法的参数 
-    6.parameterType:输入参数类型
-    7.resultType:输出参数类型
-    -->
+
 <mapper namespace="com.example.dao.UserDao">
-	<!-- 目的：为dao接口方法提供sql语句配置 -->
+	<!-- Provide sql statement configuration for dao interface method -->
 	<resultMap id="BaseResultMap" type="com.example.entity.User">
         <id column="user_id" jdbcType="INTEGER" property="userId"/>
         <result column="user_name" jdbcType="VARCHAR" property="userName"/>
@@ -36,7 +25,7 @@
         user_id, user_name, password, user_sex, score, avatar, email, url, signature, receive_msg,
         create_date, update_date,user_addr,third_id,third_access_token,user_type,is_block
     </sql>
-	<!-- 查询所有用户 -->
+
 	<select id="selectAll" resultType="User">
 		SELECT
         <include refid="Base_Column_List"/>
@@ -51,7 +40,7 @@
             </if>
         </if>
 	</select>
-	<!-- 积分榜用户 -->
+
 	<select id="selectByScore" resultType="Top100">
 		SELECT
 		 a.user_name,
@@ -77,7 +66,7 @@
 		set score = score+#{score}
 		where user_name = #{userName}
 	</update>
-	<!-- 通过用户ID查询单个用户 -->
+
 	<select id="selectByUserId" resultType="User" parameterType="java.lang.Integer">
 		SELECT
 		<include refid="Base_Column_List"/>
@@ -86,7 +75,7 @@
 		WHERE
 			user_id = #{userId}
 	</select>
-	<!-- 通过用户昵称查询单个用户 -->
+
 	<select id="selectByUserName" resultType="User" parameterType="java.lang.String">
 		SELECT
 		<include refid="Base_Column_List"/>
@@ -95,7 +84,7 @@
 		WHERE
 			user_name = #{userName}
 	</select>
-	<!-- 通过邮箱查询单个用户 -->
+
 	<select id="selectByEmail" resultType="User" parameterType="java.lang.String">
 		SELECT
 		<include refid="Base_Column_List"/>
@@ -104,7 +93,7 @@
 		WHERE
 			email = #{email}
 	</select>
-	<!-- 通过昵称和密码查询单个用户 -->
+
 	<select id="selectByUserNameAndPassword" resultType="User" parameterType="java.lang.String">
 		SELECT
 		<include refid="Base_Column_List"/>
@@ -115,7 +104,7 @@
 		AND
 		    password = #{password}
 	</select>
-	<!-- 通过邮箱和密码查询单个用户 -->
+
 	<select id="selectByEmailAndPassword" resultType="User" parameterType="java.lang.String">
 		SELECT
 		<include refid="Base_Column_List"/>
@@ -126,14 +115,14 @@
 		AND
 		    password = #{password}
 	</select>
-	<!-- 统计行数 -->
+
 	<select id="countUserAll" resultType="java.lang.Integer">
 		SELECT 
 		COUNT(*)
 		FROM
 		user
 	</select>
-	<!-- 添加用户 -->
+
 	<insert id="insertUser" parameterType="com.example.entity.User" keyProperty="userId" useGeneratedKeys="true">
 		INSERT INTO user
 		(user_id,
@@ -178,19 +167,19 @@
 		#{lastLoginIp},
 		#{userType})
 	</insert>
-	<!-- 通过昵称和密码添加用户 -->
+
 	<insert id="insertByUserNameAndPassword">
-		<!-- ignore 主键冲突，报错 -->
+
 		INSERT ignore INTO user (user_name, password)
 		VALUES (#{userName}, #{password})
 	</insert>
-	<!-- 通过昵称、密码、邮箱添加用户 -->
+
 	<insert id="insertByUserNameAndPasswordAndEmail">
-		<!-- ignore 主键冲突，报错 -->
+
 		INSERT ignore INTO user (user_name, password,email)
 		VALUES (#{userName}, #{password},#{email})
 	</insert>
-	<!-- 更新用户 -->
+
 	<update id="updateUser" parameterType="com.example.entity.User">
         UPDATE 
         	user
@@ -218,7 +207,7 @@
         WHERE 
         	user_id = #{userId}
     </update>
-    <!-- 通过昵称修改昵称、邮箱、个人主页、个性签名、邮件是否接受社区消息 -->
+
 	<update id="updateUserByUserName">
         update user
         set user_name = #{newUserName},
@@ -228,7 +217,7 @@
         receive_msg = #{receiveMsg}
         where user_name = #{userName}
     </update>
-    <!-- 通过ID修改昵称、邮箱、个人主页、个性签名、邮件是否接受社区消息 -->
+
 	<update id="updateAvatarByUserId">
         update user
         set user_name = #{newUserName},
@@ -238,39 +227,39 @@
         receive_msg = #{receiveMsg}
         where user_id = #{userId}
     </update>
-    <!-- 通过昵称修改头像 -->
+
 	<update id="updateAvatarByUserName">
         update user
         set avatar = #{avatar}
         where user_name = #{userName}
     </update>
-    <!-- 通过ID修改密码 -->
+
 	<update id="updatePasswordByUserId">
         update tb_user
         set password = #{password}
         where user_id = #{userId}
     </update>
-    <!-- 通过昵称修改密码 -->
+
 	<update id="updatePasswordByUserName">
         update tb_user
         set password = #{password}
         where user_name = #{userName}
     </update>
-	<!-- 通过ID删除用户 -->
+
 	<delete id="deleteUserByUserId" parameterType="java.lang.Integer">
 		DELETE 
 			FROM user
 		WHERE
 			user_id = #{userId}
 	</delete>
-	<!-- 通过昵称删除用户 -->
+
 	<delete id="deleteUserByUserName" parameterType="java.lang.String">
 		DELETE 
 			FROM user
 		WHERE
 			user_name = #{userName}
 	</delete>
-	<!-- 积分值 -->
+
 	<select id="countScore" resultType="java.lang.Integer">
 		SELECT 
 			score
@@ -280,14 +269,14 @@
 			user_id = #{userId}
 	</select>
 	
-	<!-- 统计当天的用户数 -->
+
 	<select id="countToday" resultType="java.lang.Integer">
         select count(1)
         from user a
         where TO_DAYS(a.create_date) = TO_DAYS(NOW())
     </select>
     
-    <!-- 用户列表 -->
+
     <select id="selectAllForAdmin" resultType="User">
 		SELECT
         	*
@@ -310,7 +299,7 @@
         </if>
      </select>
      
-     <!-- 后台话题统计 -->
+
      <select id="countAllForAdmin" resultType="java.lang.Integer">
         SELECT
         	COUNT(1)

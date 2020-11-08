@@ -5,32 +5,23 @@ import com.example.enums.InsertTopicEnum;
 
 public class TopicExecution {
 
-	private String title;//话题名称
-	private int state;// 结果状态
-	private String stateInfo;// 状态标识
-	private Topic topic;//成功对象
+	private String title;
+	private int state;
+	private String stateInfo;
+	private Topic topic;
 	
 	public TopicExecution() {
 		super();
 	}
 	
-	/**
-	 * 失败时的构造器
-	 * @param topicName
-	 * @param stateEnum
-	 */
+	//Add the constructor when the plate fails
 	public TopicExecution(String title, InsertTopicEnum stateEnum) {
 		this.title = title;
 		this.state = stateEnum.getState();
 		this.stateInfo = stateEnum.getStateInfo();
 	}
 	
-	/**
-	 * 成功时的构造器
-	 * @param topicName
-	 * @param stateEnum
-	 * @param topic
-	 */
+	//constructor when the plate successful
 	public TopicExecution(String title,InsertTopicEnum stateEnum,Topic topic) {
 		this.title = title;
 		this.state = stateEnum.getState();

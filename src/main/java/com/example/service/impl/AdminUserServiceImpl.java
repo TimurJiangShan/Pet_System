@@ -18,10 +18,7 @@ import com.example.service.AdminUserService;
 
 import com.example.util.SimpleHashUtil;
 
-/**
- * @author miansen.wang
- * @date 2019年2月27日 下午2:51:52
- */
+
 @Service
 public class AdminUserServiceImpl implements AdminUserService {
 
@@ -63,13 +60,12 @@ public class AdminUserServiceImpl implements AdminUserService {
 	@Override
 	public void save(String username, String password, String avatar) {
 		AdminUser adminUser = getByName(username);
-		ApiAssert.isNull(adminUser, "用户名已存在");
+		ApiAssert.isNull(adminUser, "username exist");
 		adminUser = new AdminUser();
 		adminUser.setUsername(username);
 		adminUser.setPassword(SimpleHashUtil.simpleHash("MD5", password, username, 1024).toString());
 		adminUser.setAvatar(avatar);
 		adminUser.setCreateDate(new Date());
-		// 保存用户
 		adminUserDao.insert(adminUser);
 	}
 
@@ -80,30 +76,26 @@ public class AdminUserServiceImpl implements AdminUserService {
 		boolean updatePassword = false;
 		boolean updateAvatar = false;
 		AdminUser adminUser = getById(id);
-		
-		// 密码不为 null 且不为 "" 时才修改密码
+
 		if (!StringUtils.isEmpty(password)) {
 			adminUser.setPassword(SimpleHashUtil.simpleHash("MD5", password, adminUser.getUsername(), 1024).toString());
 			updatePassword = true;
 		}
 
-		// 头像不一样时才修改头像
 		if(!avatar.equals(adminUser.getAvatar())) {
 			adminUser.setAvatar(avatar);
 			updateAvatar = true;
 		}
-		
-		// 更新后台用户
+
 		if (updatePassword || updateAvatar) {
 			adminUser.setUpdateDate(new Date());
 			adminUserDao.update(adminUser);
 		}
 
 
-		// 当前登录用户
+
 		AdminUser principal = (AdminUser)SecurityUtils.getSubject().getPrincipal();
-		
-		// 如果修改的是当前登录用户，则强制重新登录
+
 		if(adminUser.getAdminUserId().equals(principal.getAdminUserId())) {
 			map.put("logout", true);
 		}
@@ -113,7 +105,6 @@ public class AdminUserServiceImpl implements AdminUserService {
 	@Transactional
 	@Override
 	public void removeById(Integer id) {
-		// 再删除用户
 		adminUserDao.deleteById(id);
 	}
 }

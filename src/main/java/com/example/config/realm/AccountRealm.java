@@ -19,11 +19,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 
-/**
- * <p></p>
- * @author: miansen.wang
- * @date: 2019-03-01
- */
 public class AccountRealm extends AuthorizingRealm {
 
 	private Logger log = LoggerFactory.getLogger(AuthorizingRealm.class);
@@ -36,9 +31,9 @@ public class AccountRealm extends AuthorizingRealm {
 
 	@Override
 	protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
-		// 获取 principal
+		// get principal
 		AdminUser principal = (AdminUser)principals.getPrimaryPrincipal();
-		// 获取用户
+		// get user
 		AdminUser adminUser = adminUserService.getByName(principal.getUsername());
 		if(adminUser != null) {
 			SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
@@ -49,41 +44,33 @@ public class AccountRealm extends AuthorizingRealm {
 
 	@Override
 	protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
-		// 1. 把 AuthenticationToken 转换为 UsernamePasswordToken 
+		//  AuthenticationToken trans to UsernamePasswordToken
 		UsernamePasswordToken upToken = (UsernamePasswordToken) token;
 		
-		// 2. 从 UsernamePasswordToken 中来获取 username
+		//  UsernamePasswordToken get  username
 		String username = upToken.getUsername();
 				
-		log.debug("用户：{} 正在登录...", username);
+		log.debug("User：{} login...", username);
 		
-		// 3.从数据库中查询 username 对应的用户记录
+		// search the user form db
 		AdminUser adminUser = adminUserService.getByName(username);
 		
-		// 4.如果用户不存在，则抛出未知用户的异常
-		if(adminUser == null) throw new UnknownAccountException("用户不存在!");
+		//not exist == error
+		if(adminUser == null) throw new UnknownAccountException("user not exist!");
 		
-		// 5.根据用户的情况, 来构建 AuthenticationInfo 对象并返回，通常使用的实现类为: SimpleAuthenticationInfo
-		
-		/**
-		 * 5.1 principal: 认证的实体信息. 可以是 username, 也可以是数据表对应的用户的实体类对象. 
-		 * 可以通过 SecurityUtils.getSubject().getPrincipal() 拿到 principal，如果有多个，则随机返回其中的一个
-		 * 也可以通过 PrincipalCollection.getPrimaryPrincipal() 拿到 principal，如果有多个，则随机返回其中的一个
-		 * 也可以通过 PrincipalCollection.asSet() 拿到所有的 principal，返回的是 set 集合
-		 */
+
 		// Object principal = username;
 		AdminUser principal = new AdminUser();
 		principal.setAdminUserId(adminUser.getAdminUserId());
 		principal.setUsername(username);
 		principal.setAvatar(adminUser.getAvatar());
 		
-		// 5.2 credentials: 密码
+
 		Object credentials = adminUser.getPassword();
-		
-		// 5.3 realmName: 当前 realm 对象的 name. 调用父类的 getName() 方法即可
+
 		String realmName = getName();
 		
-		// 5.4 盐值加密
+		//encryption
 		ByteSource credentialsSalt = ByteSource.Util.bytes(username);
 		
 		return new SimpleAuthenticationInfo(principal, credentials, credentialsSalt, realmName);

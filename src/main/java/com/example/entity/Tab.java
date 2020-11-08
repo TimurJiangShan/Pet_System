@@ -2,43 +2,24 @@ package com.example.entity;
 
 import java.util.Date;
 
-/**
- * 父板块
- * @author sen
- * 2018年7月15日
- * 下午8:53:45
- * TODO
- */
+
 public class Tab {
 
-	/**
-	 * id，主键
-	 */
+	//parent
 	private Integer id;
 	
-	/**
-	 * 名称
-	 */
+
 	private String tabName;
 	
-	/**
-	 * 描述
-	 */
+
 	private String tabDesc;
 	
-	/**
-	 * 是否删除 false：否  true：是
-	 */
+
 	private boolean idDelete;
-	
-	/**
-	 * 创建时间
-	 */
+
 	private Date createDate;
 	
-	/**
-	 * 排列顺序
-	 */
+
 	private Integer tabOrder;
 
 	public Integer getId() {

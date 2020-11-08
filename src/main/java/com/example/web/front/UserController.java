@@ -66,8 +66,10 @@ public class UserController extends BaseController{
 			return "error-page/404";
 		}
 		User user2 = getUser(request);//current user
-		PageDataBody<Topic> topicPage = rootTopicService.pageByAuthor(tp, 20, name);
-		PageDataBody<ReplyAndTopicByName> replyPage = rootReplyService.findAllByNameAndTopic(name, rp, 20);
+
+		PageDataBody<Topic> topicPage = rootTopicService.pageByAuthor(tp, 5, name);
+		PageDataBody<ReplyAndTopicByName> replyPage = rootReplyService.findAllByNameAndTopic(name, rp, 5);
+
 		int countTopic = rootTopicService.countByUserName(user.getUserName());//topic num
 		int countCollect = collectDaoService.count(user.getUserId());//collection
 		int countReply = rootReplyService.countByName(name);//comment num
@@ -113,7 +115,6 @@ public class UserController extends BaseController{
 		return "user/topics";
 	}
 	
-	//most concern
 	@RequestMapping(value = "/user/{name}/replys", method = RequestMethod.GET)
 	private String replys(@PathVariable String name, Model model,@RequestParam(value = "p", defaultValue = "1") Integer p,HttpServletRequest request) {
 		if(name == null) {
@@ -135,10 +136,7 @@ public class UserController extends BaseController{
 		model.addAttribute("countTopic", countTopic);
 		model.addAttribute("countCollect", countCollect);
 		model.addAttribute("countReply", countReply);
-		//model.addAttribute("countCollect", getCountCollect(request));
-		//model.addAttribute("countTopicByUserName", getCountTopicByUserName(request));
-		//model.addAttribute("notReadNotice", getNotReadNotice(request));
-		//model.addAttribute("myUser", getUser(request));
+
 		return "user/replys";
 	}
 	
@@ -147,14 +145,6 @@ public class UserController extends BaseController{
 	 */
 	@RequestMapping(value = "/user/settings/profile", method = RequestMethod.GET)
 	private String setting(HttpServletRequest request) {
-		/*RootUser user = null;
-		String cookie = CookieAndSessionUtil.getCookie(request, "user");
-		if(cookie == null) {
-			return "error-page/500";
-		}
-		user = rootUserService.findByName(Base64Util.decode(cookie));
-		request.setAttribute("user", user);
-		return "user/profile";*/
 		
 		User user2 = getUser(request);
 		if(user2 == null) {
@@ -171,11 +161,8 @@ public class UserController extends BaseController{
 	@RequestMapping(value = "/user/setting/profile", method = RequestMethod.POST)
 	private String updateUserInfo(String email,String url,String thirdId,String userAddr,
 			String signature,HttpServletRequest request,HttpServletResponse response) {
-		//User user = null;
 		User user = getUser(request);
-		//String cookie = CookieAndSessionUtil.getCookie(request, "user");
 		if(user != null) {
-			//user = rootUserService.findByName(Base64Util.decode(cookie));
 			user.setEmail(email);
 			user.setUrl(url);
 			user.setThirdId(thirdId);

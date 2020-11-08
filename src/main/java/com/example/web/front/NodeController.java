@@ -23,10 +23,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.example.dto.PageDataBody;
 import com.example.dto.Result;
 
-/**
- * @author miansen.wang
- * @date 2018年11月3日 下午3:48:28
- */
 @Controller
 public class NodeController {
 	
@@ -36,16 +32,11 @@ public class NodeController {
 	private TopicService topicService;
 	@Autowired
 	private NodeTabService nodeTabService;
-	
-	/**
-	 * 根据板块查询节点
-	 * @param tabName
-	 * @return
-	 */
+
 	@RequestMapping(value = "/node/tab/{tabName}",method = RequestMethod.GET)
 	@ResponseBody
 	private Result<List> nodeByTab(@PathVariable String tabName){
-		ApiAssert.notNull(tabName, "板块不能为空");
+		ApiAssert.notNull(tabName, "Node cannot be empty");
 		List<Node> list = nodeService.findAllByTab(tabName, null, null);
 		return new Result<List>(true, list);
 	}
@@ -57,13 +48,13 @@ public class NodeController {
 						  HttpServletRequest request,HttpServletResponse response) {
 		Node node = nodeService.findByTitle(name);
 		if(node == null) {
-			throw new RuntimeException("节点不存在， 返回 > <a href='/'>主页<a/>");
+			throw new RuntimeException("Node does not exists， return > <a href='/'>HomePage<a/>");
 		}
 		List<NodeTab> nodeTabList = nodeTabService.findAll();
 		PageDataBody<Topic> page = topicService.pageByNodeAndNodeTab(p, 20, nodeTab, name);
-		Node parentNode = nodeService.findByTitle(node.getParentNodeCode());//父节点
-		List<Node> adjacencyNode = nodeService.adjacencyNode(node);//相邻节点
-		List<Node> childrenNode = nodeService.findChildrenNode(node.getNodeTitle(), null, null);//子节点
+		Node parentNode = nodeService.findByTitle(node.getParentNodeCode());
+		List<Node> adjacencyNode = nodeService.adjacencyNode(node);
+		List<Node> childrenNode = nodeService.findChildrenNode(node.getNodeTitle(), null, null);
 		int countTopicByNode = topicService.countTopicByNode(name);
 		request.setAttribute("nodeTabList", nodeTabList);
 		request.setAttribute("page", page);

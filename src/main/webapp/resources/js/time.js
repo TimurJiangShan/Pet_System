@@ -69,17 +69,17 @@
       diff = curTime - time;
       ago = "";
       if (1000 * 60 > diff) {
-        ago = "刚刚";
+        ago = "just now";
       } else if (1000 * 60 <= diff && 1000 * 60 * 60 > diff) {
-        ago = int(diff / (1000 * 60)) + "分钟前";
+        ago = int(diff / (1000 * 60)) + "minutes ago";
       } else if (1000 * 60 * 60 <= diff && 1000 * 60 * 60 * 24 > diff) {
-        ago = int(diff / (1000 * 60 * 60)) + "小时前";
+        ago = int(diff / (1000 * 60 * 60)) + "hours ago";
       } else if (1000 * 60 * 60 * 24 <= diff && 1000 * 60 * 60 * 24 * 30 > diff) {
-        ago = int(diff / (1000 * 60 * 60 * 24)) + "天前";
+        ago = int(diff / (1000 * 60 * 60 * 24)) + "days ago";
       } else if (1000 * 60 * 60 * 24 * 30 <= diff && 1000 * 60 * 60 * 24 * 30 * 12 > diff) {
-        ago = int(diff / (1000 * 60 * 60 * 24 * 30)) + "月前";
+        ago = int(diff / (1000 * 60 * 60 * 24 * 30)) + "months ago";
       } else {
-        ago = int(diff / (1000 * 60 * 60 * 24 * 30 * 12)) + "年前";
+        ago = int(diff / (1000 * 60 * 60 * 24 * 30 * 12)) + "years ago";
       }
       return ago;
     }
@@ -106,7 +106,7 @@
     });
     angularApp.filter("date", function() {
       return function(time) {
-        return entry(time, "%y年%M月%d日");
+        return entry(time, "%yyear%Mmonth%dday");
       };
     });
     return angularApp.filter("datetime", function() {

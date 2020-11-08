@@ -3,13 +3,6 @@ package com.example.config;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
-/**
- * 
- * @author sen
- * 2018年8月29日
- * 下午3:20:55
- * TODO
- */
 @Component
 public class CookieConfig {
 	

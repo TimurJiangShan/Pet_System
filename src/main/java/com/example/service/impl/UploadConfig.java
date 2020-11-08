@@ -11,12 +11,7 @@ import com.example.dao.SystemConfigDao;
 import com.example.entity.SystemConfig;
 import com.example.service.AbstractUploadConfig;
 
-/**
- * <p></p>
- *
- * @author: miansen.wang
- * @date: 2019-04-02
- */
+
 @Service
 public class UploadConfig extends AbstractUploadConfig {
 
@@ -24,7 +19,7 @@ public class UploadConfig extends AbstractUploadConfig {
     @Autowired
     private SystemConfigDao systemConfigDao;
 
-    //上传配置
+
     private Map<String, Object> uploadConfig;
 
     @Override

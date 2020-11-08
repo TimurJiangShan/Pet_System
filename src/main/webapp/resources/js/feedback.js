@@ -3,7 +3,7 @@ $(function(){
 		var info = $("#info").val();
 		//console.log(info);
 		if(!info){
-			alert('您还没有提出建议');
+			alert('You haven\'t made a suggestion yet');
 			return false;
 		}
 		$.ajax({

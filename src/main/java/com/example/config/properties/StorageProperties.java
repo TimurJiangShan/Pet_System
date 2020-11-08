@@ -10,19 +10,12 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
-/**
- * <p>
- * 存储配置
- * </p>
- * 
- * @author: miansen.wang
- * @date: 2019-03-19
- */
+//memoary setting
 @Component
 @Scope("prototype")
 public class StorageProperties implements BaseProperties{
 
-	// 文件上传的保存路径
+	// files upload dir
 	private String uploadFiledir;
 	
 	// AccessKeyId
@@ -37,13 +30,13 @@ public class StorageProperties implements BaseProperties{
 	// BucketName
 	private String bucketName;
 
-	// 阿里云OSS静态文件存储路径
+	//ali oss
 	private String ossFiledir;
 
-	// 静态文件访问URL
+	// static URL
 	private String staticUrl;
 	
-	// 上传类型
+	// upload
 	private String uploadType;
 	
 	static {
@@ -59,15 +52,13 @@ public class StorageProperties implements BaseProperties{
 	
 	@Override
 	public void init() {
-		// 获取程序的部署路径
+		// get the path
 		String realPath = httpServletRequest.getSession().getServletContext().getRealPath("/");
 		Map<String, Object> maps = systemConfigService.getUploadConfig();
-		/**
-		 * 获取上传类型
-		 * 29: 默认上传
-		 * 30: 自定义上传
-		 * 45: 阿里云OSS上传
-		 */
+		//Get upload type
+		//* 29: Upload by default
+		//* 30: Custom upload
+		//* 45: Alibaba Cloud OSS upload
 		String uploadType = (String) maps.get("upload_type");
 		if (uploadType.equals("29")) {
 			this.uploadFiledir = realPath + (String) maps.get("default_upload_filedir");

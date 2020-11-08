@@ -2,144 +2,68 @@ package com.example.entity;
 
 import java.util.Date;
 
-/**
- * 话题实体
- * Table: root_topic
- * @author sen
- * 2018年5月5日
- * 下午9:19:57
- * TODO
- */
+
 public class Topic {
 
-	/**
-	 * 话题标识
-	 */
 	private Integer topicId;
 	
-	/**
-	 * 父版块标识
-	 */
+
 	private String ptab;
-	
-	/**
-	 * 版块标识
-	 */
+
 	private String tab;
-	
-	/**
-	 * 话题标题
-	 */
+
 	private String title;
-	
-	/**
-	 * 话题内容标签
-	 */
+
 	private String tag;
-	
-	/**
-	 * 话题内容
-	 */
+
 	private String content;
-	
-	/**
-	 * 摘录
-	 */
+
 	private String excerpt;
-	
-	/**
-	 * 创建时间
-	 */
+
 	private Date createDate;
-	
-	/**
-	 * 更新时间
-	 */
+
 	private Date updateDate;
 	
-	/**
-	 * 最后回复话题时间，用于排序
-	 */
+
 	private Date lastReplyTime;
-	
-	/**
-	 * 最后回复话题的用户id
-	 */
+
 	private String lastReplyAuthor;
-	
-	/**
-	 * 浏览量
-	 */
+
 	private Integer viewCount;
 	
-	/**
-	 * 话题作者id
-	 */
+
 	private String author;
-	
-	/**
-	 * 1置顶 0默认
-	 */
+
 	private Boolean top;
-	
-	/**
-	 * 1精华 0默认
-	 */
+
 	private Boolean good;
 	
-	/**
-	 * 1显示 0不显示
-	 */
+
 	private Boolean showStatus;
-	
-	/**
-	 * 回复数量
-	 */
+
 	private Integer replyCount;
 	
-	/**
-	 * 1删除 0默认
-	 */
+
 	private Boolean isDelete;
 	
-	/**
-	 * 话题内容标签是否被统计过 1是 0否默认
-	 */
+
 	private Boolean tagIsCount;
-	
-	/**
-	 * 点赞
-	 */
+
 	private Integer postGoodCount;
-	
-	/**
-	 * 踩数
-	 */
+
 	private Integer postBadCount;
 	
-	/**
-	 * 话题状态 1000:有效 1100:无效 1200:未生效
-	 */
+
 	private String statusCd;
-	
-	/**
-	 * 所属节点
-	 */
+
 	private String nodeSlug;
 	
-	/**
-	 * 节点名称
-	 */
+
 	private String nodeTitle;
-	
-	/**
-	 * 备注
-	 */
+
 	private String remark;
 	
-	/**
-	 * 话题作者头像
-	 */
+
 	private String avatar;
 	
 	private String url;

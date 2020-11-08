@@ -22,22 +22,22 @@
 					</div>\
 					</div>\
 					<div style="margin-top: 15px;">\
-					<a href="/topic/create" style="font-size: 14px;"><button class="btn btn-warning">发布帖子</button></a>\
+					<a href="/topic/create" style="font-size: 14px;"><button class="btn btn-warning">Post</button></a>\
 					</div>\
 					</div>\
 					<div class="sep10" style="height: 10px;"></div>\
 					<table cellpadding="0" cellspacing="0" border="0" width="100%" class="table_fade" style="font-size: 14px;">\
 					<tbody><tr>\
-					<td width="33%" align="center"><a href="/user/topics" class="dark" style="display: block;"><span class="bigger">'+data.data.countTopic+'</span><div class="sep3"></div><span class="fade">我的主题</span></a></td>\
-					<td width="34%" style="border-left: 1px solid rgba(100, 100, 100, 0.4); border-right: 1px solid rgba(100, 100, 100, 0.4);" align="center"><a href="/collect/topics" class="dark" style="display: block;"><span class="bigger">'+data.data.countCollect+'</span><div class="sep3"></div><span class="fade">我的收藏</span></a></td>\
-					<td width="33%" align="center"><a href="/follow/topics" class="dark" style="display: block;"><span class="bigger">'+data.data.countFollow+'</span><div class="sep3"></div><span class="fade">特别关注</span></a></td>\
+					<td width="33%" align="center"><a href="/user/topics" class="dark" style="display: block;"><span class="bigger">'+data.data.countTopic+'</span><div class="sep3"></div><span class="fade">My topics</span></a></td>\
+					<td width="34%" style="border-left: 1px solid rgba(100, 100, 100, 0.4); border-right: 1px solid rgba(100, 100, 100, 0.4);" align="center"><a href="/collect/topics" class="dark" style="display: block;"><span class="bigger">'+data.data.countCollect+'</span><div class="sep3"></div><span class="fade">My Collection</span></a></td>\
+					<td width="33%" align="center"><a href="/follow/topics" class="dark" style="display: block;"><span class="bigger">'+data.data.countFollow+'</span><div class="sep3"></div><span class="fade">Follow</span></a></td>\
 					</tr>\
 					</tbody></table>\
 					</div>\
 					<div class="panel-footer" style="background-color: white">\
 					<div class="row">\
-					<span class="col-md-6"><a href="/notification/list"><span id="n_count">'+data.data.countNotReadNotice+'</span> 条未读消息</a></span>\
-					<span class="col-md-6 text-right">积分：<a href="/top100">'+data.data.countScore+'</a></span>\
+					<span class="col-md-6"><a href="/notification/list"><span id="n_count">'+data.data.countNotReadNotice+'</span> unread notifications</a></span>\
+					<span class="col-md-6 text-right">integral：<a href="/top100">'+data.data.countScore+'</a></span>\
 					</div>\
 					</div>\
 					');

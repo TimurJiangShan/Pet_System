@@ -1,5 +1,5 @@
 function logout(){
-      layer.confirm('确定要登出ROOT吗？',{btn:['退出','再看看']},function(){
+      layer.confirm('Are you sure you want to log out of root？',{btn:['Log out','Cancel']},function(){
         location.href = "/logout";
       });
     }

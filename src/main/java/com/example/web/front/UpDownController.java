@@ -13,13 +13,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.dto.DMLExecution;
 import com.example.dto.Result;
 
-/**
- * like or dislike
- * @Chao Wang
- * 10/10/2020
- * 13:14:18
- * TODO
- */
 @RestController
 @RequestMapping(value = "/topic")
 public class UpDownController extends BaseController{
@@ -30,7 +23,7 @@ public class UpDownController extends BaseController{
 	@RequestMapping(value = "/vote",method = RequestMethod.GET)
 	private Result<DMLExecution> up(Integer tid,boolean vote,HttpServletRequest request){
 		User user = getUser(request);
-		if(user == null) return new Result<>(false,"未登录");
+		if(user == null) return new Result<>(false,"Have not login");
 		UpDown upDown = new UpDown();
 		upDown.setUid(user.getUserId());
 		upDown.setTid(tid);
