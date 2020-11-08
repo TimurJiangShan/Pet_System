@@ -89,7 +89,7 @@
   			var contentHtml = editor.txt.html();
   			var nodeTitle = $("#node option:selected").val();
   			if (!title || title.length > 120) {
-  				alert('Please type title, words < 120');
+  				alert('Please type title, words < 150');
   				return false;
   			} else if (!nodeTitle) {
   				alert('Please choose a node');
