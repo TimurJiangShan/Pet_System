@@ -3,35 +3,34 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-  <title>修改头像</title>
+  <title>Change Avatar</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- 引入 Bootstrap -->
+  <!-- into Bootstrap -->
   <link href="/resources/css/bootstrap.min.css" rel="stylesheet">
   <link href="/resources/css/app.css" rel="stylesheet" type="text/css">
   <link rel="shortcut icon" href="/resources/images/favicon.ico">
 </head>
 <body>
 <div class="wrapper">
-<jsp:include page="../components/head.jsp"></jsp:include>
+  <jsp:include page="../components/head.jsp"></jsp:include>
   <div class="col-md-3 hidden-sm hidden-xs">
-<div class="panel panel-default">
-  <div class="list-group">
-    <a href="/user/settings/profile" class="list-group-item ">个人设置</a>
-    <a href="/user/settings/changeAvatar" class="list-group-item active">修改头像</a>
-    <a href="/user/settings/changePassword" class="list-group-item ">修改密码</a>
-    <!-- <a href="/user/settings/accessToken" class="list-group-item ">用户令牌</a> -->
-    <!-- <a href="/user/settings/log" class="list-group-item ">日志记录</a> -->
-  </div>
-</div>
+    <div class="panel panel-default">
+      <div class="list-group">
+        <a href="/user/settings/profile" class="list-group-item ">Personal Settings</a>
+        <a href="/user/settings/changeAvatar" class="list-group-item active">Change Avatar</a>
+        <a href="/user/settings/changePassword" class="list-group-item ">Change Password</a>
+
+      </div>
+    </div>
   </div>
 
   <div class="col-md-9">
     <div class="panel panel-default">
-      <div class="panel-heading"><a href="/">主页</a> / 修改头像</div>
+      <div class="panel-heading"><a href="/">Home Page</a> / Change Avatar</div>
       <div class="panel-body">
         <p>
-          <button class="btn btn-warning" id="choiceAvatarBtn">选择头像</button>
-          <button class="btn btn-success" id="confirmAvatarBtn">确认头像</button>
+          <button class="btn btn-warning" id="choiceAvatarBtn">Select Pic</button>
+          <button class="btn btn-success" id="confirmAvatarBtn">Confirm Pic</button>
           <input type="file" class="hidden" id="newAvatarFile" name="newAvatarFile">
         </p>
         <div class="row">
@@ -107,7 +106,7 @@
     });
     $("#confirmAvatarBtn").click(function() {
       if(!$("#newAvatarFile").val()) {
-        alert("请先选择图片");
+        alert("Plz select the pic");
       } else {
         var avatarBase64 = newAvatarImg.cropper('getCroppedCanvas', {width: 100, height: 100}).toDataURL();
         $.ajax({
@@ -117,15 +116,15 @@
           method: 'post',
           dataType: 'json',
           data: {
-        	avatarBase64: avatarBase64,
+            avatarBase64: avatarBase64,
             path: "user"
           },
           success: function (data) {
             if(data.success != null && data.success == true) {
-            	alert("修改头像成功");
-            	location.reload();
+              alert("Change success!");
+              location.reload();
             } else {
-            	alert("修改头像失败");
+              alert("Change failure.");
             }
           }
         })
@@ -133,7 +132,7 @@
     })
   })
 </script>
-  </div>
+</div>
 </div>
 <jsp:include page="../components/foot.jsp"></jsp:include>
 <script type="text/javascript">
