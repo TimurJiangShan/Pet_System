@@ -5,7 +5,7 @@
 <head>
   <title>modify profile </title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- 引入 Bootstrap -->
+  <!-- introduce Bootstrap -->
   <link href="/resources/css/bootstrap.min.css" rel="stylesheet">
   <link href="/resources/css/app.css" rel="stylesheet" type="text/css">
   <link rel="shortcut icon" href="/resources/images/favicon.ico">
@@ -55,14 +55,6 @@
             <label for="signature">Signature</label>
             <textarea class="form-control" name="signature" id="signature">${user.signature}</textarea>
           </div>
-          <!-- <div class="form-group">
-            <input type="checkbox" name="commentEmail" id="commentEmail" checked="">
-            <label for="commentEmail">Topic is reminded by comment email</label>
-          </div>
-          <div class="form-group">
-            <input type="checkbox" name="replyEmail" id="replyEmail" checked="">
-            <label for="replyEmail">Email reminder when comments are replied</label>
-          </div> -->
             <button type="button" id="userProfileUpdateBtn" onclick="updateUserProfile()" class="btn btn-warning">保存设置
             </button>
           <span id="error_message"></span>

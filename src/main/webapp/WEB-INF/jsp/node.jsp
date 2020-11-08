@@ -197,11 +197,8 @@
         <!-- <script src="/resources/js/login_info.js"></script> -->
         <script src="/resources/js/formatDate.js"></script>
         <script type="text/javascript">
-            //var tab = "${tab}";//node
             var tab = "${tab}";//parent node
             var nodeName = "${nodeName}";
-            //var url = "/?tab="+tab+"&ptab="+ptab+"&"
-            //$(".pagination2").pagination("${page.pageNumber}","${page.totalPage}",10);
             var count = ${page.totalRow};//Total amount of data
             var limit = ${page.pageSize};//Number of items displayed per page
             var url = "?node=" + nodeName + "&tab=" + tab + "&p=";//url
@@ -211,9 +208,6 @@
             }
 
             var p = page();//current page number
-            //console.log("p:"+p);
-            //console.log(count);
-            //console.log(url);
             paginate(count, limit, p, url);
         </script>
     </body>

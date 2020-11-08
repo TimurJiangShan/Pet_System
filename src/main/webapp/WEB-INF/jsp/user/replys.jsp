@@ -5,7 +5,7 @@
 <head>
   <title>${user.userName}Comment topic</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- 引入 Bootstrap -->
+  <!-- introduce Bootstrap -->
   <link href="/resources/css/bootstrap.min.css" rel="stylesheet">
   <link href="/resources/css/app.css" rel="stylesheet" type="text/css">
   <link rel="shortcut icon" href="/resources/images/favicon.ico">
@@ -25,9 +25,9 @@
                 <fmt:formatDate type="both" 
                   dateStyle="medium" timeStyle="short" 
                   value="${item.createDate}" />
-                评论了
+                Commented
                 <a href="/user/${item.author}">${item.author}</a>
-                创建的话题 › <a href="/topic/${item.topicId}">${item.title}</a>
+                's topic › <a href="/topic/${item.topicId}">${item.title}</a>
               </td>
             </tr>
             <tr class="user_comments">
