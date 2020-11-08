@@ -2,30 +2,19 @@ package com.example.entity;
 
 import java.util.Date;
 
-/**
- * Collection entity
- * @author Cheng
- * 2018-06-29
- * 5:15:14 p.m
- * TODO
- */
+
+//collect
 public class Collect {
 
-	/**
-	 * Unique identification
-	 */
+	//key
 	private Integer id;
-	/**
-	 * User ID
-	 */
+
+	//userid
 	private Integer uid;
-	/**
-	 * Topic ID
-	 */
+
+	//topic id
 	private Integer tid;
-	/**
-	 * Creation time
-	 */
+
 	private Date createDate;
 	
 	public Integer getId() {

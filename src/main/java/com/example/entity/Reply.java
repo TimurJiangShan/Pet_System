@@ -2,99 +2,42 @@ package com.example.entity;
 
 import java.util.Date;
 
-/**
- * 评论实体
- * Table: root_reply
- * @author sen
- * 2018年5月5日
- * 下午9:30:23
- * TODO
- */
+
 public class Reply {
 
-	/**
-	 * 回复标识
-	 */
+
 	private Integer replyId;
-	
-	/**
-	 * 话题id
-	 */
+
 	private Integer topicId;
-	
-	/**
-	 * 话题作者id
-	 */
+
 	private Integer topicAuthorId;
-	
-	/**
-	 * 回复内容
-	 */
+
 	private String replyContent;
-	
-	/**
-	 * 回复时间
-	 */
+
 	private Date createDate;
-	
-	/**
-	 * 更新时间
-	 */
+
 	private Date updateDate;
-	
-	/**
-	 * 当前回复用户id
-	 */
+
 	private Integer replyAuthorId;
-	
-	/**
-	 * 当前回复用户昵称
-	 */
+
 	private String replyAuthorName;
-	
-	/**
-	 * 是否删除 0:默认 1:删除 2:其他
-	 */
+
 	private Boolean isDelete;
-	
-	/**
-	 * 是否已读 0:已读 1:未读 2:其他
-	 */
+
 	private Boolean isRead;
-	
-	/**
-	 * 是否可见 0:可见 1:不可见 2:其他
-	 */
+
 	private Boolean isShow;
-	
-	/**
-	 * 点赞
-	 */
+
 	private Integer replyGoodCount;
-	
-	/**
-	 * 踩数
-	 */
+
 	private Integer replyBadCount;
-	
-	/**
-	 * 回复类型
-	 */
+
 	private String replyType;
-	
-	/**
-	 * 回复阅读数量
-	 */
+
 	private Integer replyReadCount;
-	
-	/**
-	 * 回复状态 1000:有效 1100:无效 1200:未生效
-	 */
+
 	private String statusCd;
-	
-	/**
-	 * 回复人的头像
-	 */
+
 	private String avatar;
 
 	public String getAvatar() {

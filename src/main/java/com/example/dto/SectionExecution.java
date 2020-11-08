@@ -5,49 +5,36 @@ import com.example.enums.InsertEnum;
 import com.example.enums.UpdateEnum;
 
 /**
- * 存储操作板块的结果
+ * Store the results of the operation section
  * @author Jiangshan
  * TBD
  */
 public class SectionExecution {
 
 	private String sectionName;
-	private int state;// 结果状态
-	private String stateInfo;// 状态标识
-	private NodeTab rootSection;//成功对象
+	private int state;
+	private String stateInfo;
+	private NodeTab rootSection;
 	
 	public SectionExecution() {
 		super();
 	}
 
-	/**
-	 * 添加板块失败时的构造器
-	 * @param sectionName
-	 * @param stateEnum
-	 */
+	//Add the constructor when the plate fails
 	public SectionExecution(String sectionName, InsertEnum stateEnum) {
 		this.sectionName = sectionName;
 		this.state = stateEnum.getState();
 		this.stateInfo = stateEnum.getStateInfo();
 	}
-	
-	/**
-	 * 更新板块失败时的构造器
-	 * @param sectionName
-	 * @param stateEnum
-	 */
+
+	//update the constructor when the plate fails
 	public SectionExecution(String sectionName, UpdateEnum stateEnum) {
 		this.sectionName = sectionName;
 		this.state = stateEnum.getState();
 		this.stateInfo = stateEnum.getStateInfo();
 	}
 	
-	/**
-	 * 添加板块成功时的构造器
-	 * @param sectionName
-	 * @param stateEnum
-	 * @param rootSection
-	 */
+	//Add the constructor when the plate success
 	public SectionExecution(String sectionName,InsertEnum stateEnum,NodeTab rootSection) {
 		this.sectionName = sectionName;
 		this.state = stateEnum.getState();
@@ -55,12 +42,7 @@ public class SectionExecution {
 		this.rootSection = rootSection;
 	}
 	
-	/**
-	 * 更新板块成功时的构造器
-	 * @param sectionName
-	 * @param stateEnum
-	 * @param rootSection
-	 */
+	//Add the constructor when the plate successful
 	public SectionExecution(String sectionName,UpdateEnum stateEnum,NodeTab rootSection) {
 		this.sectionName = sectionName;
 		this.state = stateEnum.getState();

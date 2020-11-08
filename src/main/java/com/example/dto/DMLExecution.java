@@ -4,21 +4,22 @@ import com.example.enums.InsertEnum;
 import com.example.enums.UpdateEnum;
 
 /**
- * 存储增删改操作的结果
+ *Store the result of curd
  * @author Jiangshan
  * TBD
  */
 public class DMLExecution {
 
-	private String type;//操作类型
-	private int state;// 结果状态
-	private String stateInfo;// 状态标识
-	private Object data;//成功对象
+	private String type;
+	private int state;
+	private String stateInfo;
+	private Object data;
 	
 	private DMLExecution(){}
 	
 	/**
-	 * 添加失败时的构造器
+	 *
+	 * Constructor when the add is failure
 	 * @param type
 	 * @param stateEnum
 	 */
@@ -29,7 +30,8 @@ public class DMLExecution {
 	}
 	
 	/**
-	 * 更新失败时的构造器
+	 *
+	 * Constructor when the update is failer
 	 * @param type
 	 * @param stateEnum
 	 */
@@ -40,7 +42,8 @@ public class DMLExecution {
 	}
 	
 	/**
-	 * 添加成功时的构造器
+	 *
+	 * Constructor when the add is successful
 	 * @param type
 	 * @param stateEnum
 	 * @param data
@@ -53,7 +56,7 @@ public class DMLExecution {
 	}
 	
 	/**
-	 * 更新成功时的构造器
+	 *Constructor when the update is successful
 	 * @param type
 	 * @param stateEnum
 	 * @param data

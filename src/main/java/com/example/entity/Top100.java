@@ -1,25 +1,15 @@
 package com.example.entity;
 
-/**
- * Top100积分榜
- * @author sen
- * 2018年9月10日
- * 上午10:32:11
- * TODO
- */
+
 public class Top100 {
 
 	private String userName;
 	private Integer score;
 	private String avatar;
-	/**
-	 * 发表主题的数量
-	 */
+
 	private Integer countTopic;
 	
-	/**
-	 * 回复的数量
-	 */
+
 	private Integer countReply;
 
 	public String getUserName() {

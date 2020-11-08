@@ -66,8 +66,10 @@ public class UserController extends BaseController{
 			return "error-page/404";
 		}
 		User user2 = getUser(request);//current user
+
 		PageDataBody<Topic> topicPage = rootTopicService.pageByAuthor(tp, 5, name);
 		PageDataBody<ReplyAndTopicByName> replyPage = rootReplyService.findAllByNameAndTopic(name, rp, 5);
+
 		int countTopic = rootTopicService.countByUserName(user.getUserName());//topic num
 		int countCollect = collectDaoService.count(user.getUserId());//collection
 		int countReply = rootReplyService.countByName(name);//comment num
@@ -113,7 +115,6 @@ public class UserController extends BaseController{
 		return "user/topics";
 	}
 	
-	//most concern
 	@RequestMapping(value = "/user/{name}/replys", method = RequestMethod.GET)
 	private String replys(@PathVariable String name, Model model,@RequestParam(value = "p", defaultValue = "1") Integer p,HttpServletRequest request) {
 		if(name == null) {

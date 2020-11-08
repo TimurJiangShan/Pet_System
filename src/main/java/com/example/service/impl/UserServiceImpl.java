@@ -58,58 +58,38 @@ public class UserServiceImpl implements UserService{
 	private NoticeService noticeService;
 
 
-	
-	/**
-	 * 根据ID查找用户
-	 */
 	@Override
 	public User findById(Integer userId) {	
 		return rootUserDao.selectByUserId(userId);
 	}
 
-	/**
-	 * 根据昵称查找用户
-	 */
 	@Override
 	public User findByName(String userName) {
 		return rootUserDao.selectByUserName(userName);
 	}
 
-	/**
-	 * 根据email查找用户
-	 */
 	@Override
 	public User findByEmail(String email) {
 		return rootUserDao.selectByEmail(email);
 	}
 
-	/**
-	 * 根据昵称和密码查找用户
-	 */
 	@Override
 	public User findByUserNameAndPassword(String userName, String password) {
 		return rootUserDao.selectByUserNameAndPassword(userName, password);
 	}
 
-	/**
-	 * 根据邮箱和密码查找用户
-	 */
+
 	@Override
 	public User findByEmailAndPassword(String email, String password) {
 		return rootUserDao.selectByEmailAndPassword(email, password);
 	}
 
-	/**
-	 * 积分榜用户
-	 */
+
 	@Override
 	public List<Top100> scores(Integer limit) {
 		return rootUserDao.selectByScore(limit);
 	}
 
-	/**
-	 * 分页查询所有用户
-	 */
 	@Override
 	public PageDataBody<User> page(Integer pageNumber, Integer pageSize) {
 		List<User> list = rootUserDao.selectAll((pageNumber - 1) * pageSize, pageSize);
@@ -117,20 +97,17 @@ public class UserServiceImpl implements UserService{
 		return new PageDataBody<>(list, pageNumber, pageSize, totalRow);
 	}
 
-	/**
-	 * 更新用户
-	 */
 	@Transactional
 	@Override
 	public UserExecution updateUser(User user) {
 		try {
 			if(user == null) {
-				throw new OperationRepeaException("用户不存在");
+				throw new OperationRepeaException("user not exist");
 			}else {
 				int updateUser = rootUserDao.updateUser(user);
 				User rootUser = rootUserDao.selectByUserName(user.getUserName());
 				if(updateUser <= 0) {
-					throw new OperationFailedException("修改失败");
+					throw new OperationFailedException("edit failure");
 				}else {
 					return new UserExecution(user.getUserName(),UpdateUserEnum.SUCCESS,rootUser);
 				}
@@ -141,47 +118,40 @@ public class UserServiceImpl implements UserService{
 			throw e2;
 		} catch (Exception e) {
 			logger.error(e.getMessage(),e);
-			throw new OperationSystemException("update RootUser erroe "+e.getMessage());
+			throw new OperationSystemException("update RootUser error "+e.getMessage());
 		}
 	}
 
-	/**
-	 * 根据ID删除用户
-	 */
+
 	@Override
 	public void deleteUserById(Integer userId) {
 		rootUserDao.deleteUserByUserId(userId);	
 	}
 
-	/**
-	 * 根据昵称删除用户
-	 */
 	@Override
 	public void deleteUserByName(String userName) {
 		rootUserDao.deleteUserByUserName(userName);
 	}
 
-	/**
-	 * 注册用户
-	 */
+
 	@Transactional
 	@Override
 	public UserExecution save(User user) {
 		try {
 			if(user.getUserName() == null && user.getUserName().equals("")) {
-				throw new OperationRepeaException("用户名不能为空");
+				throw new OperationRepeaException("username not null");
 			}
 			if(user.getPassword() == null && user.getPassword().equals("")) {
-				throw new OperationRepeaException("密码不能为空");
+				throw new OperationRepeaException("password not null");
 			}
 			User userName = rootUserDao.selectByUserName(user.getUserName());
 			if(userName != null) {
-				throw new OperationRepeaException("昵称已存在");
+				throw new OperationRepeaException("name exist");
 			}else {
 				int insertUser = rootUserDao.insertUser(user);
 				User rootUser = rootUserDao.selectByUserName(user.getUserName());
 				if(insertUser <= 0) {
-					throw new OperationFailedException("注册失败");
+					throw new OperationFailedException("register fail");
 				}else {
 					return new UserExecution(user.getUserName(),InsertUserEnum.SUCCESS,rootUser);
 				}
@@ -199,7 +169,7 @@ public class UserServiceImpl implements UserService{
 	public UserExecution createUser(String username,String password,String email, String userType) {
 		User user = new User();
 		user.setUserName(username);
-		// 密码加密处理
+
 		user.setPassword(new BCryptPasswordEncoder().encode(password));
 		user.setScore(10);
 		user.setEmail(email);
@@ -213,13 +183,11 @@ public class UserServiceImpl implements UserService{
 		user.setStatusCd("1000");
 		user.setUserType("2");
 		user.setAvatar("/resources/images/default-avatar.jpg");
-		user.setSignature("这家伙很懒，什么都没留下");
+		user.setSignature("nothing here");
 		user.setUserType(userType);
 		return save(user);
 	}
-	/**
-	 * 统计所有注册会员的数量
-	 */
+
 	@Override
 	public int countUserAll() {
 		return rootUserDao.countUserAll();
@@ -231,9 +199,6 @@ public class UserServiceImpl implements UserService{
 		rootUserDao.updateScore(score, userId);
 	}
 
-	/**
-	 * 积分值
-	 */
 	@Override
 	public int countScore(Integer userId) {
 		return rootUserDao.countScore(userId);
@@ -244,21 +209,19 @@ public class UserServiceImpl implements UserService{
 		return rootUserDao.countToday();
 	}
 
-	/**
-	 * 更新头像
-	 */
+
 	@Override
 	@Transactional
 	public void updateAvatar(String avatarBase64, String path, User user, HttpServletRequest request) {
-		// 存储头像
+
 		String avatarURL = storageService.store(avatarBase64, Paths.get(path));
 		user.setAvatar(avatarURL);
 		user.setUpdateDate(new Date());
-		// 更新用户
+
 		updateUser(user);
-		// 更新话题
+
 		topicService.updateTopicAvatar(user);
-		// 重新设置 session
+
 		CookieAndSessionUtil.removeSession(request, "user");
 		CookieAndSessionUtil.setSession(request, "user", user);
 	}
@@ -275,14 +238,11 @@ public class UserServiceImpl implements UserService{
 		return rootUserDao.countAllForAdmin(username, email);
 	}
 
-	/**
-	 * 更新用户，主要用于后台操作
-	 */
+
 	@Override
 	public void updateAdmin(User user) {
-		// 删除Redis里面的缓存
-		// stringRedisTemplate.delete(findById(user.getUserId()).getThirdAccessToken());
-		// 如果密码不为空，则加密在保存
+
+
 		if(!StringUtils.isEmpty(user.getPassword())) {
 			user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
 		}
@@ -290,22 +250,20 @@ public class UserServiceImpl implements UserService{
 		updateUser(user);
 	}
 
-	/**
-	 * 删除用户，主要用于后台操作
-	 */
+
 	@Override
 	@Transactional
 	public void deleteAdmin(Integer id) {
 		User user = findById(id);
-		// 删除话题
+
 		topicService.deleteByAuthor(user.getUserName());
-		// 删除评论
+
 		replyService.deleteByReplyAuthorName(user.getUserName());
-		// 删除收藏
+
 		collectService.deleteByUid(user.getUserId());
-		// 删除通知
+
 		noticeService.deleteByTargetAuthorName(user.getUserName());
-		// 删除用户
+
 		deleteUserById(user.getUserId());
 	}
 

@@ -10,6 +10,6 @@ public class IcomJstlView extends InternalResourceView{
 	@Override  
     public boolean checkResource(Locale locale) {  
      File file = new File(this.getServletContext().getRealPath("/") + getUrl());  
-     return file.exists();// 判断该页面是否存在  
+     return file.exists();// page exist
     }  
 }

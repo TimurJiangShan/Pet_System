@@ -12,11 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.example.dto.Result;
 
-/**
- * 全局异常处理
- * @author miansen.wang
- * @date 2018年10月31日 下午4:03:45
- */
+
 @ControllerAdvice
 @Component
 public class GlobalExceptionHandler {
@@ -29,13 +25,7 @@ public class GlobalExceptionHandler {
 	    return HttpStatus.valueOf(statusCode);
 	  }
 	
-	/**
-	 * 错误页面统一处理
-	 * @param request
-	 * @param e
-	 * @return
-	 * @throws Exception
-	 */
+	//error page
 	@ExceptionHandler(value = Exception.class)
 	public ModelAndView defaultErrorHandler(HttpServletRequest request, Exception e) throws Exception {
 	    e.printStackTrace();
@@ -46,12 +36,7 @@ public class GlobalExceptionHandler {
 	    return mav;
 	  }
 	
-	/**
-	 * 接口错误统一处理
-	 * @param e
-	 * @return
-	 * @throws ApiException
-	 */
+	//interface
 	@ExceptionHandler(value = ApiException.class)
 	@ResponseBody
 	public Result<String> jsonErrorHandler(ApiException e) throws ApiException{

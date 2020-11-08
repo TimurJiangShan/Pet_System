@@ -1,19 +1,12 @@
 package com.example.enums;
 
-/**
- * 评论的数据字典
- * @author sen
- * 2018年5月25日
- * 下午8:42:36
- * TODO
- */
 public enum InsertReplyEnum {
 
-	SUCCESS(1, "评论成功"), NO_USER(0,"禁用状态"),REPEAT_USER(-1, "发布失败"),INNER_ERROR(-2, "系统异常");
+	SUCCESS(1, "comment successful"), NO_USER(0,"ban"),REPEAT_USER(-1, "post failure"),INNER_ERROR(-2, "system error");
 	
-	private int state;// 信息代码
-	private String stateInfo;// 信息说明
-	
+	private int state;
+	private String stateInfo;
+
 	private InsertReplyEnum(int state,String stateInfo) {
 		this.state = state;
 		this.stateInfo = stateInfo;

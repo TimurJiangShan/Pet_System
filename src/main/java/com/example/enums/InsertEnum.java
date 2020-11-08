@@ -1,18 +1,11 @@
 package com.example.enums;
 
-/**
- * 添加操作数据字典
- * @author sen
- * 2018年5月9日
- * 下午6:02:07
- * TODO
- */
 public enum InsertEnum {
 
-	SUCCESS(1, "添加成功"), NO_USER(0,"添加失败"),REPEAT_USER(-1, "重复添加"),INNER_ERROR(-2, "系统异常");
+	SUCCESS(1, "Added successfully"), NO_USER(0,"Added failure"),REPEAT_USER(-1, "Add repeatedly"),INNER_ERROR(-2, "system error");
 	
-	private int state;// 信息代码
-	private String stateInfo;// 信息说明
+	private int state;
+	private String stateInfo;
 	
 	private InsertEnum(int state,String stateInfo) {
 		this.state = state;

@@ -1,11 +1,7 @@
 package com.example.exception;
 
 import org.springframework.util.StringUtils;
-/**
- * 
- * @author miansen.wang
- * @date 2018年10月31日 下午5:26:46
- */
+
 public class ApiAssert {
 	
 	public static void isNull(Object object, String message) {

@@ -1,10 +1,6 @@
 package com.example.exception;
 
-/**
- * 
- * @author miansen.wang
- * @date 2018年10月31日 下午5:29:58
- */
+
 public class ApiException extends RuntimeException {
 
 	private int code;

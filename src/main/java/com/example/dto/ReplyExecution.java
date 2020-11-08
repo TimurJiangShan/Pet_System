@@ -4,25 +4,24 @@ import com.example.entity.Reply;
 import com.example.enums.InsertReplyEnum;
 
 /**
- * 存储添加评论的结果
+ * add result of comment
  * @author Jiangshan
  * TBD
  */
 public class ReplyExecution {
 
-	private String replyAuthorName;//当前回复用户昵称
-	private int state;// 结果状态
-	private String stateInfo;// 状态标识
-	private Reply reply;//成功对象
+	private String replyAuthorName;
+	private int state;
+	private String stateInfo;
+	private Reply reply;
 	
 	public ReplyExecution() {
 		super();
 	}
 	
 	/**
-	 * 失败时的构造器
-	 * @param replyAuthorId
-	 * @param stateEnum
+	 *
+	 * Constructor on failure
 	 */
 	public ReplyExecution(String replyAuthorName, InsertReplyEnum stateEnum) {
 		this.replyAuthorName = replyAuthorName;
@@ -31,10 +30,8 @@ public class ReplyExecution {
 	}
 	
 	/**
-	 * 成功时的构造器
-	 * @param replyAuthorId
-	 * @param stateEnum
-	 * @param reply
+	 *
+	 * Constructor on success
 	 */
 	public ReplyExecution(String replyAuthorName,InsertReplyEnum stateEnum,Reply reply) {
 		this.replyAuthorName = replyAuthorName;

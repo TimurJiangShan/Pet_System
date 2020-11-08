@@ -1,10 +1,6 @@
 package com.example.entity;
 
-/**
- * <p></p>
- * @author: miansen.wang
- * @date: 2019-03-07
- */
+
 public class SystemConfig {
 
 	private Integer systemConfigId;
