@@ -3,48 +3,46 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-  <title>修改密码</title>
+  <title>Change Password</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- 引入 Bootstrap -->
+  <!-- into Bootstrap -->
   <link href="/resources/css/bootstrap.min.css" rel="stylesheet">
   <link href="/resources/css/app.css" rel="stylesheet" type="text/css">
   <link rel="shortcut icon" href="/resources/images/favicon.ico">
 </head>
 <body>
 <div class="wrapper">
-<jsp:include page="../components/head.jsp"></jsp:include>
+  <jsp:include page="../components/head.jsp"></jsp:include>
   <div class="col-md-3 hidden-sm hidden-xs">
-<div class="panel panel-default">
-  <div class="list-group">
-    <a href="/user/settings/profile" class="list-group-item ">个人设置</a>
-    <a href="/user/settings/changeAvatar" class="list-group-item">修改头像</a>
-    <a href="/user/settings/changePassword" class="list-group-item active">修改密码</a>
-    <!-- <a href="/user/settings/accessToken" class="list-group-item ">用户令牌</a> -->
-    <!-- <a href="/user/settings/log" class="list-group-item ">日志记录</a> -->
-  </div>
-</div>
+    <div class="panel panel-default">
+      <div class="list-group">
+        <a href="/user/settings/profile" class="list-group-item ">Personal Settings</a>
+        <a href="/user/settings/changeAvatar" class="list-group-item">Change Avatar</a>
+        <a href="/user/settings/changePassword" class="list-group-item active">Change Password</a>
+      </div>
+    </div>
   </div>
 
   <div class="col-md-9">
     <div class="panel panel-default">
       <div class="panel-heading">
-        <a href="/">主页</a> / 修改密码
+        <a href="/">Home Page</a> / Change Password
       </div>
       <div class="panel-body">
         <form id="form">
           <div class="form-group">
-            <label for="oldPassword">旧密码</label>
+            <label for="oldPassword">Previous Password</label>
             <input type="password" class="form-control" id="oldPassword" name="oldPassword">
           </div>
           <div class="form-group">
-            <label for="newPassword">新密码</label>
+            <label for="newPassword">New Password</label>
             <input type="password" class="form-control" id="newPassword" name="newPassword">
           </div>
           <div class="form-group">
-            <label for="newPassword2">再次输入新密码</label>
+            <label for="newPassword2">Plz type new password again</label>
             <input type="password" class="form-control" id="newPassword2" name="newPassword2">
           </div>
-            <button type="submit" class="btn btn-warning">修改密码</button>
+          <button type="submit" class="btn btn-warning">Change Password</button>
           <span class="text-danger"></span>
         </form>
       </div>
@@ -59,20 +57,20 @@
       var newPassword = $("#newPassword").val();
       var newPassword2 = $("#newPassword2").val();
       if(!oldPassword) {
-    	  alert('请输入旧密码');
-          return false;
+        alert('Plz enter previous password');
+        return false;
       }
       if(!newPassword) {
-    	  alert('请输入新密码');
-          return false;
+        alert('Plz enter new password');
+        return false;
       }
       if (newPassword.length < 6) {
-          alert('密码的长度不能少于6位');
-          return false;
-        }
+        alert('The length of the password cannot be less than 6 digits');
+        return false;
+      }
       if(newPassword != newPassword2){
-    	  alert('2次密码不一致');
-          return false;
+        alert('2 passwords are inconsistent');
+        return false;
       }
       $.ajax({
         url: '/user/setting/changePassword',
@@ -86,13 +84,13 @@
         },
         success: function(data) {
           if(data.success != null && data.success == true) {
-        	  alert('修改成功，请重新登录');
-        	  window.location.href = '/logout';
+            alert('Change success! Plz log in again.');
+            window.location.href = '/logout';
             /* setTimeout(function() {
               window.location.href = '/logout';
             }, 2000); */
           } else {
-        	  alert(data.error);
+            alert(data.error);
           }
         }
       });
@@ -100,7 +98,7 @@
     })
   })
 </script>
-  </div>
+</div>
 </div>
 <jsp:include page="../components/foot.jsp"></jsp:include>
 <script type="text/javascript">
