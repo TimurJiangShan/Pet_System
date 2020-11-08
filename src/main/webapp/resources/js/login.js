@@ -4,11 +4,11 @@ $(function(){
             var username = $("#username").val();
             var password = $("#password").val();
             if (username.length === 0) {
-              alert('用户名不能为空哦');
+              alert('Username can not be empty');
               return false;
             }
             if (password.length === 0) {
-              alert('密码不能为空哦');
+              alert('Password can not be empty');
               return false;
             }
             $.ajax({
