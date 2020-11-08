@@ -14,10 +14,10 @@ import com.example.dto.DMLExecution;
 import com.example.dto.Result;
 
 /**
- * 点赞或者点踩
- * @author sen
- * 2018年8月11日
- * 下午3:14:18
+ * like or dislike
+ * @Chao Wang
+ * 10/10/2020
+ * 13:14:18
  * TODO
  */
 @RestController

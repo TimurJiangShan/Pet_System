@@ -1,10 +1,10 @@
 package com.example.exception;
 
 /**
- * 重复注册/修改异常
- * @author sen
- * 2018年5月6日
- * 下午10:15:07
+ * repeat register/system error
+ * @Chao Wang
+ * 10/10/2020
+ *
  * TODO
  */
 public class RepeatUserException extends RuntimeException{

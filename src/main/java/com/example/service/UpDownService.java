@@ -2,12 +2,11 @@ package com.example.service;
 
 import com.example.dto.DMLExecution;
 import com.example.entity.UpDown;
-
 /**
- * 
- * @author sen
- * 2018年8月11日
- * 上午11:45:13
+ * register error
+ * @Chao Wang
+ * 10/10/2020
+ *
  * TODO
  */
 public interface UpDownService {
