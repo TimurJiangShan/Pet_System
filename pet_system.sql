@@ -36,7 +36,7 @@ CREATE TABLE `admin_user` (
 -- Records of admin_user
 -- ----------------------------
 BEGIN;
-INSERT INTO `admin_user` VALUES (1, 'admin', 'c41d7c66e1b8404545aa3a0ece2006ac', '/resources/images/default-avatar.jpg', '2019-02-26 11:09:57', '2020-05-02 11:57:20');
+INSERT INTO `admin_user` VALUES (1, 'admin', 'c41d7c66e1b8404545aa3a0ece2006ac', '/resources/images/default-avatar.jpg', '2020-10-26 12:09:57', '2020-10-30 12:37:30');
 COMMIT;
 
 -- ----------------------------
@@ -92,10 +92,8 @@ CREATE TABLE `node` (
 -- Records of node
 -- ----------------------------
 BEGIN;
-INSERT INTO `node` VALUES (1, 'java', 'Java', '/resources/images/node/java_normal.png', '/resources/images/node/java_mini.png', NULL, 'Java语言', 14, '/n/Java', '编程语言', '2018-11-03 11:57:18', '2019-04-23 23:48:45', 0, NULL, NULL, NULL);
-INSERT INTO `node` VALUES (2, '辟谣', '辟谣', NULL, NULL, NULL, NULL, NULL, '/n/辟谣', NULL, '2020-05-02 12:01:07', NULL, 0, 1, 1, 1);
-INSERT INTO `node` VALUES (3, '每日萌宠', '每日萌宠', NULL, NULL, NULL, '每日萌宠', NULL, '/n/每日萌宠', NULL, '2020-05-02 12:03:14', NULL, 0, 1, 1, 2);
-INSERT INTO `node` VALUES (4, '宠物百科', '宠物百科', NULL, NULL, NULL, NULL, NULL, '/n/宠物百科', NULL, '2020-05-02 12:03:51', NULL, 0, 1, 1, 3);
+INSERT INTO `node` VALUES (3, 'Cute Pet', 'Cute Pet', NULL, NULL, NULL, 'Cute Pet', NULL, '/n/Cute Pet', NULL, '2020-10-30 14:05:44', NULL, 0, 1, 1, 2);
+INSERT INTO `node` VALUES (4, 'Dog', 'Dog', NULL, NULL, NULL, NULL, NULL, '/n/Dog', NULL, '2020-11-02 13:24:31', NULL, 0, 1, 1, 3);
 COMMIT;
 
 -- ----------------------------
@@ -118,10 +116,10 @@ CREATE TABLE `node_tab` (
 -- Records of node_tab
 -- ----------------------------
 BEGIN;
-INSERT INTO `node_tab` VALUES (1, 'all', '全部', '', 0, 1, '2018-05-12 10:04:43', NULL);
-INSERT INTO `node_tab` VALUES (2, 'good', '精华', '', 0, 2, '2018-05-12 12:03:30', NULL);
-INSERT INTO `node_tab` VALUES (3, 'newest', '最新', '', 0, 3, '2018-05-12 14:47:35', NULL);
-INSERT INTO `node_tab` VALUES (4, 'noReply', '等待评论', '', 0, 4, '2018-05-12 14:55:30', NULL);
+INSERT INTO `node_tab` VALUES (1, 'all', 'all', '', 0, 1, '2020-11-02 13:24:31', NULL);
+INSERT INTO `node_tab` VALUES (2, 'good', 'good', '', 0, 2, '2020-11-02 13:25:31', NULL);
+INSERT INTO `node_tab` VALUES (3, 'newest', 'newest', '', 0, 3, '2020-11-02 13:26:31', NULL);
+INSERT INTO `node_tab` VALUES (4, 'noReply', 'Ready to reply', '', 0, 4, '2020-11-02 13:26:35', NULL);
 COMMIT;
 
 -- ----------------------------
