@@ -16,11 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.example.dto.PageDataBody;
 import com.example.dto.Result;
 
-/**
- * <p></p>
- * @author: miansen.wang
- * @date: 2019-03-30
- */
+
 @Controller
 @RequestMapping("/admin/reply")
 public class ReplyAdminController {
@@ -29,12 +25,12 @@ public class ReplyAdminController {
 	private ReplyService replyService;
 	
 	/**
-	 * 后台评论列表
-	 * @param author: 评论用户
-	 * @param topic: 话题
-	 * @param startDate: 开始时间
-	 * @param endDate: 结束时间
-	 * @param p: 页数
+	 *
+	 * @param author
+	 * @param topic
+	 * @param startDate
+	 * @param endDate
+	 * @param p: page
 	 * @param model
 	 * @return
 	 */
@@ -57,13 +53,7 @@ public class ReplyAdminController {
 	    model.addAttribute("p", p);
 	    return "admin/reply/list";
 	}
-	
-	/**
-	 * 后台评论编辑页面
-	 * @param id: 评论ID
-	 * @param model
-	 * @return
-	 */
+
 	@RequestMapping(value = "/edit",method = RequestMethod.GET)
 	public String edit(@RequestParam(value = "id") Integer id,Model model) {
 		Reply reply = replyService.findById(id);
@@ -71,13 +61,7 @@ public class ReplyAdminController {
 		model.addAttribute("vEnter", "\n");
 		return "admin/reply/edit";
 	}
-	
-	/**
-	 * 后台评论编辑接口
-	 * @param id: 评论ID
-	 * @param content: 评论内容
-	 * @return
-	 */
+
 	@RequestMapping(value = "/edit",method = RequestMethod.POST)
 	@ResponseBody
 	public Result<String> edit(@RequestParam(value = "id") Integer id,
@@ -86,18 +70,14 @@ public class ReplyAdminController {
 		reply.setReplyContent(content);
 		reply.setUpdateDate(new Date());
 		replyService.update(reply);
-		return new Result<>(true, "编辑成功！");
+		return new Result<>(true, "Edit Success！");
 	}
 	
-	/**
-	 * 删除评论
-	 * @param id: 评论ID
-	 * @return
-	 */
+
 	@RequestMapping(value = "/delete",method = RequestMethod.GET)
 	@ResponseBody
 	public Result<String> delete(@RequestParam(value = "id") Integer id){
 		replyService.deleteByReplyId(id);
-		return new Result<>(true, "删除成功！");
+		return new Result<>(true, "Delete Success！");
 	}
 }

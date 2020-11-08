@@ -31,9 +31,8 @@ import com.example.web.front.BaseController;
 
 /**
  * 
- * @author sen
- * 2018年7月21日
- * 下午10:58:12
+ * @author Jiangshan
+ * 11/01/2020
  * TODO
  */
 @RestController
@@ -56,89 +55,53 @@ public class UserApiController extends BaseController{
 	@Autowired
 	private SiteConfig citeConfig;
 	
-	/**
-	 * 用户的收藏
-	 * @param name
-	 * @param p
-	 * @return
-	 */
+	// Collection
 	@RequestMapping(value = "/api/user/collect",method = RequestMethod.GET)
 	private Result<PageDataBody> collectList(@RequestParam(value = "name",defaultValue = "1") String name,@RequestParam(value = "p",defaultValue = "1") Integer p){
 		User user = userService.findByName(name);
 		/*if(user == null) {
-			return new Result<PageDataBody>(true, "用户不存在");
+			return new Result<PageDataBody>(true, "User does not exists");
 		}*/
-		ApiAssert.notNull(user, "用户不存在");
-		PageDataBody<Topic> page = collectDaoService.page(p, 20, user.getUserId());
+		ApiAssert.notNull(user, "User does not exists");
+		PageDataBody<Topic> page = collectDaoService.page(p, 5, user.getUserId());
 		return new Result<PageDataBody>(true, page);
 	}
 	
-	/**
-	 * 用户的主题
-	 * @param name
-	 * @param p
-	 * @return
-	 */
+
 	@RequestMapping(value = "/api/user/topic",method = RequestMethod.GET)
 	private Result<PageDataBody> topicList(@RequestParam(value = "name",defaultValue = "1") String name,@RequestParam(value = "p",defaultValue = "1") Integer p){
-		PageDataBody<Topic> page = topicService.pageByAuthor(p, 20, name);
+		PageDataBody<Topic> page = topicService.pageByAuthor(p, 5, name);
 		return new Result<PageDataBody>(true, page);
 	}
-	
-	/**
-	 * 用户的评论
-	 * @param name
-	 * @param p
-	 * @return
-	 */
+
 	@RequestMapping(value = "/api/user/reply",method = RequestMethod.GET)
 	private Result<PageDataBody> replyList(@RequestParam(value = "name",defaultValue = "1") String name,@RequestParam(value = "p",defaultValue = "1") Integer p){
-		PageDataBody<ReplyAndTopicByName> page = replyService.findAllByNameAndTopic(name, p, 20);
+		PageDataBody<ReplyAndTopicByName> page = replyService.findAllByNameAndTopic(name, p, 5);
 		return new Result<PageDataBody>(true, page);
 	}
 	
-	/**
-	 * 用户的关注
-	 * @param uid
-	 * @param p
-	 * @return
-	 */
+
 	@RequestMapping(value = "/api/user/follow/topic",method = RequestMethod.GET)
 	private Result<PageDataBody> followList(@RequestParam(value = "uid",defaultValue = "-1") Integer uid,@RequestParam(value = "p",defaultValue = "1") Integer p){
-		PageDataBody<Topic> page = followService.pageTopic(p, 20, uid);
+		PageDataBody<Topic> page = followService.pageTopic(p, 5, uid);
 		return new Result<PageDataBody>(true, page);
 	}
 	
-	/**
-	 * 用户的粉丝
-	 * @param fid
-	 * @param p
-	 * @return
-	 */
+
 	@RequestMapping(value = "/api/user/fans",method = RequestMethod.GET)
 	private Result<PageDataBody> fansList(@RequestParam(value = "fid",defaultValue = "-1") Integer fid,@RequestParam(value = "p",defaultValue = "1") Integer p){
-		PageDataBody<User> page = followService.followMe(p, 20, fid);
+		PageDataBody<User> page = followService.followMe(p, 5, fid);
 		return new Result<PageDataBody>(true, page);
 	}
 	
-	/**
-	 * 用户的提问
-	 * @param name
-	 * @param p
-	 * @return
-	 */
+	// Question and Anaswer
 	@RequestMapping(value = "/api/user/topic/qna",method = RequestMethod.GET)
 	private  Result<PageDataBody> qnaTopicList(@RequestParam(value = "name",defaultValue = "-1") String name,@RequestParam(value = "p",defaultValue = "1") Integer p){
-		PageDataBody<Topic> page = topicService.pageAllByPtabAndAuthor(p, 20, "qna", name);
+		PageDataBody<Topic> page = topicService.pageAllByPtabAndAuthor(p, 5, "qna", name);
 		return new Result<PageDataBody>(true, page);
 	}
 	
-	/**
-	 * 用户的访客
-	 * @param vid
-	 * @param p
-	 * @return
-	 */
+	// number of visits
 	@RequestMapping(value = "/api/user/visit",method = RequestMethod.GET)
 	private Result<PageDataBody> visitList(@RequestParam(value = "vid",defaultValue = "-1") Integer vid,
 										   @RequestParam(value = "p",defaultValue = "1") Integer p){
@@ -151,18 +114,13 @@ public class UserApiController extends BaseController{
 		return new Result<Integer>(true, p);
 	}
 	
-	/**
-	 * 用户发表话题或者回复的数量
-	 * @param type
-	 * @param userName
-	 * @return
-	 */
+
 	@RequestMapping(value = "/api/numberOfCountTopicsOrReply",method = RequestMethod.GET)
 	private Map<String,Object> numberOfCountTopicsOrReply(String type,String userName){
 		Map<String, Object> map = new HashMap<String, Object>();
 		if(userName == null) {
 			map.put("success", false);
-			map.put("msg", "用户名不能为空");
+			map.put("msg", "Username cannot be empty");
 			return map;
 		}else if(type.equals("reply")){
 			int countByName = replyService.countByName(userName);
@@ -178,7 +136,7 @@ public class UserApiController extends BaseController{
 	}
 	
 	/**
-	 * Top100积分榜
+	 * Top100 points ranks. To encourage user to create topics
 	 * @return
 	 */
 	@RequestMapping(value = "/api/user/top100",method = RequestMethod.GET)
@@ -187,10 +145,7 @@ public class UserApiController extends BaseController{
 		return new Result<List>(true, scores);
 	}
 	
-	/**
-	 * 用户的登录信息
-	 * @return
-	 */
+	// user's information
 	@RequestMapping(value = "/api/user/logininfo",method = RequestMethod.GET)
 	private Result<Map> LoginInfo(HttpServletRequest request){
 		User user = getUser(request);
@@ -216,12 +171,7 @@ public class UserApiController extends BaseController{
 		}
 	}
 	
-	/**
-	 * 作者的其他话题
-	 * @param userName
-	 * @param topicId
-	 * @return
-	 */
+	// Other topics
 	@RequestMapping(value = "/api/user/other/topic",method = RequestMethod.GET)
 	private Result<List> otherTopic(String userName,Integer topicId){
 		List<Topic> list = topicService.findOther(userName, topicId);

@@ -2,10 +2,15 @@ package com.example.entity;
 
 import java.util.Date;
 
-//follow
+
+/**
+ * @author Jiangshan Zhao
+ */
 public class Follow {
 
-	//key
+	/**
+	 * Primary Key
+	 */
 	private Integer id;
 
 	private Integer uid;

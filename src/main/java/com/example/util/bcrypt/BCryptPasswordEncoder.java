@@ -6,9 +6,9 @@ import java.security.SecureRandom;
 import java.util.regex.Pattern;
 
 /**
- * <p>密码加密与匹配</p>
- * @author: miansen.wang
- * @date: 2019-05-12
+ * <p>Password Crypy</p>
+ * @author: jiangshan
+ * @date: 2020-10-31
  */
 public class BCryptPasswordEncoder {
 

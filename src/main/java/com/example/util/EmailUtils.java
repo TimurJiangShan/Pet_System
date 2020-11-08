@@ -7,10 +7,10 @@ import java.util.*;
 public class EmailUtils {
 
     /**
-     * 配置邮件
+     * Email
      *
      * @param smtpHost smtpHost
-     * @param userName 邮件地址
+     * @param userName Address
      * @param password password
      */
     public static void configMail(String smtpHost, String userName, String password) {

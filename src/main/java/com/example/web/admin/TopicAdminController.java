@@ -19,11 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.example.dto.PageDataBody;
 import com.example.dto.Result;
 
-/**
- * <p></p>
- * @author: miansen.wang
- * @date: 2019-03-02
- */
+
 @Controller
 @RequestMapping("/admin/topic")
 public class TopicAdminController {
@@ -38,7 +34,7 @@ public class TopicAdminController {
 	private ReplyService replyService;
 	
 	/**
-	 * 话题列表
+	 * Topic List
 	 * @param startDate
 	 * @param endDate
 	 * @param author
@@ -59,12 +55,7 @@ public class TopicAdminController {
 	    model.addAttribute("author", author);
 	    return "admin/topic/list";
 	}
-	
-	/**
-	 * 置顶或者取消置顶
-	 * @param id
-	 * @return
-	 */
+
 	@RequestMapping(value = "/top",method = RequestMethod.GET)
 	@ResponseBody
 	public Result<String> top(@RequestParam("id") Integer id){
@@ -72,14 +63,10 @@ public class TopicAdminController {
 		topic.setTop(!topic.getTop());
 		topic.setUpdateDate(new Date());
 		topicService.updateTopic(topic);
-		return new Result<>(true, "更新成功！");
+		return new Result<>(true, "Update Success！");
 	}
 	
-	/**
-	 * 加精或者取消加精
-	 * @param id
-	 * @return
-	 */
+
 	@RequestMapping(value = "/good",method = RequestMethod.GET)
 	@ResponseBody
 	public Result<String> good(@RequestParam("id") Integer id){
@@ -87,29 +74,18 @@ public class TopicAdminController {
 		topic.setGood(!topic.getGood());
 		topic.setUpdateDate(new Date());
 		topicService.updateTopic(topic);
-		return new Result<>(true, "更新成功！");
+		return new Result<>(true, "Success！");
 	}
-	
-	/**
-	 * 删除话题
-	 * @param id
-	 * @return
-	 */
+
 	@RequestMapping(value = "/delete",method = RequestMethod.GET)
 	@ResponseBody
 	public Result<String> delete(@RequestParam("id") Integer id){
 		topicService.deleteByTopicId(id);
 		// 删除关联的评论
 		replyService.deleteByTopicId(id);
-		return new Result<>(true, "删除成功！");
+		return new Result<>(true, "Success！");
 	}
-	
-	/**
-	 * 编辑话题页面
-	 * @param id
-	 * @param model
-	 * @return
-	 */
+
 	@RequestMapping(value = "/edit",method = RequestMethod.GET)
 	public String edit(@RequestParam("id") Integer id,Model model) {
 		model.addAttribute("topic", topicService.findById(id));
@@ -119,7 +95,6 @@ public class TopicAdminController {
 	}
 	
 	/**
-	 * 编辑话题接口
 	 * @param id
 	 * @param title
 	 * @param content
@@ -130,14 +105,14 @@ public class TopicAdminController {
 	@ResponseBody
 	public Result<String> edit(@RequestParam("id") Integer id,@RequestParam("title") String title,
 					  		   @RequestParam("content") String content,@RequestParam("nodeTitle") String nodeTitle){
-		ApiAssert.notEmpty(title, "标题不能为空");
-		ApiAssert.notEmpty(nodeTitle, "节点不能为空");
+		ApiAssert.notEmpty(title, "Title cannot be empty");
+		ApiAssert.notEmpty(nodeTitle, "Node cannot be empty");
 		Topic topic = topicService.findById(id);
 		topic.setTitle(title);
 		topic.setContent(content);
 		topic.setNodeTitle(nodeTitle);
 		topic.setUpdateDate(new Date());
 		topicService.updateTopic(topic);
-		return new Result<>(true, "编辑成功！");
+		return new Result<>(true, "Success！");
 	}
 }

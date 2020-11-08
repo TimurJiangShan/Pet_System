@@ -18,9 +18,6 @@ public class DateUtil {
 	    sdf.setTimeZone(TimeZone.getTimeZone("GMT+8"));
 	    return sdf.format(date);
 	  }
-	 /* public static void main(String[] args) {
-		  System.out.println(formatDateTime(new Date()));
-	}*/
 
 	  public static String formatDate(Date date) {
 	    if (date == null) return null;
@@ -37,7 +34,7 @@ public class DateUtil {
 	  }
 
 	  /**
-	   * 字符串转时间
+	   * String to Date
 	   *
 	   * @param dateString
 	   * @param style
@@ -56,9 +53,9 @@ public class DateUtil {
 	  }
 
 	  /**
-	   * 判断传入的时间是否在当前时间之后，返回boolean值
-	   * true: 过期
-	   * false: 还没过期
+	   *
+	   * true: out of date
+	   * false: not out of date
 	   *
 	   * @param date
 	   * @return
@@ -68,7 +65,7 @@ public class DateUtil {
 	    return false;
 	  }
 
-	  // 获取 hour 后的时间
+	  // Get Time after hour
 	  public static Date getHourAfter(Date date, int hour) {
 	    Calendar calendar = Calendar.getInstance();
 	    calendar.setTime(date);
@@ -76,7 +73,7 @@ public class DateUtil {
 	    return calendar.getTime();
 	  }
 
-	  // 获取 hour 前的时间
+	  // Get Time before hour
 	  public static Date getHourBefore(Date date, int hour) {
 	    Calendar calendar = Calendar.getInstance();
 	    calendar.setTime(date);

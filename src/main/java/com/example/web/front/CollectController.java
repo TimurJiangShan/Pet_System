@@ -20,12 +20,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.example.dto.PageDataBody;
 import com.example.dto.Result;
 
-/**
- * @author sen
- * 2018年7月3日
- * 上午10:15:28
- * TODO
- */
 @Controller
 public class CollectController extends BaseController{
 
@@ -36,7 +30,7 @@ public class CollectController extends BaseController{
 	@Autowired
 	private NoticeService rootNoticeService;
 	/**
-	 * 收藏话题列表
+	 * Collection List
 	 * @param request
 	 * @param p
 	 * @param uid
@@ -60,7 +54,7 @@ public class CollectController extends BaseController{
 	}
 	
 	/**
-	 * 是否已收藏此话题
+	 * Check if this topic has been collected
 	 * @param uid
 	 * @param tid
 	 * @return
@@ -74,13 +68,13 @@ public class CollectController extends BaseController{
 			collect = collectDaoService.isCollect(user.getUserId(), tid);
 		}
 		if(collect == 0) {
-			return new Result<>(false, "未收藏此此话题");
+			return new Result<>(false, "Have not collect this topic");
 		}
 		return new Result<Integer>(true, collect);
 	}
 	
 	/**
-	 * 收藏话题
+	 * Collection Save
 	 * @param uid
 	 * @param tid
 	 * @return
@@ -94,14 +88,14 @@ public class CollectController extends BaseController{
 		collect.setCreateDate(new Date());
 		int insert = collectDaoService.insert(collect);
 		if(insert == 1) {
-			String info = "收藏成功";
+			String info = "Collect Success";
 			return new Result<Integer>(true,info);
 		}
-		return new Result<>(false,"收藏失败");
+		return new Result<>(false,"Collect Fail");
 	}
 	
 	/**
-	 * 取消收藏
+	 * Cancel Collection
 	 * @param uid
 	 * @param tid
 	 * @return
@@ -111,14 +105,14 @@ public class CollectController extends BaseController{
 	private Result<Integer> delete(Integer tid,HttpServletRequest request){
 		int delete = collectDaoService.delete(getUser(request).getUserId(), tid);
 		if(delete == 1) {
-			String info = "取消收藏成功";
+			String info = "Cancel Collection Success";
 			return new Result<Integer>(true,info);
 		}
-		return new Result<>(false,"取消收藏失败");
+		return new Result<>(false,"Cancel Collection Fails");
 	}
 	
 	/**
-	 * 统计话题被收藏的数量
+	 * Count the number of collections
 	 * @param tid
 	 * @return
 	 */

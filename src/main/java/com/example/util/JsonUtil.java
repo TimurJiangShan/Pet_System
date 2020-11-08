@@ -3,19 +3,13 @@ package com.example.util;
 import java.lang.reflect.Type;
 import com.google.gson.Gson;
 
-/**
- * json工具类
- * @author sen
- * 2018年7月12日
- * 下午9:48:33
- * TODO
- */
+
 public class JsonUtil {
 
 	public final static Gson gson = new Gson();
 	
 	/**
-	 * 对象转json
+	 * object to json
 	 * @param object
 	 * @return
 	 */
@@ -24,7 +18,7 @@ public class JsonUtil {
 	}
 	
 	/**
-	 * json转对象
+	 * json to object
 	 * @param json
 	 * @param object
 	 * @return
@@ -34,7 +28,7 @@ public class JsonUtil {
 	}
 	
 	/**
-	 * json转对象
+	 * json to object
 	 * @param json
 	 * @param type
 	 * @return

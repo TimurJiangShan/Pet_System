@@ -2,6 +2,7 @@ package com.example.entity;
 
 import java.util.Date;
 
+
 //collect
 public class Collect {
 

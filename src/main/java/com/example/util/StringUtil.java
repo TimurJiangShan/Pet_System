@@ -15,9 +15,6 @@ public class StringUtil {
     private static final Random rand = new Random();
     private static final String check = "^([a-z0-9A-Z]+[-|_|\\.]?)+[a-z0-9A-Z]@([a-z0-9A-Z]+(-[a-z0-9A-Z]+)?\\.)+[a-zA-Z]{2,}$";
 
-    /**
-     * 首字母变小写
-     */
     public static String firstCharToLowerCase(String str) {
         char firstChar = str.charAt(0);
         if (firstChar >= 'A' && firstChar <= 'Z') {
@@ -28,9 +25,6 @@ public class StringUtil {
         return str;
     }
 
-    /**
-     * 首字母变大写
-     */
     public static String firstCharToUpperCase(String str) {
         char firstChar = str.charAt(0);
         if (firstChar >= 'a' && firstChar <= 'z') {
@@ -41,16 +35,10 @@ public class StringUtil {
         return str;
     }
 
-    /**
-     * 字符串为 null 或者为  "" 时返回 true
-     */
     public static boolean isBlank(String str) {
         return str == null || "".equals(str.trim());
     }
 
-    /**
-     * 字符串不为 null 而且不为  "" 时返回 true
-     */
     public static boolean notBlank(String str) {
         return str != null && !"".equals(str.trim());
     }

@@ -79,7 +79,7 @@
 			</div>
 		</div>
 		<div class="panel-footer" style="display: none" id="collect">
-			<a href="javascript:window.open('http://service.weibo.com/share/share.php?url=https://宠物信息服务平台.cn/topic/${topic.topicId}?r=${topic.author}&title=${topic.title}', '_blank', 'width=550,height=370'); recordOutboundLink(this, 'Share', 'weibo.com');">分享微博</a>&nbsp;
+			<a href="javascript:window.open('http://service.weibo.com/share/share.php?url=https://PetGo.cn/topic/${topic.topicId}?r=${topic.author}&title=${topic.title}', '_blank', 'width=550,height=370'); recordOutboundLink(this, 'Share', 'weibo.com');">分享微博</a>&nbsp;
 			<a href="javascript:void(0);" class="collectTopic"
 			onclick="save()"></a> <span class="pull-right"><span
 			id="collectCount">${countByTid}</span>collection</span>
@@ -162,7 +162,7 @@
 	editor.customConfig.uploadImgServer = '/common/upload';
 	// Limitation of picture is 5MB
 	editor.customConfig.uploadImgMaxSize = 5 * 1024 * 1024;
-	// Limitation of uploading is 5 pictures one time
+	// Uploading maximum 5 pictures one time
 	editor.customConfig.uploadImgMaxLength = 10;
 	// Timeout is 10 s
 	editor.customConfig.uploadImgTimeout = 10000;

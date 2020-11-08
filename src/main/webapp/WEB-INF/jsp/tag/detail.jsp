@@ -4,13 +4,13 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-  <title>标签-宠物信息服务平台</title>
+  <title>Tag-PetGo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- 引入 Bootstrap -->
+  <!-- Import Bootstrap -->
   <link href="/resources/css/bootstrap.min.css" rel="stylesheet">
   <link href="/resources/css/app.css" rel="stylesheet" type="text/css">
   <link rel="shortcut icon" href="/resources/images/favicon.ico">
-  <!-- 引入layui.css -->
+  <!-- Import layui.css -->
   <link rel="stylesheet" href="/resources/layui/css/layui.css" media="all">
 </head>
 <body>
@@ -20,7 +20,7 @@
   <div class="panel panel-default">
     <div class="panel-heading"><h4 style="margin-top: 0; margin-bottom: 0px;">
         ${tagName}
-        <small>共有${pageByTag.totalRow}篇话题</small>
+        <small>共有${pageByTag.totalRow}topics</small>
       </h4></div>
     <div class="panel-body paginate-bot">
     <c:forEach var="item" items="${pageByTag.list}">
@@ -48,18 +48,13 @@
 		  <span>•</span>
           <strong><a href="/user/${item.author}">${item.author}</a></strong>
           <span class="hidden-sm hidden-xs">•</span>
-          <span class="hidden-sm hidden-xs">${item.viewCount}次点击</span>
-          <!-- 评论 -->
-          <!-- <span class="hidden-sm hidden-xs">•</span> -->
-          <%-- <span class="hidden-sm hidden-xs"><a href="/topic/${item.topicId}">${item.replyCount}个评论</a></span> --%>
+          <span class="hidden-sm hidden-xs">${item.viewCount}clicks</span>
+
           <span>•</span>
-          <%-- <span>${baseEntity.formatDate(item.createDate)}</span> --%>
-          <%-- <span class="formate-date">${item.createDate}</span> --%>
+
           <span><fmt:formatDate type="date" value="${item.createDate}" /></span>
           <c:if test="${item.lastReplyAuthor != null}">
-          <!-- 最后回复用户 -->
-          <!-- <span>•</span> -->
-          <%-- <span>最后回复来自 <a href="/user/${item.lastReplyAuthor}">${item.lastReplyAuthor}</a></span> --%>
+
           </c:if>
         </p>
         </div>
@@ -91,17 +86,15 @@
 	$("#biaoqian").addClass("active");
 	//var url = "/topic/tag/${tagName}?";
 	//$(".pagination2").pagination("${pageByTag.pageNumber}","${pageByTag.totalPage}",10);
-	var count = ${pageByTag.totalRow};//数据总量
-	  var limit = ${pageByTag.pageSize};//每页显示的条数
+	var count = ${pageByTag.totalRow};//Total number
+	  var limit = ${pageByTag.pageSize};//Number of items displayed per page
 	  var url = "/tag/${tagName}?p=";//url
 	  function page(){
 		   var page = location.search.match(/p=(\d+)/);  
 		   return page ? page[1] : 1;  
 		 }
-	  var p = page();//当前页数
-		 //console.log("p:"+p);
-		 //console.log(count);
-		 //console.log(url);
+	  var p = page();//Current page
+
 	  paginate(count,limit,p,url);
 </script>
 </body>

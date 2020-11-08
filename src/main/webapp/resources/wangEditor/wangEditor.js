@@ -49,11 +49,7 @@ var polyfill = function () {
     }
 };
 
-/*
-    DOM 操作 API
-*/
 
-// 根据 html 代码片段创建 dom 对象
 function createElemByHTML(html) {
     var div = void 0;
     div = document.createElement('div');
@@ -61,7 +57,7 @@ function createElemByHTML(html) {
     return div.children;
 }
 
-// 是否是 DOM List
+
 function isDOMList(selector) {
     if (!selector) {
         return false;
@@ -72,7 +68,6 @@ function isDOMList(selector) {
     return false;
 }
 
-// 封装 document.querySelectorAll
 function querySelectorAll(selector) {
     var result = document.querySelectorAll(selector);
     if (isDOMList(result)) {
@@ -82,16 +77,14 @@ function querySelectorAll(selector) {
     }
 }
 
-// 记录所有的事件绑定
+
 var eventList = [];
 
-// 创建构造函数
 function DomElement(selector) {
     if (!selector) {
         return;
     }
 
-    // selector 本来就是 DomElement 对象，直接返回
     if (selector instanceof DomElement) {
         return selector;
     }
@@ -99,36 +92,27 @@ function DomElement(selector) {
     this.selector = selector;
     var nodeType = selector.nodeType;
 
-    // 根据 selector 得出的结果（如 DOM，DOM List）
     var selectorResult = [];
     if (nodeType === 9) {
-        // document 节点
         selectorResult = [selector];
     } else if (nodeType === 1) {
-        // 单个 DOM 节点
         selectorResult = [selector];
     } else if (isDOMList(selector) || selector instanceof Array) {
-        // DOM List 或者数组
         selectorResult = selector;
     } else if (typeof selector === 'string') {
-        // 字符串
         selector = selector.replace('/\n/mg', '').trim();
         if (selector.indexOf('<') === 0) {
-            // 如 <div>
             selectorResult = createElemByHTML(selector);
         } else {
-            // 如 #id .class
             selectorResult = querySelectorAll(selector);
         }
     }
 
     var length = selectorResult.length;
     if (!length) {
-        // 空数组
         return this;
     }
 
-    // 加入 DOM 节点
     var i = void 0;
     for (i = 0; i < length; i++) {
         this[i] = selectorResult[i];
@@ -136,11 +120,9 @@ function DomElement(selector) {
     this.length = length;
 }
 
-// 修改原型
 DomElement.prototype = {
     constructor: DomElement,
 
-    // 类数组，forEach
     forEach: function forEach(fn) {
         var i = void 0;
         for (i = 0; i < this.length; i++) {
@@ -162,7 +144,6 @@ DomElement.prototype = {
         return $(cloneList);
     },
 
-    // 获取第几个元素
     get: function get(index) {
         var length = this.length;
         if (index >= length) {
@@ -171,26 +152,21 @@ DomElement.prototype = {
         return $(this[index]);
     },
 
-    // 第一个
     first: function first() {
         return this.get(0);
     },
 
-    // 最后一个
     last: function last() {
         var length = this.length;
         return this.get(length - 1);
     },
 
-    // 绑定事件
     on: function on(type, selector, fn) {
-        // selector 不为空，证明绑定事件要加代理
         if (!fn) {
             fn = selector;
             selector = null;
         }
 
-        // type 是否有多个
         var types = [];
         types = type.split(/\s+/);
 
@@ -200,7 +176,6 @@ DomElement.prototype = {
                     return;
                 }
 
-                // 记录下，方便后面解绑
                 eventList.push({
                     elem: elem,
                     type: type,
@@ -208,12 +183,10 @@ DomElement.prototype = {
                 });
 
                 if (!selector) {
-                    // 无代理
                     elem.addEventListener(type, fn);
                     return;
                 }
 
-                // 有代理
                 elem.addEventListener(type, function (e) {
                     var target = e.target;
                     if (target.matches(selector)) {
@@ -224,27 +197,22 @@ DomElement.prototype = {
         });
     },
 
-    // 取消事件绑定
     off: function off(type, fn) {
         return this.forEach(function (elem) {
             elem.removeEventListener(type, fn);
         });
     },
 
-    // 获取/设置 属性
     attr: function attr(key, val) {
         if (val == null) {
-            // 获取值
             return this[0].getAttribute(key);
         } else {
-            // 设置值
             return this.forEach(function (elem) {
                 elem.setAttribute(key, val);
             });
         }
     },
 
-    // 添加 class
     addClass: function addClass(className) {
         if (!className) {
             return this;
@@ -252,16 +220,13 @@ DomElement.prototype = {
         return this.forEach(function (elem) {
             var arr = void 0;
             if (elem.className) {
-                // 解析当前 className 转换为数组
                 arr = elem.className.split(/\s/);
                 arr = arr.filter(function (item) {
                     return !!item.trim();
                 });
-                // 添加 class
                 if (arr.indexOf(className) < 0) {
                     arr.push(className);
                 }
-                // 修改 elem.class
                 elem.className = arr.join(' ');
             } else {
                 elem.className = className;
@@ -269,7 +234,6 @@ DomElement.prototype = {
         });
     },
 
-    // 删除 class
     removeClass: function removeClass(className) {
         if (!className) {
             return this;
@@ -277,23 +241,19 @@ DomElement.prototype = {
         return this.forEach(function (elem) {
             var arr = void 0;
             if (elem.className) {
-                // 解析当前 className 转换为数组
                 arr = elem.className.split(/\s/);
                 arr = arr.filter(function (item) {
                     item = item.trim();
-                    // 删除 class
                     if (!item || item === className) {
                         return false;
                     }
                     return true;
                 });
-                // 修改 elem.class
                 elem.className = arr.join(' ');
             }
         });
     },
 
-    // 修改 css
     css: function css(key, val) {
         var currentStyle = key + ':' + val + ';';
         return this.forEach(function (elem) {
@@ -301,10 +261,8 @@ DomElement.prototype = {
             var styleArr = void 0,
                 resultArr = [];
             if (style) {
-                // 将 style 按照 ; 拆分为数组
                 styleArr = style.split(';');
                 styleArr.forEach(function (item) {
-                    // 对每项样式，按照 : 拆分为 key 和 value
                     var arr = item.split(':').map(function (i) {
                         return i.trim();
                     });
@@ -312,7 +270,6 @@ DomElement.prototype = {
                         resultArr.push(arr[0] + ':' + arr[1]);
                     }
                 });
-                // 替换或者新增
                 resultArr = resultArr.map(function (item) {
                     if (item.indexOf(key) === 0) {
                         return currentStyle;
@@ -323,26 +280,21 @@ DomElement.prototype = {
                 if (resultArr.indexOf(currentStyle) < 0) {
                     resultArr.push(currentStyle);
                 }
-                // 结果
                 elem.setAttribute('style', resultArr.join('; '));
             } else {
-                // style 无值
                 elem.setAttribute('style', currentStyle);
             }
         });
     },
 
-    // 显示
     show: function show() {
         return this.css('display', 'block');
     },
 
-    // 隐藏
     hide: function hide() {
         return this.css('display', 'none');
     },
 
-    // 获取子节点
     children: function children() {
         var elem = this[0];
         if (!elem) {
@@ -352,7 +304,6 @@ DomElement.prototype = {
         return $(elem.children);
     },
 
-    // 获取子节点（包括文本节点）
     childNodes: function childNodes() {
         var elem = this[0];
         if (!elem) {
@@ -362,7 +313,6 @@ DomElement.prototype = {
         return $(elem.childNodes);
     },
 
-    // 增加子节点
     append: function append($children) {
         return this.forEach(function (elem) {
             $children.forEach(function (child) {
@@ -371,7 +321,6 @@ DomElement.prototype = {
         });
     },
 
-    // 移除当前节点
     remove: function remove() {
         return this.forEach(function (elem) {
             if (elem.remove) {
@@ -383,48 +332,40 @@ DomElement.prototype = {
         });
     },
 
-    // 是否包含某个子节点
     isContain: function isContain($child) {
         var elem = this[0];
         var child = $child[0];
         return elem.contains(child);
     },
 
-    // 尺寸数据
     getSizeData: function getSizeData() {
         var elem = this[0];
         return elem.getBoundingClientRect(); // 可得到 bottom height left right top width 的数据
     },
 
-    // 封装 nodeName
     getNodeName: function getNodeName() {
         var elem = this[0];
         return elem.nodeName;
     },
 
-    // 从当前元素查找
     find: function find(selector) {
         var elem = this[0];
         return $(elem.querySelectorAll(selector));
     },
 
-    // 获取当前元素的 text
     text: function text(val) {
         if (!val) {
-            // 获取 text
             var elem = this[0];
             return elem.innerHTML.replace(/<.*?>/g, function () {
                 return '';
             });
         } else {
-            // 设置 text
             return this.forEach(function (elem) {
                 elem.innerHTML = val;
             });
         }
     },
 
-    // 获取 html
     html: function html(value) {
         var elem = this[0];
         if (value == null) {
@@ -435,7 +376,6 @@ DomElement.prototype = {
         }
     },
 
-    // 获取 value
     val: function val() {
         var elem = this[0];
         return elem.value.trim();
@@ -454,12 +394,10 @@ DomElement.prototype = {
         return $(elem.parentElement);
     },
 
-    // parentUntil 找到符合 selector 的父节点
     parentUntil: function parentUntil(selector, _currentElem) {
         var results = document.querySelectorAll(selector);
         var length = results.length;
         if (!length) {
-            // 传入的 selector 无效
             return null;
         }
 
@@ -472,16 +410,13 @@ DomElement.prototype = {
         var i = void 0;
         for (i = 0; i < length; i++) {
             if (parent === results[i]) {
-                // 找到，并返回
                 return $(parent);
             }
         }
 
-        // 继续查找
         return this.parentUntil(selector, parent);
     },
 
-    // 判断两个 elem 是否相等
     equal: function equal($elem) {
         if ($elem.nodeType === 1) {
             return this[0] === $elem;
@@ -503,7 +438,6 @@ DomElement.prototype = {
         });
     },
 
-    // 将该元素插入到某个元素后面
     insertAfter: function insertAfter(selector) {
         var $referenceNode = $(selector);
         var referenceNode = $referenceNode[0];
@@ -513,62 +447,46 @@ DomElement.prototype = {
         return this.forEach(function (elem) {
             var parent = referenceNode.parentNode;
             if (parent.lastChild === referenceNode) {
-                // 最后一个元素
                 parent.appendChild(elem);
             } else {
-                // 不是最后一个元素
                 parent.insertBefore(elem, referenceNode.nextSibling);
             }
         });
     }
 };
 
-// new 一个对象
 function $(selector) {
     return new DomElement(selector);
 }
 
-// 解绑所有事件，用于销毁编辑器
 $.offAll = function () {
     eventList.forEach(function (item) {
         var elem = item.elem;
         var type = item.type;
         var fn = item.fn;
-        // 解绑
         elem.removeEventListener(type, fn);
     });
 };
 
 /*
-    配置信息
+    Configuration
 */
 
 var config = {
 
-    // 默认菜单配置
     menus: ['head', 'bold', 'fontSize', 'fontName', 'italic', 'underline', 'strikeThrough', 'foreColor', 'backColor', 'link', 'list', 'justify', 'quote', 'emoticon', 'image', 'table', 'video', 'code', 'undo', 'redo'],
 
     fontNames: ['宋体', '微软雅黑', 'Arial', 'Tahoma', 'Verdana'],
 
     colors: ['#000000', '#eeece0', '#1c487f', '#4d80bf', '#c24f4a', '#8baa4a', '#7b5ba1', '#46acc8', '#f9963b', '#ffffff'],
 
-    // // 语言配置
-    // lang: {
-    //     '设置标题': 'title',
-    //     '正文': 'p',
-    //     '链接文字': 'link text',
-    //     '链接': 'link',
-    //     '插入': 'insert',
-    //     '创建': 'init'
-    // },
 
-    // 表情
     emotions: [{
-        // tab 的标题
+        // tab title
         title: '默认',
         // type -> 'emoji' / 'image'
         type: 'image',
-        // content -> 数组
+        // content -> array
         content: [{
             alt: '[坏笑]',
             src: 'http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/50/pcmoren_huaixiao_org.png'
@@ -580,11 +498,11 @@ var config = {
             src: 'http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/3c/pcmoren_wu_org.png'
         }]
     }, {
-        // tab 的标题
+        // tab title
         title: '新浪',
         // type -> 'emoji' / 'image'
         type: 'image',
-        // content -> 数组
+        // content -> array
         content: [{
             src: 'http://img.t.sinajs.cn/t35/style/images/common/face/ext/normal/7a/shenshou_thumb.gif',
             alt: '[草泥马]'
@@ -596,188 +514,136 @@ var config = {
             alt: '[浮云]'
         }]
     }, {
-        // tab 的标题
+        // tab title
         title: 'emoji',
         // type -> 'emoji' / 'image'
         type: 'emoji',
-        // content -> 数组
+
         content: '😀 😃 😄 😁 😆 😅 😂 😊 😇 🙂 🙃 😉 😓 😪 😴 🙄 🤔 😬 🤐'.split(/\s/)
     }],
 
-    // 编辑区域的 z-index
     zIndex: 10000,
 
-    // 是否开启 debug 模式（debug 模式下错误会 throw error 形式抛出）
     debug: false,
 
-    // 插入链接时候的格式校验
     linkCheck: function linkCheck(text, link) {
-        // text 是插入的文字
-        // link 是插入的链接
-        return true; // 返回 true 即表示成功
-        // return '校验失败' // 返回字符串即表示失败的提示信息
+
+        return true;
+
     },
 
-    // 插入网络图片的校验
+
     linkImgCheck: function linkImgCheck(src) {
-        // src 即图片的地址
-        return true; // 返回 true 即表示成功
-        // return '校验失败'  // 返回字符串即表示失败的提示信息
+
+        return true;
+
     },
 
-    // 粘贴过滤样式，默认开启
+
     pasteFilterStyle: true,
 
-    // 粘贴内容时，忽略图片。默认关闭
+
     pasteIgnoreImg: false,
 
-    // 对粘贴的文字进行自定义处理，返回处理后的结果。编辑器会将处理后的结果粘贴到编辑区域中。
-    // IE 暂时不支持
+
     pasteTextHandle: function pasteTextHandle(content) {
-        // content 即粘贴过来的内容（html 或 纯文本），可进行自定义处理然后返回
         return content;
     },
 
-    // onchange 事件
-    // onchange: function (html) {
-    //     // html 即变化之后的内容
-    //     console.log(html)
-    // },
 
-    // 是否显示添加网络图片的 tab
     showLinkImg: true,
 
-    // 插入网络图片的回调
     linkImgCallback: function linkImgCallback(url) {
-        // console.log(url)  // url 即插入图片的地址
+
     },
 
-    // 默认上传图片 max size: 5M
+
     uploadImgMaxSize: 5 * 1024 * 1024,
 
-    // 配置一次最多上传几个图片
-    // uploadImgMaxLength: 5,
-
-    // 上传图片，是否显示 base64 格式
     uploadImgShowBase64: false,
 
-    // 上传图片，server 地址（如果有值，则 base64 格式的配置则失效）
-    // uploadImgServer: '/upload',
-
-    // 自定义配置 filename
     uploadFileName: '',
 
-    // 上传图片的自定义参数
     uploadImgParams: {
         // token: 'abcdef12345'
     },
 
-    // 上传图片的自定义header
     uploadImgHeaders: {
         // 'Accept': 'text/x-json'
     },
 
-    // 配置 XHR withCredentials
+    // Configure XHR withCredentials
     withCredentials: false,
 
-    // 自定义上传图片超时时间 ms
+    // upload time ms
     uploadImgTimeout: 10000,
 
-    // 上传图片 hook 
+    // Upload picture hook
     uploadImgHooks: {
-        // customInsert: function (insertLinkImg, result, editor) {
-        //     console.log('customInsert')
-        //     // 图片上传并返回结果，自定义插入图片的事件，而不是编辑器自动插入图片
-        //     const data = result.data1 || []
-        //     data.forEach(link => {
-        //         insertLinkImg(link)
-        //     })
-        // },
-        before: function before(xhr, editor, files) {
-            // 图片上传之前触发
 
-            // 如果返回的结果是 {prevent: true, msg: 'xxxx'} 则表示用户放弃上传
-            // return {
-            //     prevent: true,
-            //     msg: '放弃上传'
-            // }
+        before: function before(xhr, editor, files) {
+
         },
         success: function success(xhr, editor, result) {
-            // 图片上传并返回结果，图片插入成功之后触发
+
         },
         fail: function fail(xhr, editor, result) {
-            // 图片上传并返回结果，但图片插入错误时触发
+
         },
         error: function error(xhr, editor) {
-            // 图片上传出错时触发
+
         },
         timeout: function timeout(xhr, editor) {
-            // 图片上传超时时触发
+
         }
     },
 
-    // 是否上传七牛云，默认为 false
+
     qiniu: false,
 
-    // 以下是上传视频的配置，新增
 
-    // 是否显示添加网络视频的 tab
+
     showLinkVideo: true,
 
-// 插入网络视频的回调
+
     linkVideoCallback: function linkVideoCallback(url) {
-        // console.log(url)  // url 即插入视频的地址
+
     },
 
-// 默认上传视频 max size: 512M
     uploadVideoMaxSize: 512 * 1024 * 1024,
 
-// 配置一次最多上传几个视频
     uploadVideoMaxLength: 5,
 
-// 上传视频的自定义参数
+
     uploadVideoParams: {
         // token: 'abcdef12345'
     },
 
-// 上传视频的自定义header
+
     uploadVideoHeaders: {
         // 'Accept': 'text/x-json'
     },
 
-// 自定义上传视频超时时间 30分钟
+
     uploadVideoTimeout: 30 * 60 * 1000,
 
-// 上传视频 hook
-    uploadVideoHooks: {
-        // customInsert: function (insertLinkVideo, result, editor) {
-        //     console.log('customInsert')
-        //     // 视频上传并返回结果，自定义插入视频的事件，而不是编辑器自动插入视频
-        //     const data = result.data1 || []
-        //     data.forEach(link => {
-        //         insertLinkVideo(link)
-        //     })
-        // },
-        before: function before(xhr, editor, files) {
-            // 视频上传之前触发
 
-            // 如果返回的结果是 {prevent: true, msg: 'xxxx'} 则表示用户放弃上传
-            // return {
-            //     prevent: true,
-            //     msg: '放弃上传'
-            // }
+    uploadVideoHooks: {
+
+        before: function before(xhr, editor, files) {
+
         },
         success: function success(xhr, editor, result) {
-            // 视频上传并返回结果，视频插入成功之后触发
+
         },
         fail: function fail(xhr, editor, result) {
-            // 视频上传并返回结果，但视频插入错误时触发
+
         },
         error: function error(xhr, editor) {
-            // 视频上传出错时触发
+
         },
         timeout: function timeout(xhr, editor) {
-            // 视频上传超时时触发
+
         }
     }
 

@@ -1,11 +1,10 @@
 (function ($) {
 	/**
-	 * curr:当前页
-	 * all:总页数
-	 * count:显示的页数
+	 * curr
+	 * all
+	 * count
 	 */
     $.fn.pagination = function (curr, all, count) {
-        //容错处理
         if (all <= 0) {
             all = 1;
         }
@@ -14,16 +13,13 @@
         } else if (curr > all) {
             curr = all;
         }
-        //默认显示页数为10
         if (!count) {
             count = 10;
         } else if (count < 1) {
             count = 1;
         }
-        //计算显示的页数
         var from = curr - parseInt(count / 2);
         var to = curr + parseInt(count / 2) + (count % 2) - 1;
-        //显示的页数容处理
         if (from <= 0) {
             from = 1;
             to = from + count - 1;
@@ -38,7 +34,6 @@
                 from = 1;
             }
         }
-        //写入（可以根据自己需求修改）
         if (curr > 1) {
             var prev = $("<li><a href='"+url+"p=1'>&laquo;</a></li>");
             this.append(prev);

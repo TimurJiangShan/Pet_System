@@ -1,10 +1,6 @@
 package com.example.util;
 
-/**
- * <p></p>
- * @author: miansen.wang
- * @date: 2019-03-08
- */
+
 public class Constants {
 
 	private Constants() {}
