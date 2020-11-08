@@ -155,7 +155,7 @@ function topicList(pageNumber) {
 					<span>•</span>\
 					<a href=\"/user/"+data.data.list[i].author+"\" class=\"author_name\">"+data.data.list[i].author+"</a>\
 					<span class=\"hidden-sm hidden-xs\">•</span>\
-					<span class=\"hidden-sm hidden-xs\">"+data.data.list[i].viewCount+"次点击</span>\
+					<span class=\"hidden-sm hidden-xs\">"+data.data.list[i].viewCount+" clicks</span>\
 					<span>•</span>\
 					<span>"+formatDate(Date.parse(data.data.list[i].createDate))+"</span>\
 					</p>\
@@ -237,7 +237,7 @@ function collectList(pageNumber) {
 					<span>•</span>\
 					<a href=\"/user/"+data.data.list[i].author+"\" class=\"author_name\">"+data.data.list[i].author+"</a>\
 					<span class=\"hidden-sm hidden-xs\">•</span>\
-					<span class=\"hidden-sm hidden-xs\">"+data.data.list[i].viewCount+"次点击</span>\
+					<span class=\"hidden-sm hidden-xs\">"+data.data.list[i].viewCount+" clicks</span>\
 					<span>•</span>\
 					<span>"+formatDate(Date.parse(data.data.list[i].createDate))+"</span>\
 					</p>\
@@ -283,7 +283,7 @@ function followList(pageNumber) {
 					<span>•</span>\
 					<a href=\"/user/"+data.data.list[i].author+"\" class=\"author_name\">"+data.data.list[i].author+"</a>\
 					<span class=\"hidden-sm hidden-xs\">•</span>\
-					<span class=\"hidden-sm hidden-xs\">"+data.data.list[i].viewCount+"次点击</span>\
+					<span class=\"hidden-sm hidden-xs\">"+data.data.list[i].viewCount+" clicks</span>\
 					<span>•</span>\
 					<span>"+formatDate(Date.parse(data.data.list[i].createDate))+"</span>\
 					</p>\
@@ -427,7 +427,7 @@ function topicQnaList(pageNumber) {
 					<span>•</span>\
 					<a href=\"/user/"+data.data.list[i].author+"\" class=\"author_name\">"+data.data.list[i].author+"</a>\
 					<span class=\"hidden-sm hidden-xs\">•</span>\
-					<span class=\"hidden-sm hidden-xs\">"+data.data.list[i].viewCount+"次点击</span>\
+					<span class=\"hidden-sm hidden-xs\">"+data.data.list[i].viewCount+" clicks</span>\
 					<span>•</span>\
 					<span>"+formatDate(Date.parse(data.data.list[i].createDate))+"</span>\
 					</p>\

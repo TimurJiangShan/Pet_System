@@ -22,7 +22,7 @@
 					</div>\
 					</div>\
 					<div style="margin-top: 15px;">\
-					<a href="/topic/create" style="font-size: 14px;"><button class="btn btn-warning">发布帖子</button></a>\
+					<a href="/topic/create" style="font-size: 14px;"><button class="btn btn-warning">Create Topic</button></a>\
 					</div>\
 					</div>\
 					<div class="sep10" style="height: 10px;"></div>\

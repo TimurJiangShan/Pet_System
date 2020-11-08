@@ -46,7 +46,7 @@
 			      <span>•</span>
                   <strong><a href="/user/${item.author}">${item.author}</a></strong>
                   <span class="hidden-sm hidden-xs">•</span>
-                  <span class="hidden-sm hidden-xs">${item.viewCount}次点击</span>
+                  <span class="hidden-sm hidden-xs">${item.viewCount} clicks</span>
                   <!-- <span>•</span> -->
                   <%-- <span class="hidden-sm hidden-xs"><a href="/topic/${item.topicId}">${item.replyCount}个评论</a></span> --%>
                   <span class="hidden-sm hidden-xs">•</span>           

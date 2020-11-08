@@ -12,8 +12,8 @@ function paginate(count,limit,page,url){
 		    groups:5,//连续显示分页数
 		    theme:'#f39c12',//自定义主题。支持传入：颜色值
 		    //skip: true, //是否开启跳页
-		    //prev: '<', //若不显示，设置false即可  
-		    //next: '>', //若不显示，设置false即可
+		    prev: '<', //若不显示，设置false即可
+		    next: '>', //若不显示，设置false即可
 		    //hash:'/tab=all&ptab=all&p',
 		    jump: function(obj, first){
 		        //obj包含了当前分页的所有参数，比如：

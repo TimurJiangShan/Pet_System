@@ -61,7 +61,7 @@
 					<%-- <span>${baseEntity.formatDate(topic.createDate)}</span> --%>
 					<%-- <span class="formate-date">${topic.createDate}</span> --%>
 					<span>•</span>
-					<span>${topic.viewCount}次点击</span>
+					<span>${topic.viewCount} clicks</span>
 				</p>
 			</div>
 			<div class="media-right">

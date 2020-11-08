@@ -112,7 +112,7 @@
                                     </div>
                                     <div style="margin-top: 15px;">
                                         <a href="/topic/create" style="font-size: 14px;">
-                                            <button class="btn btn-warning">发布帖子</button>
+                                            <button class="btn btn-warning">Create Topic</button>
                                         </a>
                                     </div>
                                 </div>

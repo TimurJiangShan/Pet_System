@@ -258,10 +258,7 @@ CREATE TABLE `tab` (
 -- ----------------------------
 BEGIN;
 INSERT INTO `tab` VALUES (1, 'all', 'all', 0, '2018-07-15 15:59:48', 1);
--- INSERT INTO `tab` VALUES (2, 'hot', '最热', 0, '2018-07-15 16:00:49', 2);
--- INSERT INTO `tab` VALUES (3, 'new', '最新', 0, '2019-01-03 20:19:41', 3);
--- INSERT INTO `tab` VALUES (4, 'lonely', '无人问津', 0, '2019-01-03 20:20:49', 4);
--- INSERT INTO `tab` VALUES (5, 'member', '关注', 0, '2018-07-15 20:49:50', 15);
+
 COMMIT;
 
 -- ----------------------------

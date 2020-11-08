@@ -76,9 +76,9 @@
   		$(".sidebar-menu li:eq(5)").addClass("active");
   	    var username = '${username}';
   	    var email = '${email}';
-  	    var p = '${p}';//当前页数
-  	  	var count = ${page.totalRow};//数据总量
-  	 	var limit = ${page.pageSize};//每页显示的条数
+  	    var p = '${p}';
+  	  	var count = ${page.totalRow};
+  	 	var limit = ${page.pageSize};
   	 	var url = "?username="+username+"&email="+email+"&p=";//url 	 	
   	 	paginate(count,limit,p,url);
   	 	

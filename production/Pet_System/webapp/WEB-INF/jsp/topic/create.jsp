@@ -19,7 +19,7 @@
                 <div class="col-md-9">
                     <div class="box box-warning">
                         <div class="box-header with-border">
-                            <a href="/">首页</a> / 发布帖子
+                            <a href="/">首页</a> / Create Topic
                         </div>
                         <div class="box-body">
                             <form id="form">
