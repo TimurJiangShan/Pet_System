@@ -79,7 +79,7 @@
 			</div>
 		</div>
 		<div class="panel-footer" style="display: none" id="collect">
-			<a href="javascript:window.open('http://service.weibo.com/share/share.php?url=https://PetGo.cn/topic/${topic.topicId}?r=${topic.author}&title=${topic.title}', '_blank', 'width=550,height=370'); recordOutboundLink(this, 'Share', 'weibo.com');">分享微博</a>&nbsp;
+			<a href="javascript:window.open('http://service.weibo.com/share/share.php?url=https://PetGo.cn/topic/${topic.topicId}?r=${topic.author}&title=${topic.title}', '_blank', 'width=550,height=370'); recordOutboundLink(this, 'Share', 'weibo.com');"></a>&nbsp;
 			<a href="javascript:void(0);" class="collectTopic"
 			onclick="save()"></a> <span class="pull-right"><span
 			id="collectCount">${countByTid}</span>collection</span>
@@ -100,7 +100,7 @@
 	<div class="panel-body">
 		<input type="hidden" id="commentId" value="">
 		<p class="hidden" id="replyP">
-			回复<span id="replyAuthor"></span>: <a
+			Reply<span id="replyAuthor"></span>: <a
 			href="javascript:cancelReply();">Cancel</a>
 		</p>
 		<body>
@@ -136,7 +136,7 @@
 <script src="/resources/js/emotions.js"></script>
 <!-- <script src="/resources/js/topic/other-topic.js"></script> -->
 <script type="text/javascript">
-	/* 获取登录信息 */
+	/* Get Login Info */
 	$.ajax({
 		type:"get",
 		url:"/session",

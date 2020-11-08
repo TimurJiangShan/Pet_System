@@ -4,7 +4,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
     <head>
-        <title>宠物信息服务平台-${nodeName}</title>
+        <title>PetGo-${nodeName}</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="/resources/css/bootstrap.min.css" rel="stylesheet">
         <link href="/resources/css/app.css" rel="stylesheet" type="text/css">
@@ -19,11 +19,11 @@
                     <div class="box box-warning">
                         <div class="box-header with-border">
                             <ul class="nav nav-pills" id="tab">
-                                <li class="${tab eq 'all' ? 'all active' : 'all'}"><a href="/?tab=all&node=${nodeName}">全部</a>
+                                <li class="${tab eq 'all' ? 'all active' : 'all'}"><a href="/?tab=all&node=${nodeName}">All</a>
                                 </li>
-                                <li class="${tab eq 'hot' ? 'hot active' : 'hot'}"><a href="/?tab=hot&node=${nodeName}">最热</a>
+                                <li class="${tab eq 'hot' ? 'hot active' : 'hot'}"><a href="/?tab=hot&node=${nodeName}">Hot</a>
                                 </li>
-                                <li class="${tab eq 'new' ? 'new active' : 'new'}"><a href="/?tab=new&node=${nodeName}">最新</a>
+                                <li class="${tab eq 'new' ? 'new active' : 'new'}"><a href="/?tab=new&node=${nodeName}">Newest</a>
                                 </li>
                             </ul>
                         </div>
@@ -49,10 +49,10 @@
                                         <div class="tip">
                                             <p class="gray">
                                                 <c:if test="${item.top}">
-                                                    <span class="label label-warning">置顶</span> <span>•</span>
+                                                    <span class="label label-warning">Top</span> <span>•</span>
                                                 </c:if>
                                                 <c:if test="${item.good}">
-                                                    <span class="label label-success">精华</span> <span>•</span>
+                                                    <span class="label label-success">Good</span> <span>•</span>
                                                 </c:if>
 
                                                 <c:if test="${not empty item.nodeTitle}">
@@ -64,14 +64,14 @@
                                                 <a href="/user/${item.author}">${item.author}</a>
                                                 <c:if test="${item.viewCount > 0}">
                                                     <span class="hidden-sm hidden-xs">•</span>
-                                                    <span class="hidden-sm hidden-xs">${item.viewCount}次点击</span>
+                                                    <span class="hidden-sm hidden-xs">${item.viewCount}Clicks</span>
                                                 </c:if>
 
                                                 <!-- 评论数量 -->
                                                 <c:if test="${item.replyCount > 0}">
                                                     <span class="hidden-sm hidden-xs">•</span>
                                                     <span class="hidden-sm hidden-xs"><a
-                                                            href="/topic/${item.topicId}">${item.replyCount}个评论</a></span>
+                                                            href="/topic/${item.topicId}">${item.replyCount} replys</a></span>
                                                 </c:if>
 
                                                 <span>•</span>
@@ -112,7 +112,7 @@
                                     </div>
                                     <div style="margin-top: 15px;">
                                         <a href="/topic/create" style="font-size: 14px;">
-                                            <button class="btn btn-warning">发布帖子</button>
+                                            <button class="btn btn-warning">Create Topic</button>
                                         </a>
                                     </div>
                                 </div>
@@ -125,19 +125,19 @@
                                                                           class="dark" style="display: block;"><span
                                                 class="bigger">${countTopic}</span>
                                             <div class="sep3"></div>
-                                            <span class="fade">我的主题</span></a></td>
+                                            <span class="fade">My Topic</span></a></td>
                                         <td width="34%"
                                             style="border-left: 1px solid rgba(100, 100, 100, 0.4); border-right: 1px solid rgba(100, 100, 100, 0.4);"
                                             align="center"><a href="/collect/topics" class="dark"
                                                               style="display: block;"><span
                                                 class="bigger">${countCollect}</span>
                                             <div class="sep3"></div>
-                                            <span class="fade">我的收藏</span></a></td>
+                                            <span class="fade">My Collection</span></a></td>
                                         <td width="33%" align="center"><a href="/follow/topics"
                                                                           class="dark" style="display: block;"><span
                                                 class="bigger">${countFollow}</span>
                                             <div class="sep3"></div>
-                                            <span class="fade">特别关注</span></a></td>
+                                            <span class="fade">Follow</span></a></td>
                                     </tr>
                                     </tbody>
                                 </table>
@@ -145,8 +145,8 @@
                             <div class="panel-footer" style="background-color: white">
                                 <div class="row">
 								<span class="col-md-6"><a href="/notification/list"><span
-                                        id="n_count">${countNotReadNotice}</span> 条未读消息</a></span> <span
-                                        class="col-md-6 text-right">积分：<a
+                                        id="n_count">${countNotReadNotice}</span> unreply message</a></span> <span
+                                        class="col-md-6 text-right">Point：<a
                                         href="/top100">${countScore}</a></span>
                                 </div>
                             </div>
@@ -156,7 +156,7 @@
 
                     <!-- 热门板块 -->
                     <div class="box box-warning">
-                        <div class="box-header with-border"><b>热门板块</b></div>
+                        <div class="box-header with-border"><b>Hot</b></div>
                         <div class="box-body">
                             <div class="row">
                                 <c:forEach var="item" items="${hotNodeList}">
@@ -173,11 +173,11 @@
 
                     <!-- 社区运行状况 -->
                     <div class="box box-warning">
-                        <div class="box-header with-border"><b>社区运行状况</b></div>
+                        <div class="box-header with-border"><b>Status</b></div>
                         <div class="box-body">
-                            <p>注册会员：${countUserAll}</p>
-                            <p>帖子：${countAllTopic}</p>
-                            <p>回复：${countAllReply}</p>
+                            <p>Users：${countUserAll}</p>
+                            <p>topic：${countAllTopic}</p>
+                            <p>reply：${countAllReply}</p>
                         </div>
                     </div>
                 </div>

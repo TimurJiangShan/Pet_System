@@ -51,7 +51,6 @@
                                         <span class="hidden-sm hidden-xs">•</span>
                                         <span class="hidden-sm hidden-xs">${item.viewCount}Clicks</span>
                                         <!-- <span class="hidden-sm hidden-xs">•</span> -->
-                                            <%-- <span class="hidden-sm hidden-xs"><a href="/topic/${item.topicId}">${item.replyCount}个评论</a></span> --%>
                                         <span>•</span>
                                         <span><fmt:formatDate type="date" value="${item.createDate}" /></span>
 

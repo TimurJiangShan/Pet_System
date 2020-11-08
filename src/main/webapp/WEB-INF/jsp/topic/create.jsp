@@ -60,7 +60,7 @@
                 <div class="col-md-3 hidden-sm hidden-xs">
                     <div class="box box-warning">
                         <div class="box-header with-border">
-                            <b>帖子发布指南</b>
+                            <b>Instruction</b>
                         </div>
                         <div class="box-body">
                             <p>• Describe the key points in the title. If a thing can be made clear within the length of the title, there is no need to write the text.</p>

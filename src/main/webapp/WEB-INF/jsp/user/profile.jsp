@@ -55,7 +55,7 @@
             <label for="signature">Signature</label>
             <textarea class="form-control" name="signature" id="signature">${user.signature}</textarea>
           </div>
-            <button type="button" id="userProfileUpdateBtn" onclick="updateUserProfile()" class="btn btn-warning">保存设置
+            <button type="button" id="userProfileUpdateBtn" onclick="updateUserProfile()" class="btn btn-warning">Save Setting
             </button>
           <span id="error_message"></span>
         </form>
