@@ -2,7 +2,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java"%>
 <html>
 <head>
-<title>top100-宠物信息服务平台</title>
+<title>top100-PetGo</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link href="/resources/css/bootstrap.min.css" rel="stylesheet">
 <link href="/resources/css/app.css" rel="stylesheet" type="text/css">
@@ -15,7 +15,7 @@
 			<div class="col-md-9">
 				<div class="panel panel-default box box-warning">
 					<div class="panel-heading box-header with-border">
-						<a href="/">首页</a> / Top100积分榜
+						<a href="/">Homepage</a> / Top100 Billboard
 					</div>
 					<div class="panel-body box-body" style="color: #333;">
 						<div class="panel">

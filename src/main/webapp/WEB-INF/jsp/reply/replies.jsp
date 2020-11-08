@@ -8,7 +8,7 @@
 </head>
 <body>
 <div class="panel panel-default" id="reply">
-<div class="cell"><span class="gray">${topic.replyCount} 回复</span></div>
+<div class="cell"><span class="gray">${topic.replyCount} reply</span></div>
 <%int i=1;%>
 <c:forEach var="item" items="${replyPage.list}">
     <div id="r_${item.replyId}" class="cell" style="padding-bottom: 0px;">
