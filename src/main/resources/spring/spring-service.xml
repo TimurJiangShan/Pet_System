@@ -9,27 +9,29 @@
 	http://www.springframework.org/schema/tx
 	http://www.springframework.org/schema/tx/spring-tx.xsd">
 
-	<!-- 引入application配置文件 -->
+	<!-- Import application configuration file -->
 	<context:property-placeholder ignore-unresolvable="true" file-encoding="UTF-8" location="classpath:application.properties" />
-	<!-- 自动扫描config包，将使用@Component注解的类作为bean注入到IOC容器 -->
+	<!-- Scan config package automatically.
+	     Inject class annotated with @Component as a bean into the IOC container -->
 	<context:component-scan base-package="com.example.config" />
-	<!-- 自动扫描config.service包，将使用@Component注解的类作为bean注入到IOC容器 -->
+	<!-- Scan config.service package automatically.
+	     Inject class annotated with @Component as a bean into the IOC container -->
 	<context:component-scan base-package="com.example.config.service" />
 	<context:component-scan base-package="com.example.config.properties" />
 	<context:component-scan base-package="com.example.store" />
-	<!-- 全局异常处理 -->
+	<!-- Global exception handling -->
 	<context:component-scan base-package="com.example.handler" />
-	<!-- 扫描service.impl包下所有使用注解的类型 -->
+	<!-- Scan all types of annotations under the service.impl package  -->
 	<context:component-scan base-package="com.example.service.impl" />
 
-	<!-- 配置事务管理器 -->
+	<!-- Configure transaction manager -->
 	<bean id="transactionManager"
 		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-		<!-- 注入数据库连接池 -->
+		<!-- Inject database connection -->
 		<property name="dataSource" ref="dataSource" />
 	</bean>
 
-	<!-- 配置基于注解的声明式事务 -->
+	<!-- Configure annotation-based declarative transactions -->
 	<tx:annotation-driven transaction-manager="transactionManager" />
 	
 	<bean id="baseEntity" class="com.example.base.BaseEntity"></bean>

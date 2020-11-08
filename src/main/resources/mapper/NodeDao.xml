@@ -24,7 +24,7 @@
     <sql id="Base_Column_List">
         node_id, node_code, node_title, avatar_normal, avatar_mini, avatar_large,node_desc,tab_id,url,parent_node_code,create_date,update_date,is_delete,add_index,add_nav,sort
     </sql>
-    <!-- 查询全部节点 -->
+    <!-- Search all the nodes -->
     <select id="selectAll" resultType="Node">
         SELECT
         	a.*
@@ -39,7 +39,7 @@
         </if>
     </select>
     
-    <!-- 根据板块查询节点 -->
+    <!-- Search based on node -->
     <select id="selectAllByTab" resultType="Node">
         SELECT
         	a.*
@@ -60,7 +60,7 @@
             </if>
         </if>
     </select>
-    <!-- 根据节点编码查询节点 -->
+    <!-- Search based on Title -->
     <select id="selectByTitle" resultType="Node">
     	SELECT
         	<include refid="Base_Column_List"/>
@@ -72,7 +72,7 @@
         	a.is_delete = 0
     </select>
     
-    <!-- 根据ID查询节点 -->
+    <!-- Search based on Id -->
     <select id="selectById" resultType="Node">
     	SELECT
         	<include refid="Base_Column_List"/>
@@ -84,7 +84,7 @@
         	a.is_delete = 0
     </select>
     
-    <!-- 查找子节点 -->
+    <!-- Search child node -->
     <select id="selectChildrenNode" resultType="Node">
     	SELECT 
     		a.* 
@@ -100,7 +100,7 @@
             </if>
         </if>
     </select>
-     <!-- 查找相邻节点 -->
+     <!-- Search adjacent node -->
     <select id="selectAtherNode" resultType="Node">
         SELECT
         	a.*
@@ -120,7 +120,7 @@
             </if>
         </if>
     </select>
-    <!-- 查找相邻顶级节点 -->
+
     <select id="selectAtherParentNode" resultType="Node">
     	SELECT 
     		a.* 
@@ -142,7 +142,7 @@
         </if>
     </select>
     
-    <!-- 后台节点列表 -->
+    <!-- Background node list -->
     <select id="listForAdmin" resultType="Node">
         SELECT
         	a.node_id,
@@ -214,7 +214,7 @@
         ASC
     </select>
     
-    <!-- 统计后台节点列表 -->
+    <!-- Count background node list -->
     <select id="count" resultType="java.lang.Integer">
     SELECT 
     	COUNT(1)
@@ -226,7 +226,7 @@
     AND a.node_title = #{nodeTitle}
     </if>
     </select>
-    <!-- 更新节点 -->
+    <!-- Update node -->
     <update id="update" parameterType="com.example.entity.Node">
         UPDATE 
         	node
@@ -286,7 +286,7 @@
         #{addNav},
         #{sort}) 
     </insert>
-    <!-- 删除节点 -->
+    <!-- Delete node -->
     <update id="deleteById" parameterType="java.lang.Integer">
     	UPDATE
     		node
@@ -295,7 +295,7 @@
     	WHERE
     		node_id = #{id}
     </update>
-    <!-- 统计当天的节点数 -->
+    <!-- Count the number of nodes on the day -->
 	<select id="countToday" resultType="java.lang.Integer">
         SELECT 
         	count(1)

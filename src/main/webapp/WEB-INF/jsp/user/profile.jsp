@@ -17,9 +17,8 @@
 <div class="panel panel-default">
   <div class="list-group">
     <a href="/user/settings/profile" class="list-group-item active">Personal setting</a>
-    <a href="/user/settings/changeAvatar" class="list-group-item ">Modify avatar</a>
-    <a href="/user/settings/changePassword" class="list-group-item ">Change Password</a>
-    <!-- <a href="/user/settings/log" class="list-group-item ">日志记录</a> -->
+    <a href="/user/settings/changeAvatar" class="list-group-item ">Change avatar</a>
+    <a href="/user/settings/changePassword" class="list-group-item ">Change password</a>
   </div>
 </div>
   </div>
