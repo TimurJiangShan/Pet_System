@@ -17,10 +17,10 @@ The sql is in the ``pet_system.sql``. You need to copy this sql to the Mysql and
 ## 2. Configure the project(Recommend using IntelliJ Idea)
 1. Right Click ``pom.xml`` file, click the ``Add as Maven project`` and waiting to complete.
 2. After that,  click the ``Reload all maven project`` button on the <strong>Maven</strong> window to install the packages.
-3. Click the <strong>Edit Configuration</strong> to add Tomcat Server. 
+3. Click the <strong>Edit Configuration</strong> to add Tomcat Server. Details can be seen as follows
 
-![Alt text](https://github.com/TimurJiangShan/AntdComponent/blob/master/imageFolder/tomcat-edit.png)
-
+![Alt text](https://github.com/TimurJiangShan/AntdComponent/blob/master/imageFolder/tomcat-edit.png)<br>
+![Alt text](https://github.com/TimurJiangShan/AntdComponent/blob/master/imageFolder/tomcat-deploy.png)
 ## 后台账号密码
 管理员登录页面：
 http://localhost:8080/admin/login
