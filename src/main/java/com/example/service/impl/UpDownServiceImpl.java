@@ -13,8 +13,11 @@ import com.example.enums.UpdateEnum;
 import com.example.service.UpDownService;
 
 /**
- * 
- * @author sen 2018年8月11日 上午11:45:07 TODO
+ * register error
+ * @Chao Wang
+ * 10/10/2020
+ *
+ * TODO
  */
 @Service
 public class UpDownServiceImpl implements UpDownService {
@@ -23,7 +26,7 @@ public class UpDownServiceImpl implements UpDownService {
 	private UpDownDao upDownDao;
 
 	/**
-	 * 添加赞同或者反对的记录
+	 * add record of like or dislike
 	 */
 	@Override
 	@Transactional
@@ -33,13 +36,13 @@ public class UpDownServiceImpl implements UpDownService {
 			if (upOrDown == 0) {
 				int insert = upDownDao.insert(upDown);
 				if (insert <= 0) {
-					throw new OperationFailedException("添加失败!");
+					throw new OperationFailedException("add failure!");
 				} else {
-					return new DMLExecution(upDown.isUpDown() ? "添加赞同记录" : "添加反对记录", InsertEnum.SUCCESS, upDown);
+					return new DMLExecution(upDown.isUpDown() ? "add like" : "add disliek", InsertEnum.SUCCESS, upDown);
 				}
 			} else {
 				update(upDown);
-				return new DMLExecution(upDown.isUpDown() ? "更新赞同记录" : "更新反对记录", UpdateEnum.SUCCESS, upDown);
+				return new DMLExecution(upDown.isUpDown() ? "update like " : "update dislike", UpdateEnum.SUCCESS, upDown);
 			}
 		} catch (OperationFailedException e1) {
 			throw e1;
@@ -49,7 +52,7 @@ public class UpDownServiceImpl implements UpDownService {
 	}
 
 	/**
-	 * 更新状态
+	 * update
 	 */
 	@Override
 	@Transactional
@@ -57,9 +60,9 @@ public class UpDownServiceImpl implements UpDownService {
 		try {
 			int update = upDownDao.update(upDown);
 			if (update <= 0) {
-				throw new OperationFailedException("更新失败!");
+				throw new OperationFailedException("update failure!");
 			} else {
-				return new DMLExecution(upDown.isUpDown() ? "更新赞同记录" : "更新反对记录", UpdateEnum.SUCCESS, upDown);
+				return new DMLExecution(upDown.isUpDown() ? "update like recorde" : "update dislike recorde", UpdateEnum.SUCCESS, upDown);
 			}
 		} catch (OperationFailedException e1) {
 			throw e1;
@@ -69,7 +72,7 @@ public class UpDownServiceImpl implements UpDownService {
 	}
 
 	/**
-	 * 统计赞同或者反对的数量
+	 * statistic like or dislike
 	 */
 	@Override
 	public int countUpOrDown(Integer tid, Integer upDown) {

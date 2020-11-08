@@ -1,10 +1,10 @@
 package com.example.exception;
 
 /**
- * 注册用户系统异常
- * @author sen
- * 2018年5月6日
- * 下午10:08:36
+ * register error
+ * @Chao Wang
+ * 10/10/2020
+ *
  * TODO
  */
 public class RootUserException extends RuntimeException{

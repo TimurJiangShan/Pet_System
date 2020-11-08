@@ -1,18 +1,20 @@
 package com.example.enums;
 
 /**
- * 注册用户的数据字典
- * @author sen
- * 2018年5月6日
- * 下午9:52:11
+ *
+ * Data dictionary for registered users
+ * @Chao Wang
+ * 09/10/2020
+ * 19:52:11
  * TODO
  */
 public enum InsertUserEnum {
 
-	SUCCESS(1, "注册成功"), NO_USER(0,"注册失败"),REPEAT_USER(-1, "重复注册"),INNER_ERROR(-2, "系统异常");
+	SUCCESS(1, "register success"), NO_USER(0,"register \n" +
+			"failure"),REPEAT_USER(-1, "repeated register"),INNER_ERROR(-2, "system error");
 	
-	private int state;// 信息代码
-	private String stateInfo;// 信息说明
+	private int state;// state code
+	private String stateInfo;// state info
 	
 	private InsertUserEnum(int state,String stateInfo) {
 		this.state = state;

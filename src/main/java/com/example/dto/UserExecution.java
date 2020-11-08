@@ -11,19 +11,20 @@ import com.example.enums.UpdateUserEnum;
  */
 public class UserExecution {
 
-	private String userName;//昵称
-	private String password;//密码
-	private String email;//邮箱
-	private int state;// 结果状态
-	private String stateInfo;// 状态标识
-	private User user;//成功对象
+	private String userName;
+	private String password;
+	private String email;
+	private int state;// result state
+	private String stateInfo;// state info
+	private User user;//success
 	
 	public UserExecution() {
 		super();
 	}
 	
 	/**
-	 * 注册失败时的构造器
+	 *
+	 * Constructor when registration fails
 	 * @param userName
 	 * @param stateEnum
 	 */
@@ -34,7 +35,8 @@ public class UserExecution {
 	} 
 	
 	/**
-	 * 更新失败时的构造器
+	 *
+	 * Constructor when update fails
 	 * @param userName
 	 * @param stateEnum
 	 */
@@ -45,7 +47,8 @@ public class UserExecution {
 	} 
 	
 	/**
-	 * 注册成功时的构造器
+	 *
+	 * Constructor when registration successed
 	 * @param userName
 	 * @param stateEnum
 	 * @param user
@@ -58,7 +61,8 @@ public class UserExecution {
 	}
 	
 	/**
-	 * 更新成功时的构造器
+	 *
+	 * Constructor when update successed
 	 * @param userName
 	 * @param stateEnum
 	 * @param user
