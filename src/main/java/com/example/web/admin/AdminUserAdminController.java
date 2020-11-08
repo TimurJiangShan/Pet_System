@@ -36,7 +36,7 @@ public class AdminUserAdminController {
 
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public String list(Model modle, @RequestParam(defaultValue = "1") Integer p) {
-		PageDataBody<AdminUser> page = adminUserService.pageRoles(p, 25);
+		PageDataBody<AdminUser> page = adminUserService.pageRoles(p, 5);
 		modle.addAttribute("page", page);
 		modle.addAttribute("p", p);
 		return "admin/admin_user/list";

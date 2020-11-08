@@ -52,15 +52,13 @@
                           role="search" action="/search" method="get">
                         <div class="form-group has-feedback">
                             <input type="text" class="form-control" name="s" value=""
-                                   style="width: 270px;" placeholder="回车搜索">
-                            <!-- <span class="glyphicon glyphicon-search form-control-feedback" aria-hidden="true"></span> -->
+                                   style="width: 270px;" placeholder="Enter to Search">
                         </div>
                     </form>
                     <ul class="nav navbar-nav navbar-right">
-                        <li id="shouye"><a href="/">首页</a></li>
-                        <li id="nodes"><a href="/nodes">板块</a></li>
-                        <li><a href="/topic/create">发布帖子</a></li>
-                        <!-- <li id="biaoqian"><a href="/tags">标签</a></li> -->
+                        <li id="shouye"><a href="/">HomePage</a></li>
+                        <li id="nodes"><a href="/nodes">Node</a></li>
+                        <li><a href="/topic/create">Create Topic</a></li>
                         <c:choose>
                             <c:when test="${sessionScope.user != null}">
                                 <li id="loginuser">
@@ -68,15 +66,15 @@
                                                                                         id="badge">${sessionScope.user.userName}</span></a>
                                 </li>
                                 <li id="shezhili">
-                                    <a href="/user/settings/profile">设置</a>
+                                    <a href="/user/settings/profile">Setting</a>
                                 </li>
                                 <li id="tuichuli">
-                                    <a href="javascript:if(confirm('确定要登出宠物信息服务平台吗？'))location.href='/logout'">退出</a>
+                                    <a href="javascript:if(confirm('Are you sure to logout PetGo？'))location.href='/logout'">Log out</a>
                                 </li>
                             </c:when>
                             <c:otherwise>
-                                <li id="loginli"><a href="/login">登录</a></li>
-                                <li id="zhuceli"><a href="/register">注册</a></li>
+                                <li id="loginli"><a href="/login">Login</a></li>
+                                <li id="zhuceli"><a href="/register">Register</a></li>
                             </c:otherwise>
                         </c:choose>
                     </ul>
@@ -91,8 +89,7 @@
                   role="search" action="/search" method="get">
                 <div class="form-group has-feedback" style="margin-bottom: 10px;">
                     <input type="text" class="form-control" name="q" value=""
-                           placeholder="回车搜索">
-                    <!-- <span class="glyphicon glyphicon-search form-control-feedback" aria-hidden="true"></span> -->
+                           placeholder="Enter to search">
                 </div>
             </form>
             <!-- jQuery (Bootstrap 的 JavaScript 插件需要引入 jQuery) -->
