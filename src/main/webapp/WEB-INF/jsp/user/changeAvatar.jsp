@@ -16,9 +16,9 @@
   <div class="col-md-3 hidden-sm hidden-xs">
     <div class="panel panel-default">
       <div class="list-group">
-        <a href="/user/settings/profile" class="list-group-item ">Personal Settings</a>
-        <a href="/user/settings/changeAvatar" class="list-group-item active">Change Avatar</a>
-        <a href="/user/settings/changePassword" class="list-group-item ">Change Password</a>
+        <a href="/user/settings/profile" class="list-group-item ">Personal settings</a>
+        <a href="/user/settings/changeAvatar" class="list-group-item active">Change avatar</a>
+        <a href="/user/settings/changePassword" class="list-group-item ">Change password</a>
 
       </div>
     </div>
@@ -26,7 +26,7 @@
 
   <div class="col-md-9">
     <div class="panel panel-default">
-      <div class="panel-heading"><a href="/">Home Page</a> / Change Avatar</div>
+      <div class="panel-heading"><a href="/">Home Page</a> / Change avatar</div>
       <div class="panel-body">
         <p>
           <button class="btn btn-warning" id="choiceAvatarBtn">Select Pic</button>
