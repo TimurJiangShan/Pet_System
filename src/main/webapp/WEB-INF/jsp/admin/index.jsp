@@ -7,12 +7,12 @@
 <div class="content-wrapper" style="padding: 50px 0 40px;">
 	<section class="content-header">
 		<h1>
-			首页 <small>仪表盘</small>
+			HomePage <small>Dashboard</small>
 		</h1>
 		<ol class="breadcrumb">
 			<li><a href="/admin/index"><i class="fa fa-dashboard"></i>
-					首页</a></li>
-			<li class="active">仪表盘</li>
+					HomePage</a></li>
+			<li class="active">Dashboard</li>
 		</ol>
 	</section>
 	<section class="content">
@@ -23,12 +23,12 @@
 					<div class="inner">
 						<h3>${topic_count}</h3>
 
-						<p>今天新增话题数</p>
+						<p>Numebr of new topics</p>
 					</div>
 					<div class="icon">
 						<i class="ion ion-ios-list-outline"></i>
 					</div>
-					<a href="/admin/topic/list" class="small-box-footer">更多 <i
+					<a href="/admin/topic/list" class="small-box-footer">More <i
 						class="fa fa-arrow-circle-right"></i></a>
 				</div>
 			</div>
@@ -39,12 +39,12 @@
 					<div class="inner">
 						<h3>${node_count}</h3>
 
-						<p>今天新增板块数</p>
+						<p>Number of new Nodes</p>
 					</div>
 					<div class="icon">
 						<i class="ion ion-pricetags"></i>
 					</div>
-					<a href="/admin/node/list" class="small-box-footer">更多 <i
+					<a href="/admin/node/list" class="small-box-footer">More <i
 						class="fa fa-arrow-circle-right"></i></a>
 				</div>
 			</div>
@@ -54,12 +54,12 @@
 				<div class="small-box bg-yellow">
 					<div class="inner">
 						<h3>${comment_count}</h3>
-						<p>今天新增评论数</p>
+						<p>Number of new reply</p>
 					</div>
 					<div class="icon">
 						<i class="ion ion-chatboxes"></i>
 					</div>
-					<a href="/admin/reply/list" class="small-box-footer">更多 <i
+					<a href="/admin/reply/list" class="small-box-footer">More <i
 						class="fa fa-arrow-circle-right"></i></a>
 				</div>
 			</div>
@@ -70,12 +70,12 @@
 					<div class="inner">
 						<h3>${user_count}</h3>
 
-						<p>今天新增用户数</p>
+						<p>Number of new users</p>
 					</div>
 					<div class="icon">
 						<i class="ion ion-person-add"></i>
 					</div>
-					<a href="/admin/user/list" class="small-box-footer">更多 <i
+					<a href="/admin/user/list" class="small-box-footer">More <i
 						class="fa fa-arrow-circle-right"></i></a>
 				</div>
 			</div>
@@ -85,7 +85,7 @@
 			<div class="col-lg-6">
 				<div class="box box-warning">
 					<div class="box-header with-border">
-						<h3 class="box-title">系统状态</h3>
+						<h3 class="box-title">System Status</h3>
 
 						<div class="box-tools pull-right">
 							<button type="button" class="btn btn-box-tool"
@@ -100,7 +100,7 @@
 							<table class="table no-margin">
 								<tbody>
 									<tr>
-										<th width="140">内存</th>
+										<th width="140">Memory</th>
 										<td>
 											<div class="progress">
                       							<div class="progress-bar progress-bar-info progress-bar-striped" style="width: ${usedMemory * 100 / totalMemorySize}%">
@@ -110,15 +110,15 @@
 										</td>
 									</tr>
 									<tr>
-										<th>系统</th>
+										<th>System</th>
 										<td>${os_name}</td>
 									</tr>
 									<tr>
-										<th>CPU使用率</th>
+										<th>CPU Usage</th>
 										<td>${(systemCpuLoad * 100)}%</td>
 									</tr>
 									<tr>
-										<th>JVM CPU使用率</th>
+										<th>JVM CPU Usage</th>
 										<td>${(processCpuLoad * 100)}%</td>
 									</tr>
 								</tbody>

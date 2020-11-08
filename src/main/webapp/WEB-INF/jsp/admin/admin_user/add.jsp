@@ -8,19 +8,19 @@
 <div class="content-wrapper" style="padding: 50px 0 40px;">
 	<section class="content-header">
     <h1>
-     用户
-      <small>添加</small>
+     User
+      <small>Add</small>
     </h1>
     <ol class="breadcrumb">
-      <li><a href="/admin/index"><i class="fa fa-dashboard"></i> 首页</a></li>
-      <li><a href="/admin/admin_user/list">用户</a></li>
-      <li class="active">添加</li>
+      <li><a href="/admin/index"><i class="fa fa-dashboard"></i> HomePage</a></li>
+      <li><a href="/admin/admin_user/list">User</a></li>
+      <li class="active">Add</li>
     </ol>
   </section>
   <section class="content">
     <div class="box box-warning">
       <div class="box-header with-border">
-        <h3 class="box-title">用户添加</h3>
+        <h3 class="box-title">Add User</h3>
       </div>
       <!-- /.box-header -->
       <div class="box-body">
@@ -28,18 +28,18 @@
           <div class="col-sm-6">
             <form id="form" action="/admin/admin_user/add" method="post">
               <div class="form-group">
-                <label>用户名</label>
-                <input type="text" id="username" name="username" class="form-control" placeholder="用户名">
+                <label>Username</label>
+                <input type="text" id="username" name="username" class="form-control" placeholder="username">
               </div>
               <div class="form-group">
-                <label>密码</label>
-                <input type="password" id="password" name="password" class="form-control" placeholder="密码">
+                <label>Password</label>
+                <input type="password" id="password" name="password" class="form-control" placeholder="password">
               </div>
               <div class="form-group">
-                <label>头像</label>
+                <label>Avatar</label>
                 <p>
-          			<button type="button" class="btn btn-warning" id="choiceAvatarBtn">选择头像</button>
-         			<button type="button" class="btn btn-success" id="confirmAvatarBtn">确认头像</button>
+          			<button type="button" class="btn btn-warning" id="choiceAvatarBtn">Choose Avatar</button>
+         			<button type="button" class="btn btn-success" id="confirmAvatarBtn">Confirm Avatar</button>
           			<input type="file" class="hidden" id="newAvatarFile" name="newAvatarFile">
           			<input type="hidden" value="" name="adminUserAvatar" id="adminUserAvatar">
         		</p>
@@ -52,7 +52,7 @@
           			</div>
         		</div>
               </div>
-              <button type="submit" class="btn btn-warning">保存</button>
+              <button type="submit" class="btn btn-warning">Save</button>
             </form>
           </div>
         </div>
@@ -68,11 +68,11 @@
   	      var password = $("#password").val();
   	      var avatar = $("#adminUserAvatar").val();
   	      if(!username) {
-  	        toast('用户名不能为空');
+  	        toast('Username should not be empty');
   	        return false;
   	      }
   	      if(!password) {
-  	        toast('密码不能为空');
+  	        toast('Password should not be empty');
   	        return false;
   	      }
   	      
@@ -92,7 +92,7 @@
   	        },
   	        success: function(data) {
   	          if(data.success === true) {
-  	            toast('添加成功','success');
+  	            toast('Add Success','success');
   	            setTimeout(function() {
   	              window.location.href = '/admin/admin_user/list';
   	            }, 1000);

@@ -47,7 +47,8 @@ public class TopicAdminController {
 	 * @return
 	 */
 	@RequestMapping(value = "/list",method = RequestMethod.GET)
-	public String list(String startDate, String endDate,String author, Model model,@RequestParam(defaultValue = "1") Integer p) {
+	public String list(String startDate, String endDate,String author, Model model,
+					   @RequestParam(defaultValue = "1") Integer p) {
 		if (StringUtils.isEmpty(startDate)) startDate = null;
 	    if (StringUtils.isEmpty(endDate)) endDate = null;
 	    if (StringUtils.isEmpty(author)) author = null;

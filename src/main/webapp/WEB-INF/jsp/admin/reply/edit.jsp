@@ -8,19 +8,19 @@
 <div class="content-wrapper" style="padding: 50px 0 40px;">
 	<section class="content-header">
     <h1>
-      评论
-      <small>编辑</small>
+      Reply
+      <small>Edit</small>
     </h1>
     <ol class="breadcrumb">
-      <li><a href="/admin/index"><i class="fa fa-dashboard"></i> 首页</a></li>
-      <li><a href="/admin/reply/list">评论</a></li>
-      <li class="active">编辑</li>
+      <li><a href="/admin/index"><i class="fa fa-dashboard"></i> HomePage</a></li>
+      <li><a href="/admin/reply/list">Reply</a></li>
+      <li class="active">Edit</li>
     </ol>
   </section>
   <section class="content">
     <div class="box box-warning">
       <div class="box-header with-border">
-        <h3 class="box-title">评论编辑</h3>
+        <h3 class="box-title">Edit Reply</h3>
       </div>
       <!-- /.box-header -->
       <div class="box-body">
@@ -29,7 +29,7 @@
           	<div class="form-group">
             	<div id="editor" style="margin-bottom: 10px;"></div>
           	</div>
-            <button type="submit" class="btn btn-warning btn-sm">更新评论</button>
+            <button type="submit" class="btn btn-warning btn-sm">Update Reply</button>
           </div>
         </form>
       </div>
@@ -62,7 +62,7 @@
   	    editor.create();
   	    editor.txt.html('${fn:replace(reply.replyContent,vEnter,'')}');
 		  $("#from").submit(function() {
-			if (confirm("确定编辑此评论吗？")) {
+			if (confirm("Are you sure to edit this reply？")) {
 				var contentHtml = editor.txt.html();
 				$.ajax({
 					url: '/admin/reply/edit',

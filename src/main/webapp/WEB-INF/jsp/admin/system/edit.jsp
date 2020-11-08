@@ -8,13 +8,13 @@
 <div class="content-wrapper" style="padding: 50px 0 40px;">
 	<section class="content-header">
     <h1>
-      系统
-      <small>设置</small>
+      System
+      <small>Setting</small>
     </h1>
     <ol class="breadcrumb">
-      <li><a href="/admin/index"><i class="fa fa-dashboard"></i> 首页</a></li>
-      <li><a href="/admin/system/edit">系统</a></li>
-      <li class="active">设置</li>
+      <li><a href="/admin/index"><i class="fa fa-dashboard"></i> HomePage</a></li>
+      <li><a href="/admin/system/edit">System</a></li>
+      <li class="active">Setting</li>
     </ol>
   </section>
   <section class="content">
@@ -50,12 +50,12 @@
             <c:if test="${systemConfig.type == 'radio' && systemConfig.pid != 2}">
             	<label>${systemConfig.description}</label><br/>
             	<c:if test="${systemConfig.value == '1'}">
-					<span style="padding-right: 5px;">是</span><input type="radio" name="${systemConfig.key}" id="${systemConfig.key}" value="1" checked="checked"/>
-					<span style="padding-right: 5px;">否</span><input type="radio" name="${systemConfig.key}" id="${systemConfig.key}" value="0"/>
+					<span style="padding-right: 5px;">Yes</span><input type="radio" name="${systemConfig.key}" id="${systemConfig.key}" value="1" checked="checked"/>
+					<span style="padding-right: 5px;">No</span><input type="radio" name="${systemConfig.key}" id="${systemConfig.key}" value="0"/>
 				</c:if>
                	<c:if test="${systemConfig.value == '0'}">
-               		<span style="padding-right: 5px;">是</span><input type="radio" name="${systemConfig.key}" id="${systemConfig.key}" value="1"/>
-					<span style="padding-right: 5px;">否</span><input type="radio" name="${systemConfig.key}" id="${systemConfig.key}" value="0" checked="checked"/>
+               		<span style="padding-right: 5px;">Yes</span><input type="radio" name="${systemConfig.key}" id="${systemConfig.key}" value="1"/>
+					<span style="padding-right: 5px;">No</span><input type="radio" name="${systemConfig.key}" id="${systemConfig.key}" value="0" checked="checked"/>
 				</c:if>
             </c:if>
             <!--  普通的radio -->
@@ -78,6 +78,7 @@
       </div>
     </div>
   </section>
+<%--    Jquery--%>
   <script type="text/javascript">
   $(function() {
 	  $(".system-menu").addClass("active");
@@ -152,7 +153,7 @@
 	      data: JSON.stringify($("#form").serializeArray()),
 	      success: function(data) {
 	        if (data.success === true) {
-	          toast('编辑成功', 'success');
+	          toast('Edit Success', 'success');
 	          setTimeout(function() {
 	        	  window.location.reload();
 	          },1000);

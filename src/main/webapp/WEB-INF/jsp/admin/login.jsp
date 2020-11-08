@@ -9,7 +9,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>宠物信息服务平台-后台管理</title>
+    <title>PetGO-Backend Management</title>
     <link rel="icon" href="/resources/images/favicon.ico">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
@@ -36,7 +36,7 @@
       function toast(txt, icon) {
         $.toast({
           text: txt, // Text that is to be shown in the toast
-          heading: '系统提醒', // Optional heading to be shown on the toast
+          heading: 'System Notice', // Optional heading to be shown on the toast
           icon: icon || 'error', // Type of toast icon warning, info, success, error
           showHideTransition: 'slide', // fade, slide or plain
           allowToastClose: true, // Boolean value true or false
@@ -50,36 +50,27 @@
 <body class="hold-transition login-page">
   <div class="login-box">
     <div class="login-logo">
-      <a href="javascript:;"><b>宠物信息服务平台登录</b></a>
+      <a href="javascript:;"><b>PetGo Login</b></a>
     </div>
     <div class="login-box-body">
-      <!-- <p class="login-box-msg">宠物信息服务平台 管理平台登录</p> -->
       <c:if test="${error != null}">
         <div class="text-red">${error}</div>
       </c:if>
       <form id="form" action="/admin/login" method="post">
         <div class="form-group has-feedback">
-          <input type="text" class="form-control" id="username" name="username" placeholder="用户名">
+          <input type="text" class="form-control" id="username" name="username" placeholder="username">
           <span class="glyphicon glyphicon-user form-control-feedback"></span>
         </div>
         <div class="form-group has-feedback">
-          <input type="password" class="form-control" id="password" name="password" placeholder="密码">
+          <input type="password" class="form-control" id="password" name="password" placeholder="password">
           <span class="glyphicon glyphicon-lock form-control-feedback"></span>
         </div>
-        <!-- <div class="form-group">
-          <div class="input-group">
-            <input type="text" class="form-control" id="code" name="code" placeholder="验证码"/>
-            <span class="input-group-btn">
-            <img style="border: 1px solid #ccc;" src="/common/captcha" id="changeCode"/>
-          </span>
-          </div>
-        </div> -->
         <div class="row">
           <div class="col-xs-8">
-            <input type="checkbox" name="rememberMe" checked id="rememberMe" value="1"> <label for="rememberMe">记住我</label>
+            <input type="checkbox" name="rememberMe" checked id="rememberMe" value="1"> <label for="rememberMe">Remember me</label>
           </div>
           <div class="col-xs-4">
-            <button type="submit" class="btn btn-warning btn-block btn-flat"><i class="fa fa-adminUser"></i> 登录</button>
+            <button type="submit" class="btn btn-warning btn-block btn-flat"><i class="fa fa-adminUser"></i> Login</button>
           </div>
         </div>
       </form>

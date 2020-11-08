@@ -8,20 +8,20 @@
 <div class="content-wrapper" style="padding: 50px 0 40px;">
 	<section class="content-header">
     <h1>
-     用户
-      <small>列表</small>
+     User
+      <small>List</small>
     </h1>
     <ol class="breadcrumb">
-      <li><a href="/admin/index"><i class="fa fa-dashboard"></i> 首页</a></li>
-      <li><a href="/admin/admin_user/list">用户</a></li>
-      <li class="active">列表</li>
+      <li><a href="/admin/index"><i class="fa fa-dashboard"></i> HomePage</a></li>
+      <li><a href="/admin/admin_user/list">User</a></li>
+      <li class="active">List</li>
     </ol>
   </section>
   <section class="content">
     <div class="box box-warning">
       <div class="box-header with-border">
-        <h3 class="box-title">用户列表</h3>
-          <a href="/admin/admin_user/add" class="btn btn-xs btn-primary">添加</a>
+        <h3 class="box-title">User List</h3>
+          <a href="/admin/admin_user/add" class="btn btn-xs btn-primary">Add</a>
       </div>
       <!-- /.box-header -->
       <div class="box-body">
@@ -29,9 +29,9 @@
           <thead>
           <tr>
             <th>#</th>
-            <th>用户名</th>
-            <th>注册时间</th>
-            <th>操作</th>
+            <th>Username</th>
+            <th>Registeration time</th>
+            <th>Operation</th>
           </tr>
           </thead>
           <tbody>
@@ -41,8 +41,8 @@
               <td>${adminUser.username}</td>
               <td><fmt:formatDate type="both" value="${adminUser.createDate}" /></td>
               <td>
-                  <a href="/admin/admin_user/edit?id=${adminUser.adminUserId}" class="btn btn-xs btn-warning">编辑</a>
-                  <a href="javascript:if(confirm('确定要删除吗？')) location.href='/admin/admin_user/delete?id=${adminUser.adminUserId}'" class="btn btn-xs btn-danger">删除</a>
+                  <a href="/admin/admin_user/edit?id=${adminUser.adminUserId}" class="btn btn-xs btn-warning">Edit</a>
+                  <a href="javascript:if(confirm('Are you sure to delete？')) location.href='/admin/admin_user/delete?id=${adminUser.adminUserId}'" class="btn btn-xs btn-danger">Delete</a>
               </td>
             </tr>
             </c:forEach>

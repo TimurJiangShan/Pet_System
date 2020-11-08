@@ -114,9 +114,9 @@
 	</div>
 </div>
 </div>
-<div class="col-md-3 hidden-sm hidden-xs">
-	<jsp:include page="../components/seesion.jsp"></jsp:include>
-</div>
+			<div class="col-md-3 hidden-sm hidden-xs">
+				<jsp:include page="../components/seesion.jsp"></jsp:include>
+			</div>
 </div>
 </div>
 </div>

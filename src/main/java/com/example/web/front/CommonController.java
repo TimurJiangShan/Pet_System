@@ -34,7 +34,8 @@ public class CommonController {
 	 */
 	@ResponseBody
 	@RequestMapping(value = "/upload", method = RequestMethod.POST)
-	private Map<String, Object> upload(@RequestParam("file") MultipartFile file, @RequestParam(value = "customPath",defaultValue = "topic") String customPath) {
+	private Map<String, Object> upload(@RequestParam("file") MultipartFile file,
+									   @RequestParam(value = "customPath",defaultValue = "topic") String customPath) {
 		JSONObject jsonObject = new JSONObject();
 		String[] data = {storageService.store(file, Paths.get(customPath))};
 		jsonObject.put("errno", 0);

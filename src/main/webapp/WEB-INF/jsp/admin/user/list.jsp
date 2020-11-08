@@ -8,39 +8,39 @@
 <div class="content-wrapper" style="padding: 50px 0 40px;">
 	<section class="content-header">
     <h1>
-      用户
-      <small>列表</small>
+      User
+      <small>List</small>
     </h1>
     <ol class="breadcrumb">
-      <li><a href="/admin/index"><i class="fa fa-dashboard"></i> 首页</a></li>
-      <li><a href="/admin/user/list">用户</a></li>
-      <li class="active">列表</li>
+      <li><a href="/admin/index"><i class="fa fa-dashboard"></i> HomePage</a></li>
+      <li><a href="/admin/user/list">User</a></li>
+      <li class="active">List</li>
     </ol>
   </section>
   <section class="content">
     <div class="box box-warning">
       <div class="box-header with-border">
-        <h3 class="box-title">用户列表</h3>
+        <h3 class="box-title">User List</h3>
       </div>
       <!-- /.box-header -->
       <div class="box-body">
         <form action="/admin/user/list" method="get" class="form-inline">
           <div class="form-group" style="margin-bottom: 10px;">
-            <input type="text" name="username" value="${username}" class="form-control" placeholder="用户名">
-            <input type="text" name="email" value="${email}" class="form-control" placeholder="邮箱">
-            <button type="submit" class="btn btn-warning btn-sm">搜索</button>
+            <input type="text" name="username" value="${username}" class="form-control" placeholder="username">
+            <input type="text" name="email" value="${email}" class="form-control" placeholder="email">
+            <button type="submit" class="btn btn-warning btn-sm">Search</button>
           </div>
         </form>
         <table class="table table-bordered">
           <thead>
           <tr>
             <th>#</th>
-            <th>用户名</th>
-            <th>邮箱</th>
-            <th>积分</th>
-            <th>时间</th>
-            <th>禁用</th>
-            <th>操作</th>
+            <th>Username</th>
+            <th>Email</th>
+            <th>Points</th>
+            <th>Time</th>
+            <th>Disable</th>
+            <th>Operation</th>
           </tr>
           </thead>
           <tbody>
@@ -60,8 +60,8 @@
                 	</c:otherwise>
               </c:choose>
               <td>
-                  	<a href="/admin/user/edit?id=${user.userId}" class="btn btn-xs btn-warning">编辑</a>
-                  	<button onclick="actionBtn('${user.userId}')" class="btn btn-xs btn-danger">删除</button>
+                  	<a href="/admin/user/edit?id=${user.userId}" class="btn btn-xs btn-warning">Edit</a>
+                  	<button onclick="actionBtn('${user.userId}')" class="btn btn-xs btn-danger">Delete</button>
               </td>
             </tr>
 			</c:forEach>
@@ -100,7 +100,7 @@
   	
   	// 删除用户
   	function actionBtn(id){
-  		if(confirm("确定要删除这个用户吗？他发布的话题、评论以及收藏都会一起删除！")){
+  		if(confirm("Are you sure to delete this user？Also delete the related topcis and other things！")){
   			$.get("/admin/user/delete?id=" + id,function(data){
   				if(data.success === true){
   					toast(data.error, "success");

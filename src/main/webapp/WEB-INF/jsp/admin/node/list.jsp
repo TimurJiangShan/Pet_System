@@ -8,43 +8,43 @@
 <div class="content-wrapper" style="padding: 50px 0 40px;">
 	<section class="content-header">
     <h1>
-     板块
-      <small>列表</small>
+     Node
+      <small>List</small>
     </h1>
     <ol class="breadcrumb">
-      <li><a href="/admin/index"><i class="fa fa-dashboard"></i> 首页</a></li>
-      <li><a href="/admin/node/list">板块</a></li>
-      <li class="active">列表</li>
+      <li><a href="/admin/index"><i class="fa fa-dashboard"></i> HomePage</a></li>
+      <li><a href="/admin/node/list">Node</a></li>
+      <li class="active">List</li>
     </ol>
   </section>
   <section class="content">
     <div class="box box-warning">
       <div class="box-header with-border">
-        <h3 class="box-title">板块列表</h3>
-          <a href="/admin/node/add" class="btn btn-xs btn-primary">添加</a>
+        <h3 class="box-title">Node List</h3>
+          <a href="/admin/node/add" class="btn btn-xs btn-primary">Add</a>
         </div>
       <!-- /.box-header -->
       <div class="box-body">
         <form action="/admin/node/list" method="get" class="form-inline">
           <div class="form-group" style="margin-bottom: 10px;">
-            <input type="text" name="nodeTitle" value="${nodeTitle}" class="form-control" placeholder="板块名">
-            <button type="submit" class="btn btn-warning btn-sm">搜索</button>
+            <input type="text" name="nodeTitle" value="${nodeTitle}" class="form-control" placeholder="Node Name">
+            <button type="submit" class="btn btn-warning btn-sm">Search</button>
           </div>
         </form>
         <table class="table table-bordered table-hover">
           <thead>
           <tr>
             <th>#</th>
-            <th>名称</th>
-            <th>图标</th>
-            <th>背景图</th>
-            <th>帖子数</th>
-            <th>描述</th>
-            <th>创建时间</th>
-            <th>排序</th>
-            <th>添加到首页</th>
-            <th>添加到导航</th>
-            <th>操作</th>
+            <th>Name</th>
+            <th>Icon</th>
+            <th>Background Image</th>
+            <th>Number of Topics</th>
+            <th>Description</th>
+            <th>Create Time</th>
+            <th>Order</th>
+            <th>Add to the homepage</th>
+            <th>Add to the naviBar</th>
+            <th>Operation</th>
           </tr>
           </thead>
           <tbody>
@@ -83,8 +83,8 @@
                 	</c:otherwise>
               </c:choose>
               <td>
-                  	<a href="/admin/node/edit?id=${node.nodeId}" class="btn btn-xs btn-warning">编辑</a>
-                  	<button onclick="actionBtn('${node.nodeId}')" class="btn btn-xs btn-danger">删除</button>
+                  	<a href="/admin/node/edit?id=${node.nodeId}" class="btn btn-xs btn-warning">Edit</a>
+                  	<button onclick="actionBtn('${node.nodeId}')" class="btn btn-xs btn-danger">Delete</button>
               </td>
             </tr>
 			</c:forEach>
@@ -98,7 +98,7 @@
   	$(function(){
   		$(".sidebar-menu li:eq(4)").addClass("active");
   	  	var nodeTitle = '${nodeTitle}';
-  	  	var count = ${page.totalRow};//数据总量
+  	  	var count = ${page.totalRow};//数据总量 分页
   	 	var limit = ${page.pageSize};//每页显示的条数
   	 	var url = "?nodeTitle="+nodeTitle+"&p=";//url
   	 	var p = ${p};//当前页数
@@ -138,9 +138,9 @@
   	
   	// 删除板块
   	function actionBtn(id){
-  		if(confirm("确定要删除这个板块吗？对应的话题板块也会一起删除")){
+  		if(confirm("Are you sure to delte this node？Related things can be deleted too")){
   			if(!id){
-  				toast("板块ID不能为空", "error");
+  				toast("Node Id cannot be empty", "error");
   			}
   			$.post("/admin/node/delete",{id: id},function(data){
   				if(data.success === true){

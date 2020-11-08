@@ -7,33 +7,33 @@
 <div class="content-wrapper" style="padding: 50px 0 40px;">
     <section class="content-header">
         <h1>
-            首页 <small>邮件发送</small>
+            HomePage <small>Send Email</small>
         </h1>
         <ol class="breadcrumb">
             <li><a href="/admin/index"><i class="fa fa-dashboard"></i>
-                首页</a></li>
-            <li class="active">邮件发送</li>
+                HomePage</a></li>
+            <li class="active">Send Email</li>
         </ol>
     </section>
     <section class="content">
 
         <div class="box box-warning">
             <div class="box-header with-border">
-				发送邮件
+				Send Email
             </div>
             <div class="box-body">
                 <form id="form">
                     <div class="form-group">
-                        <label for="title">邮件标题</label>
+                        <label for="title">Email Title</label>
                         <input type="text" class="form-control" id="title" name="title"
-                               placeholder="请输入邮件标题">
+                               placeholder="Please type the title of email">
                     </div>
                     <div class="form-group">
-                        <label for="editor">邮件内容</label>
+                        <label for="editor">Email Content</label>
                         <div id="editor" style="margin-bottom: 10px;"></div>
                     </div>
 
-                    <button type="button" id="btn" class="btn btn-warning">发送</button>
+                    <button type="button" id="btn" class="btn btn-warning">Send</button>
                 </form>
             </div>
         </div>
@@ -84,12 +84,12 @@
             ];
             editor.customConfig.emotions = [
                 {
-                    title: '默认',
+                    title: 'Default',
                     type: 'image',
                     content: defaultEmotions
                 },
                 {
-                    title: '动漫',
+                    title: 'AnimeEmotion',
                     type: 'image',
                     content: animeEmotions
                 },
@@ -99,7 +99,7 @@
                     content: gifEmotions
                 },
                 {
-                    title: '其他',
+                    title: 'Others',
                     type: 'image',
                     content: otherEmotions
                 }
@@ -118,8 +118,8 @@
                 var contentText = editor.txt.text();
 
                 // var avatar = $("#editor").find("img:first").attr("src");
-                if (!title || title.length > 120) {
-                    alert('请输入标题，且最大长度在120个字符以内');
+                if (!title || title.length > 150) {
+                    alert('Type Title，length should < 150');
                     return false;
                 }  else {
                     $.ajax({
@@ -135,7 +135,7 @@
                         success: function (data) {
                             //console.log(JSON.stringify(data));
                             if (data.success != null && data.success == true) {
-								alert('发送成功');
+								alert('Send Success');
 								$("#title").val('');
 								editor.txt.html('')
 							} else {
