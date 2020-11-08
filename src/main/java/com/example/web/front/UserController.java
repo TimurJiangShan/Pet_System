@@ -113,7 +113,7 @@ public class UserController extends BaseController{
 		return "user/topics";
 	}
 	
-	//most concern
+	//most concern *
 	@RequestMapping(value = "/user/{name}/replys", method = RequestMethod.GET)
 	private String replys(@PathVariable String name, Model model,@RequestParam(value = "p", defaultValue = "1") Integer p,HttpServletRequest request) {
 		if(name == null) {
