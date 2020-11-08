@@ -3,16 +3,12 @@ package com.example.entity;
 import java.util.Date;
 
 /**
- * 关注实体
- * @author sen
- * 2018年7月1日
- * 下午8:28:39
- * TODO
+ * @author Jiangshan Zhao
  */
 public class Follow {
 
 	/**
-	 * 主键
+	 * Primary Key
 	 */
 	private Integer id;
 	/**
@@ -23,9 +19,6 @@ public class Follow {
 	 * 被关注者ID
 	 */
 	private Integer fid;
-	/**
-	 * 创建时间
-	 */
 	private Date createDate;
 	
 	public Integer getId() {

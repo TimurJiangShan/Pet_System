@@ -3,9 +3,9 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-  <title>${user.userName}评论的话题</title>
+  <title>${user.userName}Comment topic</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- 引入 Bootstrap -->
+  <!-- introduce Bootstrap -->
   <link href="/resources/css/bootstrap.min.css" rel="stylesheet">
   <link href="/resources/css/app.css" rel="stylesheet" type="text/css">
   <link rel="shortcut icon" href="/resources/images/favicon.ico">
@@ -25,9 +25,9 @@
                 <fmt:formatDate type="both" 
                   dateStyle="medium" timeStyle="short" 
                   value="${item.createDate}" />
-                评论了
+                Commented
                 <a href="/user/${item.author}">${item.author}</a>
-                创建的话题 › <a href="/topic/${item.topicId}">${item.title}</a>
+                's topic › <a href="/topic/${item.topicId}">${item.title}</a>
               </td>
             </tr>
             <tr class="user_comments">
@@ -51,11 +51,11 @@
   </div>
 </div>
 <jsp:include page="../components/foot.jsp"></jsp:include>
-<!-- jQuery (Bootstrap 的 JavaScript 插件需要引入 jQuery) -->
+<!-- jQuery (Bootstrap's JavaScript needs jQuery) -->
 <script src="/resources/js/jquery.js"></script>
-<!-- 引入 Bootstrap -->
+<!-- Introduce Bootstrap -->
 <script src="/resources/js/bootstrap.min.js"></script>
-<!-- 分页 -->
+<!-- Pagination -->
 <script src="/resources/js/pagination2.js"></script>
 <script src="/resources/js/goTop.js"></script>
 <script type="text/javascript">

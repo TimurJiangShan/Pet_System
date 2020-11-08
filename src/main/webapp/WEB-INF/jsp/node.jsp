@@ -4,7 +4,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
     <head>
-        <title>宠物信息服务平台-${nodeName}</title>
+        <title>Pet Information Service Platform-${nodeName}</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="/resources/css/bootstrap.min.css" rel="stylesheet">
         <link href="/resources/css/app.css" rel="stylesheet" type="text/css">
@@ -19,11 +19,11 @@
                     <div class="box box-warning">
                         <div class="box-header with-border">
                             <ul class="nav nav-pills" id="tab">
-                                <li class="${tab eq 'all' ? 'all active' : 'all'}"><a href="/?tab=all&node=${nodeName}">全部</a>
+                                <li class="${tab eq 'all' ? 'all active' : 'all'}"><a href="/?tab=all&node=${nodeName}">All</a>
                                 </li>
-                                <li class="${tab eq 'hot' ? 'hot active' : 'hot'}"><a href="/?tab=hot&node=${nodeName}">最热</a>
+                                <li class="${tab eq 'hot' ? 'hot active' : 'hot'}"><a href="/?tab=hot&node=${nodeName}">Hottest</a>
                                 </li>
-                                <li class="${tab eq 'new' ? 'new active' : 'new'}"><a href="/?tab=new&node=${nodeName}">最新</a>
+                                <li class="${tab eq 'new' ? 'new active' : 'new'}"><a href="/?tab=new&node=${nodeName}">latest</a>
                                 </li>
                             </ul>
                         </div>
@@ -49,10 +49,10 @@
                                         <div class="tip">
                                             <p class="gray">
                                                 <c:if test="${item.top}">
-                                                    <span class="label label-warning">置顶</span> <span>•</span>
+                                                    <span class="label label-warning">top</span> <span>•</span>
                                                 </c:if>
                                                 <c:if test="${item.good}">
-                                                    <span class="label label-success">精华</span> <span>•</span>
+                                                    <span class="label label-success">highlight</span> <span>•</span>
                                                 </c:if>
 
                                                 <c:if test="${not empty item.nodeTitle}">
@@ -67,7 +67,7 @@
                                                     <span class="hidden-sm hidden-xs">${item.viewCount}次点击</span>
                                                 </c:if>
 
-                                                <!-- 评论数量 -->
+                                                <!-- Number of comments -->
                                                 <c:if test="${item.replyCount > 0}">
                                                     <span class="hidden-sm hidden-xs">•</span>
                                                     <span class="hidden-sm hidden-xs"><a
@@ -125,19 +125,19 @@
                                                                           class="dark" style="display: block;"><span
                                                 class="bigger">${countTopic}</span>
                                             <div class="sep3"></div>
-                                            <span class="fade">我的主题</span></a></td>
+                                            <span class="fade">my theme</span></a></td>
                                         <td width="34%"
                                             style="border-left: 1px solid rgba(100, 100, 100, 0.4); border-right: 1px solid rgba(100, 100, 100, 0.4);"
                                             align="center"><a href="/collect/topics" class="dark"
                                                               style="display: block;"><span
                                                 class="bigger">${countCollect}</span>
                                             <div class="sep3"></div>
-                                            <span class="fade">我的收藏</span></a></td>
+                                            <span class="fade">my collection</span></a></td>
                                         <td width="33%" align="center"><a href="/follow/topics"
                                                                           class="dark" style="display: block;"><span
                                                 class="bigger">${countFollow}</span>
                                             <div class="sep3"></div>
-                                            <span class="fade">特别关注</span></a></td>
+                                            <span class="fade">Special attention</span></a></td>
                                     </tr>
                                     </tbody>
                                 </table>
@@ -145,8 +145,8 @@
                             <div class="panel-footer" style="background-color: white">
                                 <div class="row">
 								<span class="col-md-6"><a href="/notification/list"><span
-                                        id="n_count">${countNotReadNotice}</span> 条未读消息</a></span> <span
-                                        class="col-md-6 text-right">积分：<a
+                                        id="n_count">${countNotReadNotice}</span> unread messages</a></span> <span
+                                        class="col-md-6 text-right">points：<a
                                         href="/top100">${countScore}</a></span>
                                 </div>
                             </div>
@@ -154,9 +154,9 @@
                     </c:if>
 
 
-                    <!-- 热门板块 -->
+                    <!-- Popular node -->
                     <div class="box box-warning">
-                        <div class="box-header with-border"><b>热门板块</b></div>
+                        <div class="box-header with-border"><b>Popular sections</b></div>
                         <div class="box-body">
                             <div class="row">
                                 <c:forEach var="item" items="${hotNodeList}">
@@ -171,13 +171,13 @@
                         </div>
                     </div>
 
-                    <!-- 社区运行状况 -->
+                    <!-- Community operation status -->
                     <div class="box box-warning">
-                        <div class="box-header with-border"><b>社区运行状况</b></div>
+                        <div class="box-header with-border"><b>Community operation status</b></div>
                         <div class="box-body">
-                            <p>注册会员：${countUserAll}</p>
-                            <p>帖子：${countAllTopic}</p>
-                            <p>回复：${countAllReply}</p>
+                            <p>number of registered member:${countUserAll}</p>
+                            <p>number of posts:${countAllTopic}</p>
+                            <p>number of replies:${countAllReply}</p>
                         </div>
                     </div>
                 </div>
@@ -197,23 +197,17 @@
         <!-- <script src="/resources/js/login_info.js"></script> -->
         <script src="/resources/js/formatDate.js"></script>
         <script type="text/javascript">
-            //var tab = "${tab}";//板块
-            var tab = "${tab}";//父板块
+            var tab = "${tab}";//parent node
             var nodeName = "${nodeName}";
-            //var url = "/?tab="+tab+"&ptab="+ptab+"&"
-            //$(".pagination2").pagination("${page.pageNumber}","${page.totalPage}",10);
-            var count = ${page.totalRow};//数据总量
-            var limit = ${page.pageSize};//每页显示的条数
+            var count = ${page.totalRow};//Total amount of data
+            var limit = ${page.pageSize};//Number of items displayed per page
             var url = "?node=" + nodeName + "&tab=" + tab + "&p=";//url
             function page() {
                 var page = location.search.match(/p=(\d+)/);
                 return page ? page[1] : 1;
             }
 
-            var p = page();//当前页数
-            //console.log("p:"+p);
-            //console.log(count);
-            //console.log(url);
+            var p = page();//current page number
             paginate(count, limit, p, url);
         </script>
     </body>
