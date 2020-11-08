@@ -1,19 +1,3 @@
-/*
- Navicat Premium Data Transfer
-
- Source Server         : localhost_3306
- Source Server Type    : MySQL
- Source Server Version : 50643
- Source Host           : localhost:3306
- Source Schema         : pet_system
-
- Target Server Type    : MySQL
- Target Server Version : 50643
- File Encoding         : 65001
-
- Date: 22/10/2020 16:46:22
-*/
-
 SET NAMES utf8mb4;
 SET FOREIGN_KEY_CHECKS = 0;
 
@@ -191,65 +175,65 @@ CREATE TABLE `system_config` (
 -- ----------------------------
 -- Records of system_config
 -- ----------------------------
-BEGIN;
-INSERT INTO `system_config` VALUES (1, NULL, NULL, '基础配置', 0, '', NULL, 0, 0);
-INSERT INTO `system_config` VALUES (2, NULL, NULL, '上传配置', 0, NULL, NULL, 0, 0);
-INSERT INTO `system_config` VALUES (3, NULL, NULL, '邮箱配置', 0, NULL, NULL, 0, 0);
-INSERT INTO `system_config` VALUES (4, NULL, NULL, '积分配置', 0, NULL, NULL, 0, 0);
-INSERT INTO `system_config` VALUES (5, NULL, NULL, 'Redis配置', 0, NULL, NULL, 0, 0);
-INSERT INTO `system_config` VALUES (6, NULL, NULL, 'Elasticsearch配置', 0, NULL, NULL, 0, 0);
-INSERT INTO `system_config` VALUES (7, NULL, NULL, 'Github登录配置，<a href=\"https://github.com/settings/developers\" target=\"_blank\">申请地址</a>', 0, NULL, NULL, 0, 0);
-INSERT INTO `system_config` VALUES (8, NULL, NULL, 'WebSocket配置', 0, NULL, NULL, 0, 0);
-INSERT INTO `system_config` VALUES (9, 'base_url', 'http://localhost:8080', '网站部署后访问的域名，注意这个后面没有 \"/\"', 1, 'text', NULL, 0, 0);
-INSERT INTO `system_config` VALUES (10, 'site_name', '宠物信息服务平台', '站点名称', 1, 'text', NULL, 0, 0);
-INSERT INTO `system_config` VALUES (11, 'site_intro', '宠物信息服务平台', '站点介绍', 1, 'text', NULL, 0, 0);
-INSERT INTO `system_config` VALUES (12, 'cookie_name', 'user', 'cookie名称', 1, 'text', NULL, 0, 0);
-INSERT INTO `system_config` VALUES (13, 'cookie_max_age', '2592000', 'cookie存活的最大时间', 1, 'number', NULL, 0, 0);
-INSERT INTO `system_config` VALUES (14, 'cookie_domain', 'localhost', '存cookie时用到的域名，要与网站部署后访问的域名一致', 1, 'text', NULL, 0, 0);
-INSERT INTO `system_config` VALUES (15, 'cookie_path', '/', 'cookie的路径', 1, 'text', NULL, 0, 0);
-INSERT INTO `system_config` VALUES (16, 'page_size', '50', '分页每页条数', 1, 'number', NULL, 0, 1);
-INSERT INTO `system_config` VALUES (17, 'local_upload_filedir', 'file:F:/upload/', '自定义文件保存路径，注意这个以 \"file:\" 开头，后面有 \"/\"（这种方式可以将资源存储在服务器的任意目录里，前提是要有该目录的读写权限）', 30, 'text', NULL, 0, 0);
-INSERT INTO `system_config` VALUES (18, 'local_upload_user_filedir', 'file:F:/upload/roothub/user/', '自定义用户文件保存路径，注意这个后面有 \"/\"并且保证有该目录的读权限以', 30, 'text', NULL, 0, 1);
-INSERT INTO `system_config` VALUES (19, 'local_upload_node_filedir', 'file:F:/upload/roothub/node/', '自定义节点文件保存路径，注意这个后面有 \"/\"并且保证有该目录的读权限', 30, 'text', NULL, 0, 1);
-INSERT INTO `system_config` VALUES (20, 'local_upload_tag_filedir', 'file:F:/upload/roothub/tag/', '自定义标签文件保存路径，注意这个后面有 \"/\"并且保证有该目录的读权限', 30, 'text', NULL, 0, 1);
-INSERT INTO `system_config` VALUES (21, 'redis_host', '127.0.0.1', 'redis服务地址', 5, 'text', NULL, 0, 0);
-INSERT INTO `system_config` VALUES (22, 'redis_port', '6379', 'redis服务端口（默认: 6379）', 5, 'text', NULL, 0, 0);
-INSERT INTO `system_config` VALUES (23, 'redis_password', '', 'redis服务密码（没有的话可以不用填）', 5, 'text', NULL, 0, 0);
-INSERT INTO `system_config` VALUES (24, 'redis_timeout', '2000', '网站连接redis服务超时时间，单位毫秒', 5, 'text', NULL, 0, 0);
-INSERT INTO `system_config` VALUES (25, 'redis_max_idle', '20', '连接池最多空闲实例', 5, 'text', NULL, 0, 0);
-INSERT INTO `system_config` VALUES (26, 'redis_max_total', '50', '连接池最多创建实例', 5, 'text', NULL, 0, 0);
-INSERT INTO `system_config` VALUES (27, 'redis_database', '0', '网站连接redis服务的哪个数据库，默认 0 号数据库，取值范围 0-15', 5, 'text', NULL, 0, 0);
-INSERT INTO `system_config` VALUES (28, 'redis_ssl', '0', 'redis服务是否开启认证连接（0：否，1：是）', 5, 'text', NULL, 0, 0);
-INSERT INTO `system_config` VALUES (29, 'default_upload', '1', '默认上传', 2, 'radio', NULL, 0, 0);
-INSERT INTO `system_config` VALUES (30, 'local_upload', '0', '自定义上传', 2, 'radio', NULL, 0, 0);
-INSERT INTO `system_config` VALUES (31, 'static_url', '/static/**', '静态文件访问URL（默认上传和自定义上传的URL最好设置成一样的，否则更换上传方式后会导致之前的资源访问不了），注意最后有个\"/**\"', 30, 'text', NULL, 0, 0);
-INSERT INTO `system_config` VALUES (32, 'accessKeyId', '', 'AccessKeyId（强烈推荐这种方式）', 45, 'text', NULL, 0, 0);
-INSERT INTO `system_config` VALUES (33, 'accessKeySecret', '', 'AccessKeySecret', 45, 'text', NULL, 0, 0);
-INSERT INTO `system_config` VALUES (34, 'endpoint', 'http://oss-cn-shenzhen.aliyuncs.com', 'Endpoint', 45, 'text', NULL, 0, 0);
-INSERT INTO `system_config` VALUES (35, 'bucketName', 'roothub', 'BucketName', 45, 'text', NULL, 0, 0);
-INSERT INTO `system_config` VALUES (36, 'oss_filedir', 'images/', '阿里云OSS静态文件存储路径，注意前面没有\"/\"，后面有 \"/\"', 45, 'text', NULL, 0, 0);
-INSERT INTO `system_config` VALUES (37, 'oss_static_url', ' https://roothub.oss-cn-shenzhen.aliyuncs.com/', '阿里云OSS静态文件访问的URL，注意这个后面有 \"/\"', 45, 'text', NULL, 0, 0);
-INSERT INTO `system_config` VALUES (38, 'open_redis', '1', '是否开启Redis', 5, 'radio', NULL, 0, 0);
-INSERT INTO `system_config` VALUES (39, 'create_topic_score', '10', '创建话题奖励的积分', 4, 'number', NULL, 0, 0);
-INSERT INTO `system_config` VALUES (40, 'create_reply_score', '5', '发布评论奖励的积分', 4, 'number', NULL, 0, 0);
-INSERT INTO `system_config` VALUES (41, 'delete_topic_score', '10', '删除话题要被扣除的积分', 4, 'number', NULL, 0, 0);
-INSERT INTO `system_config` VALUES (42, 'delete_reply_score', '5', '删除评论要被扣除的积分', 4, 'number', NULL, 0, 0);
-INSERT INTO `system_config` VALUES (43, 'up_topic_score', '3', '点赞话题奖励话题作者的积分', 4, 'number', NULL, 0, 0);
-INSERT INTO `system_config` VALUES (44, 'up_reply_score', '3', '点赞评论奖励评论作者的积分', 4, 'number', NULL, 0, 0);
-INSERT INTO `system_config` VALUES (45, 'oss_upload', '0', '阿里云OSS', 2, 'radio', NULL, 0, 0);
-INSERT INTO `system_config` VALUES (46, 'default_upload_filedir', '/upload/', '默认的文件保存路径，注意这个后面有 \"/\"（这种方式会将资源存储在war包里，不推荐这种方式，因为重新部署应用时会初始化）', 29, 'text', NULL, 0, 0);
-INSERT INTO `system_config` VALUES (47, 'static_url', '/static/**', '静态文件访问URL（默认上传和自定义上传的URL最好设置成一样的，否则更换上传方式后会导致之前的资源访问不了），注意最后有个\"/**\"', 29, 'text', NULL, 0, 0);
-INSERT INTO `system_config` VALUES (48, NULL, NULL, '分页设置', 0, NULL, NULL, 0, 0);
-INSERT INTO `system_config` VALUES (49, 'index_page_size', '50', '首页', 48, 'number', NULL, 0, 0);
-INSERT INTO `system_config` VALUES (50, 'node_page_size', '50', '节点页', 48, 'number', NULL, 0, 0);
-INSERT INTO `system_config` VALUES (51, 'tag_page_size', '50', '标签页', 48, 'number', NULL, 0, 0);
-INSERT INTO `system_config` VALUES (52, 'user_page_size', '50', '用户主页', 48, 'number', NULL, 0, 0);
-INSERT INTO `system_config` VALUES (53, 'search_page_size', '50', '搜索页', 48, 'number', NULL, 0, 0);
-INSERT INTO `system_config` VALUES (54, 'default_upload_node_filedir', '/upload/node/', '默认的节点文件保存路径（保存在war包里）', 29, 'text', NULL, 0, 1);
-INSERT INTO `system_config` VALUES (55, 'default_upload_tag_filedir', '/upload/tag/', '默认的标签文件保存路径（保存在war包里）', 29, 'text', NULL, 0, 1);
-INSERT INTO `system_config` VALUES (56, 'default_upload_user_filedir', '/upload/user/', '默认的用户文件保存路径（保存在war包里）', 29, 'text', NULL, 0, 1);
-INSERT INTO `system_config` VALUES (57, 'upload_type', '29', '上传类型', 2, 'hidden', NULL, 0, 0);
-COMMIT;
+-- BEGIN;
+-- INSERT INTO `system_config` VALUES (1, NULL, NULL, '基础配置', 0, '', NULL, 0, 0);
+-- INSERT INTO `system_config` VALUES (2, NULL, NULL, '上传配置', 0, NULL, NULL, 0, 0);
+-- INSERT INTO `system_config` VALUES (3, NULL, NULL, '邮箱配置', 0, NULL, NULL, 0, 0);
+-- INSERT INTO `system_config` VALUES (4, NULL, NULL, '积分配置', 0, NULL, NULL, 0, 0);
+-- INSERT INTO `system_config` VALUES (5, NULL, NULL, 'Redis配置', 0, NULL, NULL, 0, 0);
+-- INSERT INTO `system_config` VALUES (6, NULL, NULL, 'Elasticsearch配置', 0, NULL, NULL, 0, 0);
+-- INSERT INTO `system_config` VALUES (7, NULL, NULL, 'Github登录配置，<a href=\"https://github.com/settings/developers\" target=\"_blank\">申请地址</a>', 0, NULL, NULL, 0, 0);
+-- INSERT INTO `system_config` VALUES (8, NULL, NULL, 'WebSocket配置', 0, NULL, NULL, 0, 0);
+-- INSERT INTO `system_config` VALUES (9, 'base_url', 'http://localhost:8080', '网站部署后访问的域名，注意这个后面没有 \"/\"', 1, 'text', NULL, 0, 0);
+-- INSERT INTO `system_config` VALUES (10, 'site_name', '宠物信息服务平台', '站点名称', 1, 'text', NULL, 0, 0);
+-- INSERT INTO `system_config` VALUES (11, 'site_intro', '宠物信息服务平台', '站点介绍', 1, 'text', NULL, 0, 0);
+-- INSERT INTO `system_config` VALUES (12, 'cookie_name', 'user', 'cookie名称', 1, 'text', NULL, 0, 0);
+-- INSERT INTO `system_config` VALUES (13, 'cookie_max_age', '2592000', 'cookie存活的最大时间', 1, 'number', NULL, 0, 0);
+-- INSERT INTO `system_config` VALUES (14, 'cookie_domain', 'localhost', '存cookie时用到的域名，要与网站部署后访问的域名一致', 1, 'text', NULL, 0, 0);
+-- INSERT INTO `system_config` VALUES (15, 'cookie_path', '/', 'cookie的路径', 1, 'text', NULL, 0, 0);
+-- INSERT INTO `system_config` VALUES (16, 'page_size', '50', '分页每页条数', 1, 'number', NULL, 0, 1);
+-- INSERT INTO `system_config` VALUES (17, 'local_upload_filedir', 'file:F:/upload/', '自定义文件保存路径，注意这个以 \"file:\" 开头，后面有 \"/\"（这种方式可以将资源存储在服务器的任意目录里，前提是要有该目录的读写权限）', 30, 'text', NULL, 0, 0);
+-- INSERT INTO `system_config` VALUES (18, 'local_upload_user_filedir', 'file:F:/upload/roothub/user/', '自定义用户文件保存路径，注意这个后面有 \"/\"并且保证有该目录的读权限以', 30, 'text', NULL, 0, 1);
+-- INSERT INTO `system_config` VALUES (19, 'local_upload_node_filedir', 'file:F:/upload/roothub/node/', '自定义节点文件保存路径，注意这个后面有 \"/\"并且保证有该目录的读权限', 30, 'text', NULL, 0, 1);
+-- INSERT INTO `system_config` VALUES (20, 'local_upload_tag_filedir', 'file:F:/upload/roothub/tag/', '自定义标签文件保存路径，注意这个后面有 \"/\"并且保证有该目录的读权限', 30, 'text', NULL, 0, 1);
+-- INSERT INTO `system_config` VALUES (21, 'redis_host', '127.0.0.1', 'redis服务地址', 5, 'text', NULL, 0, 0);
+-- INSERT INTO `system_config` VALUES (22, 'redis_port', '6379', 'redis服务端口（默认: 6379）', 5, 'text', NULL, 0, 0);
+-- INSERT INTO `system_config` VALUES (23, 'redis_password', '', 'redis服务密码（没有的话可以不用填）', 5, 'text', NULL, 0, 0);
+-- INSERT INTO `system_config` VALUES (24, 'redis_timeout', '2000', '网站连接redis服务超时时间，单位毫秒', 5, 'text', NULL, 0, 0);
+-- INSERT INTO `system_config` VALUES (25, 'redis_max_idle', '20', '连接池最多空闲实例', 5, 'text', NULL, 0, 0);
+-- INSERT INTO `system_config` VALUES (26, 'redis_max_total', '50', '连接池最多创建实例', 5, 'text', NULL, 0, 0);
+-- INSERT INTO `system_config` VALUES (27, 'redis_database', '0', '网站连接redis服务的哪个数据库，默认 0 号数据库，取值范围 0-15', 5, 'text', NULL, 0, 0);
+-- INSERT INTO `system_config` VALUES (28, 'redis_ssl', '0', 'redis服务是否开启认证连接（0：否，1：是）', 5, 'text', NULL, 0, 0);
+-- INSERT INTO `system_config` VALUES (29, 'default_upload', '1', '默认上传', 2, 'radio', NULL, 0, 0);
+-- INSERT INTO `system_config` VALUES (30, 'local_upload', '0', '自定义上传', 2, 'radio', NULL, 0, 0);
+-- INSERT INTO `system_config` VALUES (31, 'static_url', '/static/**', '静态文件访问URL（默认上传和自定义上传的URL最好设置成一样的，否则更换上传方式后会导致之前的资源访问不了），注意最后有个\"/**\"', 30, 'text', NULL, 0, 0);
+-- INSERT INTO `system_config` VALUES (32, 'accessKeyId', '', 'AccessKeyId（强烈推荐这种方式）', 45, 'text', NULL, 0, 0);
+-- INSERT INTO `system_config` VALUES (33, 'accessKeySecret', '', 'AccessKeySecret', 45, 'text', NULL, 0, 0);
+-- INSERT INTO `system_config` VALUES (34, 'endpoint', 'http://oss-cn-shenzhen.aliyuncs.com', 'Endpoint', 45, 'text', NULL, 0, 0);
+-- INSERT INTO `system_config` VALUES (35, 'bucketName', 'roothub', 'BucketName', 45, 'text', NULL, 0, 0);
+-- INSERT INTO `system_config` VALUES (36, 'oss_filedir', 'images/', '阿里云OSS静态文件存储路径，注意前面没有\"/\"，后面有 \"/\"', 45, 'text', NULL, 0, 0);
+-- INSERT INTO `system_config` VALUES (37, 'oss_static_url', ' https://roothub.oss-cn-shenzhen.aliyuncs.com/', '阿里云OSS静态文件访问的URL，注意这个后面有 \"/\"', 45, 'text', NULL, 0, 0);
+-- INSERT INTO `system_config` VALUES (38, 'open_redis', '1', '是否开启Redis', 5, 'radio', NULL, 0, 0);
+-- INSERT INTO `system_config` VALUES (39, 'create_topic_score', '10', '创建话题奖励的积分', 4, 'number', NULL, 0, 0);
+-- INSERT INTO `system_config` VALUES (40, 'create_reply_score', '5', '发布评论奖励的积分', 4, 'number', NULL, 0, 0);
+-- INSERT INTO `system_config` VALUES (41, 'delete_topic_score', '10', '删除话题要被扣除的积分', 4, 'number', NULL, 0, 0);
+-- INSERT INTO `system_config` VALUES (42, 'delete_reply_score', '5', '删除评论要被扣除的积分', 4, 'number', NULL, 0, 0);
+-- INSERT INTO `system_config` VALUES (43, 'up_topic_score', '3', '点赞话题奖励话题作者的积分', 4, 'number', NULL, 0, 0);
+-- INSERT INTO `system_config` VALUES (44, 'up_reply_score', '3', '点赞评论奖励评论作者的积分', 4, 'number', NULL, 0, 0);
+-- INSERT INTO `system_config` VALUES (45, 'oss_upload', '0', '阿里云OSS', 2, 'radio', NULL, 0, 0);
+-- INSERT INTO `system_config` VALUES (46, 'default_upload_filedir', '/upload/', '默认的文件保存路径，注意这个后面有 \"/\"（这种方式会将资源存储在war包里，不推荐这种方式，因为重新部署应用时会初始化）', 29, 'text', NULL, 0, 0);
+-- INSERT INTO `system_config` VALUES (47, 'static_url', '/static/**', '静态文件访问URL（默认上传和自定义上传的URL最好设置成一样的，否则更换上传方式后会导致之前的资源访问不了），注意最后有个\"/**\"', 29, 'text', NULL, 0, 0);
+-- INSERT INTO `system_config` VALUES (48, NULL, NULL, '分页设置', 0, NULL, NULL, 0, 0);
+-- INSERT INTO `system_config` VALUES (49, 'index_page_size', '50', '首页', 48, 'number', NULL, 0, 0);
+-- INSERT INTO `system_config` VALUES (50, 'node_page_size', '50', '节点页', 48, 'number', NULL, 0, 0);
+-- INSERT INTO `system_config` VALUES (51, 'tag_page_size', '50', '标签页', 48, 'number', NULL, 0, 0);
+-- INSERT INTO `system_config` VALUES (52, 'user_page_size', '50', '用户主页', 48, 'number', NULL, 0, 0);
+-- INSERT INTO `system_config` VALUES (53, 'search_page_size', '50', '搜索页', 48, 'number', NULL, 0, 0);
+-- INSERT INTO `system_config` VALUES (54, 'default_upload_node_filedir', '/upload/node/', '默认的节点文件保存路径（保存在war包里）', 29, 'text', NULL, 0, 1);
+-- INSERT INTO `system_config` VALUES (55, 'default_upload_tag_filedir', '/upload/tag/', '默认的标签文件保存路径（保存在war包里）', 29, 'text', NULL, 0, 1);
+-- INSERT INTO `system_config` VALUES (56, 'default_upload_user_filedir', '/upload/user/', '默认的用户文件保存路径（保存在war包里）', 29, 'text', NULL, 0, 1);
+-- INSERT INTO `system_config` VALUES (57, 'upload_type', '29', '上传类型', 2, 'hidden', NULL, 0, 0);
+-- COMMIT;
 
 -- ----------------------------
 -- Table structure for tab
@@ -268,13 +252,13 @@ CREATE TABLE `tab` (
 -- ----------------------------
 -- Records of tab
 -- ----------------------------
-BEGIN;
-INSERT INTO `tab` VALUES (1, 'all', '全部', 0, '2018-07-15 15:59:48', 1);
-INSERT INTO `tab` VALUES (2, 'hot', '最热', 0, '2018-07-15 16:00:49', 2);
-INSERT INTO `tab` VALUES (3, 'new', '最新', 0, '2019-01-03 20:19:41', 3);
-INSERT INTO `tab` VALUES (4, 'lonely', '无人问津', 0, '2019-01-03 20:20:49', 4);
-INSERT INTO `tab` VALUES (5, 'member', '关注', 0, '2018-07-15 20:49:50', 15);
-COMMIT;
+-- BEGIN;
+-- INSERT INTO `tab` VALUES (1, 'all', '全部', 0, '2018-07-15 15:59:48', 1);
+-- INSERT INTO `tab` VALUES (2, 'hot', '最热', 0, '2018-07-15 16:00:49', 2);
+-- INSERT INTO `tab` VALUES (3, 'new', '最新', 0, '2019-01-03 20:19:41', 3);
+-- INSERT INTO `tab` VALUES (4, 'lonely', '无人问津', 0, '2019-01-03 20:20:49', 4);
+-- INSERT INTO `tab` VALUES (5, 'member', '关注', 0, '2018-07-15 20:49:50', 15);
+-- COMMIT;
 
 -- ----------------------------
 -- Table structure for topic
@@ -317,10 +301,10 @@ CREATE TABLE `topic` (
 -- ----------------------------
 -- Records of topic
 -- ----------------------------
-BEGIN;
-INSERT INTO `topic` VALUES (1, NULL, NULL, '1111111111', NULL, '<p>111111</p>', NULL, '2020-05-02 11:00:22', '2020-05-02 12:14:54', NULL, NULL, 1, 'zhangsan', 1, 1, 1, 0, 0, 1, NULL, NULL, '', NULL, 'Java', NULL, '/resources/images/default-avatar.jpg', NULL);
-INSERT INTO `topic` VALUES (3, NULL, NULL, '1111', NULL, '<p><iframe src=\"/static/84de141fc74a4c5a96f3cca2bb774be7.mp4\" style=\"width:650px;height: 366px\" frameborder=\"0\"></iframe></p>', NULL, '2020-05-02 13:39:34', '2020-05-02 13:39:34', NULL, NULL, 2, 'zhangsan', 0, 0, 1, 0, 0, 1, NULL, NULL, '', NULL, 'Java', NULL, '/resources/images/default-avatar.jpg', NULL);
-COMMIT;
+-- BEGIN;
+-- INSERT INTO `topic` VALUES (1, NULL, NULL, '1111111111', NULL, '<p>111111</p>', NULL, '2020-05-02 11:00:22', '2020-05-02 12:14:54', NULL, NULL, 1, 'zhangsan', 1, 1, 1, 0, 0, 1, NULL, NULL, '', NULL, 'Java', NULL, '/resources/images/default-avatar.jpg', NULL);
+-- INSERT INTO `topic` VALUES (3, NULL, NULL, '1111', NULL, '<p><iframe src=\"/static/84de141fc74a4c5a96f3cca2bb774be7.mp4\" style=\"width:650px;height: 366px\" frameborder=\"0\"></iframe></p>', NULL, '2020-05-02 13:39:34', '2020-05-02 13:39:34', NULL, NULL, 2, 'zhangsan', 0, 0, 1, 0, 0, 1, NULL, NULL, '', NULL, 'Java', NULL, '/resources/images/default-avatar.jpg', NULL);
+-- COMMIT;
 
 -- ----------------------------
 -- Table structure for up_down
@@ -369,11 +353,11 @@ CREATE TABLE `user` (
 -- ----------------------------
 -- Records of user
 -- ----------------------------
-BEGIN;
-INSERT INTO `user` VALUES (1, 'zhangsan', '$2a$10$IbaB5bBM6J9Q6tJABB2V1eEW5GBWrwlrV9CzaY/zChe85N92idvfq', NULL, NULL, 30, '/resources/images/default-avatar.jpg', '847064370@qq.com', NULL, '这家伙很懒，什么都没留下', NULL, 0, '2020-05-02 11:00:11', NULL, 0, 'd4749dbfb75247feb338a72b928b26d1', '1000', NULL, NULL, 1, NULL);
-INSERT INTO `user` VALUES (2, 'lisi', '$2a$10$EAESKMBg0riXeX6pKKmuR.X3ZsyvCoYVcG.LE2dRaOpuClOOhubKC', NULL, NULL, 20, '/resources/images/default-avatar.jpg', '303695336@qq.com', NULL, '这家伙很懒，什么都没留下', NULL, 0, '2020-05-02 11:56:41', NULL, 0, 'c72fc6f818444d44a8665c294b130b39', NULL, NULL, NULL, 1, NULL);
-INSERT INTO `user` VALUES (3, 'wangwu', '$2a$10$EAESKMBg0riXeX6pKKmuR.X3ZsyvCoYVcG.LE2dRaOpuClOOhubKC', NULL, NULL, 20, '/resources/images/default-avatar.jpg', '11@qq.com', NULL, '这家伙很懒，什么都没留下', NULL, 0, '2020-05-02 11:56:41', NULL, 0, 'c72fc6f818444d44a8665c294b130b39', NULL, NULL, NULL, 1, NULL);
-COMMIT;
+-- BEGIN;
+-- INSERT INTO `user` VALUES (1, 'zhangsan', '$2a$10$IbaB5bBM6J9Q6tJABB2V1eEW5GBWrwlrV9CzaY/zChe85N92idvfq', NULL, NULL, 30, '/resources/images/default-avatar.jpg', '847064370@qq.com', NULL, '这家伙很懒，什么都没留下', NULL, 0, '2020-05-02 11:00:11', NULL, 0, 'd4749dbfb75247feb338a72b928b26d1', '1000', NULL, NULL, 1, NULL);
+-- INSERT INTO `user` VALUES (2, 'lisi', '$2a$10$EAESKMBg0riXeX6pKKmuR.X3ZsyvCoYVcG.LE2dRaOpuClOOhubKC', NULL, NULL, 20, '/resources/images/default-avatar.jpg', '303695336@qq.com', NULL, '这家伙很懒，什么都没留下', NULL, 0, '2020-05-02 11:56:41', NULL, 0, 'c72fc6f818444d44a8665c294b130b39', NULL, NULL, NULL, 1, NULL);
+-- INSERT INTO `user` VALUES (3, 'wangwu', '$2a$10$EAESKMBg0riXeX6pKKmuR.X3ZsyvCoYVcG.LE2dRaOpuClOOhubKC', NULL, NULL, 20, '/resources/images/default-avatar.jpg', '11@qq.com', NULL, '这家伙很懒，什么都没留下', NULL, 0, '2020-05-02 11:56:41', NULL, 0, 'c72fc6f818444d44a8665c294b130b39', NULL, NULL, NULL, 1, NULL);
+-- COMMIT;
 
 -- ----------------------------
 -- Table structure for visit
