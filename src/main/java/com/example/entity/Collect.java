@@ -3,28 +3,28 @@ package com.example.entity;
 import java.util.Date;
 
 /**
- * 收藏实体
- * @author sen
- * 2018年6月29日
- * 下午5:15:14
+ * Collection entity
+ * @author Cheng
+ * 2018-06-29
+ * 5:15:14 p.m
  * TODO
  */
 public class Collect {
 
 	/**
-	 * 唯一标识
+	 * Unique identification
 	 */
 	private Integer id;
 	/**
-	 * 用户ID
+	 * User ID
 	 */
 	private Integer uid;
 	/**
-	 * 主题ID
+	 * Topic ID
 	 */
 	private Integer tid;
 	/**
-	 * 创建时间
+	 * Creation time
 	 */
 	private Date createDate;
 	
