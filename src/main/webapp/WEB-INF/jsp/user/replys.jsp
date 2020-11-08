@@ -3,7 +3,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-  <title>${user.userName}评论的话题</title>
+  <title>${user.userName}Comment topic</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <!-- 引入 Bootstrap -->
   <link href="/resources/css/bootstrap.min.css" rel="stylesheet">
@@ -51,11 +51,11 @@
   </div>
 </div>
 <jsp:include page="../components/foot.jsp"></jsp:include>
-<!-- jQuery (Bootstrap 的 JavaScript 插件需要引入 jQuery) -->
+<!-- jQuery (Bootstrap's JavaScript needs jQuery) -->
 <script src="/resources/js/jquery.js"></script>
-<!-- 引入 Bootstrap -->
+<!-- Introduce Bootstrap -->
 <script src="/resources/js/bootstrap.min.js"></script>
-<!-- 分页 -->
+<!-- Pagination -->
 <script src="/resources/js/pagination2.js"></script>
 <script src="/resources/js/goTop.js"></script>
 <script type="text/javascript">

@@ -4,7 +4,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-  <title>${user.userName}创建的话题</title>
+  <title>${user.userName}Topic created</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <!-- 引入 Bootstrap -->
   <link href="/resources/css/bootstrap.min.css" rel="stylesheet">
@@ -19,7 +19,7 @@
     <div class="row">
       <div class="col-md-9">
         <div class="panel panel-default">
-          <div class="panel-heading"><a href="/">主页</a> / ${user.userName}创建的话题</div>
+          <div class="panel-heading"><a href="/">Home page</a> / ${user.userName}Topic created</div>
           <c:forEach var="item" items="${topicPage.list}">
           <div class="panel-body paginate-bot" style="border-bottom: 1px solid #e2e2e2;">
             <div class="media">
@@ -89,14 +89,14 @@
 	$(function(){
 		/* var url = "/user/${user.userName}/topics?";
 		$(".pagination2").pagination("${topicPage.pageNumber}","${topicPage.totalPage}",10); */
-		 var count = ${topicPage.totalRow};//数据总量
-		 var limit = ${topicPage.pageSize};//每页显示的条数
+		 var count = ${topicPage.totalRow};//Total amount of data
+		 var limit = ${topicPage.pageSize};//Number of items displayed per page
 		 var url = "/user/topics?p=";//url
 		 function page(){
 		    var page = location.search.match(/p=(\d+)/);  
 		    return page ? page[1] : 1;  
 		 }
-		 var p = page();//当前页数
+		 var p = page();//current page number
 		 paginate(count,limit,p,url);
 	});
 </script>
