@@ -17,7 +17,7 @@
     <sql id="Base_Column_List">
         node_tab_id, node_tab_code, node_tab_title, node_tab_desc, is_delete, node_tab_order, create_date,update_date
     </sql>
-    <!-- 查询所有板块 -->
+
     <select id="selectAll" resultType="NodeTab">
         select
         <include refid="Base_Column_List"/>
@@ -25,7 +25,7 @@
         where is_delete = 0
         order by node_tab_order
     </select>
-    <!-- 根据ID查询节点板块 -->
+
     <select id="selectById" parameterType="java.lang.Integer" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
@@ -33,7 +33,7 @@
         where  is_delete = 0
         and node_tab_id = #{nodeTabId,jdbcType=INTEGER}
     </select>
-    <!-- 根据编码查询节点板块 -->
+
     <select id="selectByCode" parameterType="java.lang.String" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
@@ -42,7 +42,7 @@
         and node_tab_code = #{nodeTabCode}
     </select>
     
-    <!-- 添加节点板块 -->
+
     <insert id="insert" parameterType="com.example.entity.NodeTab" keyProperty="nodeTabId" useGeneratedKeys="true">
         insert into node_tab 
         (node_tab_id, 
@@ -63,7 +63,7 @@
         #{createDate,jdbcType=TIMESTAMP},
         #{updateDate,jdbcType=TIMESTAMP})
     </insert>
-    <!-- 根据ID更新板块 -->
+
     <update id="updateById" parameterType="com.example.entity.NodeTab">
         update node_tab
         set node_tab_code = #{nodeTabCode,jdbcType=VARCHAR},
@@ -74,7 +74,7 @@
         update_date = {#updateDate,jdbcType=TIMESTAMP}
         where node_tab_id = #{nodeTabId,jdbcType=INTEGER}
     </update>
-    <!-- 根据ID删除板块 -->
+
     <delete id="deleteById" parameterType="java.lang.Integer">
         delete from node_tab
         where node_tab_id = #{nodeTabId,jdbcType=INTEGER}
