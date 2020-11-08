@@ -61,11 +61,7 @@ public class IndexController extends BaseController {
 	@Autowired
 	private FollowService followService;
 
-	/**
-	 * 首页
-	 * 
-	 * @return
-	 */
+	//main page
 	@RequestMapping(value = "/", method = RequestMethod.GET, produces = "application/json; charset=utf-8")
 	private String index(HttpServletRequest request, HttpServletResponse response,
 			@RequestParam(value = "p", defaultValue = "1") Integer p,
@@ -92,9 +88,9 @@ public class IndexController extends BaseController {
 		
 		if (StringUtils.isEmpty(node)) {
 			Map<String, List<Topic>> map = new LinkedHashMap<>();
-			map.put("热门帖子", topicService.findIndexHot(1, 10, "hot").getList());
-			map.put("最新帖子", topicService.findIndexHot(1, 10, "newest").getList());
-			map.put("等待回复", topicService.findIndexHot(1, 10, "noReply").getList());
+			map.put("hot", topicService.findIndexHot(1, 10, "hot").getList());
+			map.put("new", topicService.findIndexHot(1, 10, "newest").getList());
+			map.put("waiting", topicService.findIndexHot(1, 10, "noReply").getList());
 			List<Node> nodeListForIndex = nodeService.listForIndex();
 			nodeListForIndex.stream().forEach(n -> {
 				map.put(n.getNodeTitle(), topicService.pageAllByTabAndNode(p, 10, tab, n.getNodeTitle()).getList());
@@ -103,10 +99,10 @@ public class IndexController extends BaseController {
 			request.setAttribute("nodeName", "index");
 			return "index";
 		} else {
-			List<Node> hotNodeList = nodeService.findAll(0, 10); // 热门板块
-			int countUserAll = userService.countUserAll(); // 注册会员的数量
-			int countAllTopic = topicService.countAllTopic(null, null); // 帖子的数量
-			int countAllReply = replyService.countAll(); // 评论的数量
+			List<Node> hotNodeList = nodeService.findAll(0, 10); // hot
+			int countUserAll = userService.countUserAll(); // membership num
+			int countAllTopic = topicService.countAllTopic(null, null); // post num
+			int countAllReply = replyService.countAll(); // comment num
 			
 			request.setAttribute("hotNodeList", hotNodeList);
 			request.setAttribute("countUserAll", countUserAll);
@@ -115,7 +111,7 @@ public class IndexController extends BaseController {
 			
 			PageDataBody<Topic> page;
 			
-			if ("全部".equals(node)) {
+			if ("all".equals(node)) {
 				page = topicService.pageAllByTabAndNode(p, 25, tab, null);
 			} else {
 				page = topicService.pageAllByTabAndNode(p, 25, tab, node);
@@ -127,77 +123,52 @@ public class IndexController extends BaseController {
 		}
 	}
 
-	/**
-	 * 注册页面
-	 */
+	//register page
 	@RequestMapping(value = "/register", method = RequestMethod.GET)
 	private String register(HttpServletRequest request) {
 		return "register";
 	}
 
-	/**
-	 * 注册接口
-	 * @param username
-	 * @param password
-	 * @param email
-	 * @param request
-	 * @return
-	 */
+	//register interface
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
 	@ResponseBody
 	private Result<UserExecution> register(@RequestParam("username") String username,
 			@RequestParam("password") String password, @RequestParam("email") String email,
 			@RequestParam("userType") String userType, HttpServletRequest request, HttpServletResponse response) {
-		ApiAssert.notEmpty(username, "请输入用户名");
-		ApiAssert.notEmpty(password, "请输入密码");
-		ApiAssert.notEmpty(email, "请输入邮箱");
+		ApiAssert.notEmpty(username, "input username");
+		ApiAssert.notEmpty(password, "input password");
+		ApiAssert.notEmpty(email, "input email");
 		User user = userService.findByName(username);
-		ApiAssert.isNull(user, "用户已存在");
+		ApiAssert.isNull(user, "user exitn");
 		user = userService.findByEmail(email);
-		ApiAssert.isNull(user, "邮箱已存在");
+		ApiAssert.isNull(user, "email exit");
 		UserExecution save = userService.createUser(username, password, email, userType);
-		// 设置session
+		// set session
 		CookieAndSessionUtil.setSession(request, "user", save.getUser());
 		return new Result<UserExecution>(true, save);
 	}
 
-	/**
-	 * 登录页面
-	 */
+	//login page
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	private String login(HttpServletRequest request) {
 		return "login";
 	}
 
-	/**
-	 * 登录接口
-	 * 
-	 * @param username
-	 * @param password
-	 * @param request
-	 * @param response
-	 * @return
-	 */
+	//login
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	@ResponseBody
 	private Result<User> login(@RequestParam("username") String username,
 							   @RequestParam("password") String password,
 			HttpServletRequest request, HttpServletResponse response) {
 		User user = userService.findByName(username);
-		ApiAssert.notNull(user, "用户不存在");
-		ApiAssert.isTrue(new BCryptPasswordEncoder().matches(password, user.getPassword()), "密码不正确");
-		// 设置session
+		ApiAssert.notNull(user, "user no exist");
+		ApiAssert.isTrue(new BCryptPasswordEncoder().matches(password, user.getPassword()), "wrong password");
+		// set session
 		CookieAndSessionUtil.setSession(request, "user", user);
 		return new Result<User>(true, user);
 	}
 
-	/**
-	 * 退出
-	 * 
-	 * @param request
-	 * @param response
-	 * @return
-	 */
+	//logout
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)
 	private String logout(HttpServletRequest request, HttpServletResponse response) {
 		// stringRedisTemplate.delete("user");
@@ -205,13 +176,7 @@ public class IndexController extends BaseController {
 		return "redirect:/";
 	}
 
-	/**
-	 * 标签页
-	 * 
-	 * @param request
-	 * @param p
-	 * @return
-	 */
+	//tage
 	@RequestMapping(value = "/tags", method = RequestMethod.GET)
 	private String tag(HttpServletRequest request, @RequestParam(value = "p", defaultValue = "1") Integer p) {
 		PageDataBody<Tag> tag = topicService.findByTag(p, 50);
@@ -235,12 +200,7 @@ public class IndexController extends BaseController {
 		}
 	}
 
-	/**
-	 * 搜索
-	 * 
-	 * @param request
-	 * @return
-	 */
+	//search
 	@RequestMapping(value = "/search", method = RequestMethod.GET)
 	private String search(HttpServletRequest request, @RequestParam("s") String search,
 			@RequestParam(value = "p", defaultValue = "1") Integer p) {
@@ -256,9 +216,7 @@ public class IndexController extends BaseController {
 	}
 
 	/**
-	 * Top100积分榜
-	 * 
-	 * @return
+	 * Top100 standings
 	 */
 	@RequestMapping(value = "/top100")
 	private String top100() {
@@ -266,9 +224,7 @@ public class IndexController extends BaseController {
 	}
 
 	/**
-	 * 关于
-	 * 
-	 * @return
+	 * about
 	 */
 	@RequestMapping(value = "/about")
 	private String about() {

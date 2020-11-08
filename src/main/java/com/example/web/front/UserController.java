@@ -53,8 +53,7 @@ public class UserController extends BaseController{
 	@Autowired
 	private StorageService storageService;
 	/**
-	 * 用户主页
-	 * @return
+	 * mainpage
 	 */
 	@RequestMapping(value = "/user/{name}", method = RequestMethod.GET)
 	private String detail(@PathVariable String name, Model model,@RequestParam(value = "tp", defaultValue = "1") Integer tp,@RequestParam(value = "rp", defaultValue = "1") Integer rp,HttpServletRequest request) {
@@ -66,15 +65,15 @@ public class UserController extends BaseController{
 		if(user == null) {
 			return "error-page/404";
 		}
-		User user2 = getUser(request);//当前用户
+		User user2 = getUser(request);//current user
 		PageDataBody<Topic> topicPage = rootTopicService.pageByAuthor(tp, 20, name);
 		PageDataBody<ReplyAndTopicByName> replyPage = rootReplyService.findAllByNameAndTopic(name, rp, 20);
-		int countTopic = rootTopicService.countByUserName(user.getUserName());//主题数量
-		int countCollect = collectDaoService.count(user.getUserId());//用户收藏话题的数量
-		int countReply = rootReplyService.countByName(name);//评论的数量
-		int countScore = rootUserService.countScore(user.getUserId());//积分
-		int countVisit = visitService.count(user.getUserId());//被访问的次数
-		//当用户为登录状态并且访问者与被访问者不是同一个人时，添加访问记录
+		int countTopic = rootTopicService.countByUserName(user.getUserName());//topic num
+		int countCollect = collectDaoService.count(user.getUserId());//collection
+		int countReply = rootReplyService.countByName(name);//comment num
+		int countScore = rootUserService.countScore(user.getUserId());//
+		int countVisit = visitService.count(user.getUserId());//visit num
+		//after login if visiter not user ,add record
 		if(user2 != null && user.getUserId() != user2.getUserId()) {
 			Visit visit = new Visit();
 			visit.setUid(user2.getUserId());
@@ -95,21 +94,15 @@ public class UserController extends BaseController{
 		return "user/detail";
 	}
 	
-	/**
-	 * 查看用户创建的更多话题
-	 * @param name
-	 * @param model
-	 * @param p
-	 * @return
-	 */
+	//more topic
 	@RequestMapping(value = "/user/topics", method = RequestMethod.GET)
 	private String topics(Model model,@RequestParam(value = "p", defaultValue = "1") Integer p,HttpServletRequest request) {
-		User user2 = getUser(request);//当前用户
+		User user2 = getUser(request);//current user
 		if(user2 == null) return "error-page/404.jsp";
 		PageDataBody<Topic> topicPage = rootTopicService.pageByAuthor(p, 50, user2.getUserName());
-		int countCollect = collectDaoService.count(user2.getUserId());//用户收藏话题的数量
-		int countTopicByUserName = rootTopicService.countByUserName(user2.getUserName());//用户发布的主题的数量
-		int notReadNotice = rootNoticeService.countNotReadNotice(user2.getUserName());//未读通知的数量
+		int countCollect = collectDaoService.count(user2.getUserId());//collect num
+		int countTopicByUserName = rootTopicService.countByUserName(user2.getUserName());//post num
+		int notReadNotice = rootNoticeService.countNotReadNotice(user2.getUserName());//unread num
 		BaseEntity baseEntity = new BaseEntity();
 		model.addAttribute("baseEntity", baseEntity);
 		model.addAttribute("user", user2);
@@ -120,13 +113,7 @@ public class UserController extends BaseController{
 		return "user/topics";
 	}
 	
-	/**
-	 * 查看用户评论的更多话题
-	 * @param name
-	 * @param model
-	 * @param p
-	 * @return
-	 */
+	//most concern
 	@RequestMapping(value = "/user/{name}/replys", method = RequestMethod.GET)
 	private String replys(@PathVariable String name, Model model,@RequestParam(value = "p", defaultValue = "1") Integer p,HttpServletRequest request) {
 		if(name == null) {
@@ -137,11 +124,11 @@ public class UserController extends BaseController{
 		if(user == null) {
 			return "error-page/404.jsp";
 		}
-		User user2 = getUser(request);//当前用户
+		User user2 = getUser(request);//current user
 		PageDataBody<ReplyAndTopicByName> replyPage = rootReplyService.findAllByNameAndTopic(name, p, 20);
-		int countTopic = rootTopicService.countByUserName(user.getUserName());//主题数量
-		int countCollect = collectDaoService.count(user.getUserId());//用户收藏话题的数量
-		int countReply = rootReplyService.countByName(user.getUserName());//评论的数量
+		int countTopic = rootTopicService.countByUserName(user.getUserName());//topic num
+		int countCollect = collectDaoService.count(user.getUserId());//collect num
+		int countReply = rootReplyService.countByName(user.getUserName());//comment num
 		model.addAttribute("user", user);
 		model.addAttribute("user2", user2);
 		model.addAttribute("replyPage", replyPage);
@@ -156,8 +143,7 @@ public class UserController extends BaseController{
 	}
 	
 	/**
-	 * 进入个人设置页面
-	 * @return
+	 * personal setting page
 	 */
 	@RequestMapping(value = "/user/settings/profile", method = RequestMethod.GET)
 	private String setting(HttpServletRequest request) {
@@ -180,14 +166,7 @@ public class UserController extends BaseController{
 	}
 	
 	/**
-	 * 修改个人设置
-	 * @param email
-	 * @param url
-	 * @param thirdId
-	 * @param userAddr
-	 * @param signature
-	 * @param request
-	 * @return
+	 * update settings
 	 */
 	@RequestMapping(value = "/user/setting/profile", method = RequestMethod.POST)
 	private String updateUserInfo(String email,String url,String thirdId,String userAddr,
@@ -213,8 +192,7 @@ public class UserController extends BaseController{
 	}
 	
 	/**
-	 * 进入修改头像界面
-	 * @return
+	 * update avatar
 	 */
 	@RequestMapping(value = "/user/settings/changeAvatar", method = RequestMethod.GET)
 	private String changeAvatar(HttpServletRequest request) {
@@ -222,26 +200,20 @@ public class UserController extends BaseController{
 	}
 	
 	/**
-	 * 更新头像
-	 * @param avatarBase64:base64格式的图片
-	 * @param path:自定义保存路径
-	 * @param request
-	 * @return
+	 * update ava
 	 */
 	@RequestMapping(value = "/user/setting/changeAvatar", method = RequestMethod.POST)
 	@ResponseBody
 	private Result<String> changeAvatar(String avatarBase64,String path,HttpServletRequest request){
 		User user = getUser(request);
-		ApiAssert.notNull(user, "请先登录");
-		ApiAssert.notEmpty(avatarBase64, "头像不能为空");
+		ApiAssert.notNull(user, "login first");
+		ApiAssert.notEmpty(avatarBase64, "avatar not null");
 		rootUserService.updateAvatar(avatarBase64, path, user, request);
-		return new Result<>(true, "更新成功");
+		return new Result<>(true, "update success");
 	}
 	
 	/**
-	 * 进入修改密码界面
-	 * @param request
-	 * @return
+	 * change the password
 	 */
 	@RequestMapping(value = "/user/settings/changePassword",method = RequestMethod.GET)
 	private String changePassword(HttpServletRequest request) {
@@ -252,13 +224,13 @@ public class UserController extends BaseController{
 	@ResponseBody
 	private Result<UserExecution> changePassword(HttpServletRequest request,String oldPassword,String newPassword){
 		if(newPassword == null) {
-			return new Result<>(false,"密码不能为空");
+			return new Result<>(false,"password not null");
 		}
 		User user = getUser(request);
 		if(!user.getPassword().equals(oldPassword)) {
-			return new Result<>(false,"旧密码不正确");
+			return new Result<>(false,"password error");
 		}
-		//加密保存
+		//	encryption
 		user.setPassword(new BCryptPasswordEncoder().encode(newPassword));
 		UserExecution updateUser = rootUserService.updateUser(user);
 		return new Result<UserExecution>(true,updateUser);
