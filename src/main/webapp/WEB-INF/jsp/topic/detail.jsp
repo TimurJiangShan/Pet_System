@@ -3,7 +3,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java"%>
 <html>
 <head>
-	<title>宠物信息服务平台-${topic.title}</title>
+	<title>PetGo-${topic.title}</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link href="/resources/css/bootstrap.min.css" rel="stylesheet">
 	<link href="/resources/css/app.css" rel="stylesheet" type="text/css">
@@ -22,7 +22,7 @@
 					<div class="box-body topic-detail-header">
 						<div class="media">
 							<div class="media-body">
-								<a href="/">首页</a>
+								<a href="/">Homepage</a>
 								<c:if test="${topic.nodeTitle != null}">
 									<span class="chevron">&nbsp;›&nbsp;</span>
 									<a href="/n/${topic.nodeTitle}" class="topic-detail-node">${topic.nodeTitle}</a>
@@ -39,20 +39,20 @@
 								<p>
 									<div id="topic_${topic.topicId}_votes" class="votes">
 										<a href="javascript:" onclick="voteTopic(${topic.topicId},true);"
-										class="vote vote_up" title="0 赞同">
+										class="vote vote_up" title="0 Agree">
 										<li class="fa fa-chevron-up"></li>
 									</a> <a href="javascript:"
-									onclick="voteTopic(${topic.topicId},false);" class="vote vote_down" title="0 反对">
+									onclick="voteTopic(${topic.topicId},false);" class="vote vote_down" title="0 Disagree">
 									<li class="fa fa-chevron-down"></li>
 								</a>
 							</div>
 							<span>•</span>
 							<c:if test="${topic.top}">
-							<span class="label label-warning">置顶</span>
+							<span class="label label-warning">Top</span>
 							<span>•</span>
 						</c:if>
 						<c:if test="${topic.good}">
-						<span class="label label-success">精华</span>
+						<span class="label label-success">Excellent</span>
 						<span>•</span>
 					</c:if>
 					<span><a href="/user/${topic.author}">${topic.author}</a></span>
@@ -61,7 +61,7 @@
 					<%-- <span>${baseEntity.formatDate(topic.createDate)}</span> --%>
 					<%-- <span class="formate-date">${topic.createDate}</span> --%>
 					<span>•</span>
-					<span>${topic.viewCount}次点击</span>
+					<span>${topic.viewCount}clicks</span>
 				</p>
 			</div>
 			<div class="media-right">
@@ -82,12 +82,12 @@
 			<a href="javascript:window.open('http://service.weibo.com/share/share.php?url=https://宠物信息服务平台.cn/topic/${topic.topicId}?r=${topic.author}&title=${topic.title}', '_blank', 'width=550,height=370'); recordOutboundLink(this, 'Share', 'weibo.com');">分享微博</a>&nbsp;
 			<a href="javascript:void(0);" class="collectTopic"
 			onclick="save()"></a> <span class="pull-right"><span
-			id="collectCount">${countByTid}</span>个收藏</span>
+			id="collectCount">${countByTid}</span>collection</span>
 		</div>
 	</div>
 	<c:if test="${topic.replyCount == 0}">
 	<div class="panel panel-default">
-		<div class="panel-body text-center">目前暂无评论</div>
+		<div class="panel-body text-center">No reply</div>
 	</div>
 </c:if>
 <c:if test="${topic.replyCount > 0}">
@@ -95,21 +95,19 @@
 </c:if>
 <div class="panel panel-default" id="pinglun" style="display: none">
 	<div class="panel-heading">
-		添加一条新评论
-		<!-- <a href="javascript:void(0);" id="goTop" class="pull-right" onclick="goTop()">回到顶部</a> -->
+		Add a new comment
 	</div>
 	<div class="panel-body">
 		<input type="hidden" id="commentId" value="">
 		<p class="hidden" id="replyP">
 			回复<span id="replyAuthor"></span>: <a
-			href="javascript:cancelReply();">取消</a>
+			href="javascript:cancelReply();">Cancel</a>
 		</p>
 		<body>
 		</body>
 		<div id="editor" style="margin-bottom: 10px;"></div>
 		<button id="btn" class="btn btn-warning">
-			<!-- <span class="glyphicon glyphicon-send"></span> -->
-			评论
+			Comment
 		</button>
 	</div>
 </div>
@@ -162,42 +160,42 @@
 	editor.customConfig.debug = true;
 	editor.customConfig.uploadFileName = 'file';
 	editor.customConfig.uploadImgServer = '/common/upload';
-	// 将图片大小限制为 5MB
+	// Limitation of picture is 5MB
 	editor.customConfig.uploadImgMaxSize = 5 * 1024 * 1024;
-	// 限制一次最多上传 5 张图片
+	// Limitation of uploading is 5 pictures one time
 	editor.customConfig.uploadImgMaxLength = 10;
-	// 将 timeout 时间改为 10s
+	// Timeout is 10 s
 	editor.customConfig.uploadImgTimeout = 10000;
 	editor.customConfig.menus = [
-	                 			'head',  // 标题
-	                			'bold',  // 粗体
-	                			'fontSize',  // 字号
-	                			'fontName',  // 字体
-	                			'italic',  // 斜体
-	                			'underline',  // 下划线
-	                			'strikeThrough',  // 删除线
-	                			'foreColor',  // 文字颜色
-	                			'backColor',  // 背景颜色
-	                			'link',  // 插入链接
-	                			'list',  // 列表
-	                			'justify',  // 对齐方式
-	                			'quote',  // 引用
-	                			'emoticon',  // 表情
-	                			'image',  // 插入图片
-	                			'table',  // 表格
-	                			'video',  // 插入视频
-	                			'code',  // 插入代码
-	                			'undo',  // 撤销
-	                			'redo'  // 重复
+	                 			'head',
+	                			'bold',
+	                			'fontSize',
+	                			'fontName',
+	                			'italic',
+	                			'underline',
+	                			'strikeThrough',
+	                			'foreColor',
+	                			'backColor',
+	                			'link',
+	                			'list',
+	                			'justify',
+	                			'quote',
+	                			'emoticon',
+	                			'image',
+	                			'table',
+	                			'video',
+	                			'code',
+	                			'undo',
+	                			'redo'
 	                        ];
 	editor.customConfig.emotions = [
                                 	{
-                                		title: '默认',
+                                		title: 'default',
                                 		type: 'image',
                                 		content: defaultEmotions
                                 	},
                                 	{
-                                		title: '动漫',
+                                		title: 'animate',
                                 		type: 'image',
                                 		content: animeEmotions
                                 	},
@@ -207,7 +205,7 @@
                                 		content: gifEmotions
                                 	},
                                 	{
-                                		title: '其他',
+                                		title: 'other',
                                 		type: 'image',
                                 		content: otherEmotions
                                 	}
@@ -225,13 +223,13 @@
 	  	$("#commentId").val("");
 	  	$("#replyP").addClass("hidden");
 	  }
-	  /* 回复话题 */
+	  /* Reply topic */
 	  $("#btn").click(function () {
 	  	var contentHtml = editor.txt.html();
 	  	var contentText = editor.txt.text();
 	  	var topicId = ${topic.topicId};
 	  	if(!contentHtml) {
-	  		alert('请输入回复内容');
+	  		alert('Enter reply');
 	  		return false;
 	  	} else {
 	  		$.ajax({
@@ -260,24 +258,24 @@
 	  	data:{tid:tid},
 	  	success:function(data){
 	  		if(data.success != null && data.success == true){
-	  			$(".collectTopic").text("取消收藏");
+	  			$(".collectTopic").text("Cancel collection");
 	  		}else{
-	  			$(".collectTopic").text("加入收藏");
+	  			$(".collectTopic").text("Add collection");
 	  		}
 	  	},
 	  	error:function(data){
 
 	  	}
 	  });
-	  /* 收藏和取消收藏话题 */
+	  /* Cancel and add collection */
 	  function save(){
 	  	var collectTopic = $(".collectTopic").text();
         //console.log(collectTopic);
         var url;
-        if(collectTopic == "加入收藏"){
+        if(collectTopic == "Add collection"){
         	url = "/collect/save";
         }
-        if(collectTopic == "取消收藏"){
+        if(collectTopic == "Cancel collection"){
         	url = "/collect/delete";
         }
     	//alert("collectTopic："+collectTopic+"  url："+url);
@@ -287,13 +285,13 @@
     		dataType:"json",
     		data:{tid:tid},
     		success:function(data){
-    			if(data.success != null && data.success == true && data.error == "收藏成功"){
+    			if(data.success != null && data.success == true && data.error == "Add collection successfully"){
     				//alert(JSON.stringify(data));
-    				$(".collectTopic").text("取消收藏");
+    				$(".collectTopic").text("Cancel collection");
     			}
-    			if(data.success != null && data.success == true && data.error == "取消收藏成功"){
+    			if(data.success != null && data.success == true && data.error == "Cancel collection successfully"){
     				//alert(JSON.stringify(data));
-    				$(".collectTopic").text("加入收藏");
+    				$(".collectTopic").text("Add collection");
     			}
     		},
     		error:function(data){
@@ -305,14 +303,14 @@
     	$('body,html').animate({scrollTop:0},500);
     }
     
-     var count = ${replyPage.totalRow};//数据总量
-	 var limit = ${replyPage.pageSize};//每页显示的条数
+     var count = ${replyPage.totalRow};//Total data
+	 var limit = ${replyPage.pageSize};//Number of page displayed
 	 var url = "/topic/${topic.topicId}?p=";//url
 	 function page(){
 	 	var page = location.search.match(/p=(\d+)/);  
 	 	return page ? page[1] : 1;  
 	 }
-	 var p = page();//当前页数
+	 var p = page();//Current page
 	 paginate(count,limit,p,url);
 
 	 var upNumber;
@@ -328,11 +326,11 @@
 	 		},
 	 		success:function(data){
 	 			upNumber = data.data;
-	 			//console.log("赞同=="+upNumber);
+
 	 			if(data.success != null && data.success == true && data.data > 0){
 	 				$(".votes .vote_up").html('');
 	 				$(".votes .vote_up").append("<li class=\"fa fa-chevron-up\"></li>"+data.data+"");
-	 				$(".votes .vote_up").attr("title",data.data+" 赞同");
+	 				$(".votes .vote_up").attr("title",data.data+" Agree");
 	 			}
 	 		},
 	 		error:function(data){
@@ -351,11 +349,11 @@
 	 		},
 	 		success:function(data){
 	 			downNumber = data.data;
-	 			//console.log("反对=="+downNumber);
+
 	 			if(data.success != null && data.success == true && data.data > 0){
 	 				$(".votes .vote_down").html('');
 	 				$(".votes .vote_down").append("<li class=\"fa fa-chevron-down\"></li>"+data.data+"");
-	 				$(".votes .vote_down").attr("title",data.data+" 反对");
+	 				$(".votes .vote_down").attr("title",data.data+" Disagree");
 	 			}
 	 		},
 	 		error:function(data){
