@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-  <title>宠物信息服务平台-出错了~~</title>
+  <title>PetGo-Error!!!</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <!-- 引入 Bootstrap -->
   <link href="/resources/css/bootstrap.min.css" rel="stylesheet">
@@ -16,7 +16,7 @@
     <div class="panel-body">
       <h1>: (</h1>
       <h3>500</h3>
-      <p>出错了</p>
+      <p>Something went wrong</p>
     </div>
   </div>
 </div>
