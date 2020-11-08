@@ -4,12 +4,12 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-  <title>${user.userName}创建的话题</title>
+  <title>${user.userName}Topic created</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- 引入 Bootstrap -->
+  <!-- introduce Bootstrap -->
   <link href="/resources/css/bootstrap.min.css" rel="stylesheet">
   <link href="/resources/css/app.css" rel="stylesheet" type="text/css">
-  <!-- 引入layui.css -->
+  <!-- introduce layui.css -->
   <link rel="stylesheet" href="/resources/layui/css/layui.css" media="all">
   <link rel="shortcut icon" href="/resources/images/favicon.ico">
 </head>
@@ -19,7 +19,7 @@
     <div class="row">
       <div class="col-md-9">
         <div class="panel panel-default">
-          <div class="panel-heading"><a href="/">主页</a> / ${user.userName}创建的话题</div>
+          <div class="panel-heading"><a href="/">Home page</a> / ${user.userName}Topic created</div>
           <c:forEach var="item" items="${topicPage.list}">
           <div class="panel-body paginate-bot" style="border-bottom: 1px solid #e2e2e2;">
             <div class="media">
@@ -37,26 +37,19 @@
                 <div class="tip">
                 <p>
                   <c:if test="${item.top}">
-			      <span class="label label-warning">置顶</span> <span>•</span>
+			      <span class="label label-warning">top</span> <span>•</span>
 			      </c:if>
 			      <c:if test="${item.good}">
-			      <span class="label label-warning">精华</span> <span>•</span>
+			      <span class="label label-warning">highlight</span> <span>•</span>
 			      </c:if>
 			      <span><a href="/node/${item.nodeSlug}" class="node">${item.nodeTitle}</a></span>
 			      <span>•</span>
                   <strong><a href="/user/${item.author}">${item.author}</a></strong>
                   <span class="hidden-sm hidden-xs">•</span>
-                  <span class="hidden-sm hidden-xs">${item.viewCount}次点击</span>
-                  <!-- <span>•</span> -->
-                  <%-- <span class="hidden-sm hidden-xs"><a href="/topic/${item.topicId}">${item.replyCount}个评论</a></span> --%>
+                  <span class="hidden-sm hidden-xs">${item.viewCount}clicks</span>
                   <span class="hidden-sm hidden-xs">•</span>           
                   <span><fmt:formatDate type="date" value="${item.createDate}" /></span>
-                  <%-- <c:if test="${item.lastReplyAuthor != null}">
-                  <span>•</span>
-                  <span>最后回复来自 <a href="/user/${item.lastReplyAuthor}">${item.lastReplyAuthor}</a></span>
-                  </c:if> --%>
-                  <!-- <span>•</span> -->
-                  <%-- <a href="/topic/tag/${item.tag}"><span class="label label-success">${item.tag}</span></a> --%>
+
                 </p>
                 </div>
               </div>
@@ -87,16 +80,14 @@
 <script src="/resources/js/login_info.js"></script>
 <script type="text/javascript">
 	$(function(){
-		/* var url = "/user/${user.userName}/topics?";
-		$(".pagination2").pagination("${topicPage.pageNumber}","${topicPage.totalPage}",10); */
-		 var count = ${topicPage.totalRow};//数据总量
-		 var limit = ${topicPage.pageSize};//每页显示的条数
+		 var count = ${topicPage.totalRow};//Total amount of data
+		 var limit = ${topicPage.pageSize};//Number of items displayed per page
 		 var url = "/user/topics?p=";//url
 		 function page(){
 		    var page = location.search.match(/p=(\d+)/);  
 		    return page ? page[1] : 1;  
 		 }
-		 var p = page();//当前页数
+		 var p = page();//current page number
 		 paginate(count,limit,p,url);
 	});
 </script>

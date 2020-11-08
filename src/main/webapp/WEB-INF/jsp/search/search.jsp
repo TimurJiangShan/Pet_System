@@ -4,13 +4,13 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-  <title>宠物信息服务平台-搜索结果</title>
+  <title>PetGo-Search Result</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- 引入 Bootstrap -->
+  <!-- Import Bootstrap -->
   <link href="/resources/css/bootstrap.min.css" rel="stylesheet">
   <link href="/resources/css/app.css" rel="stylesheet" type="text/css">
   <link rel="shortcut icon" href="/resources/images/favicon.ico">
-  <!-- 引入layui.css -->
+  <!-- Import layui.css -->
   <link rel="stylesheet" href="/resources/layui/css/layui.css" media="all">
 </head>
 <body>
@@ -19,7 +19,7 @@
 <div class="row">
   <div class="col-md-12">
     <div class="box box-warning">
-      <div class="box-header with-border">搜索结果</div>
+      <div class="box-header with-border">Search result</div>
         <div class="box-body">
 
   <c:forEach var="item" items="${pageLike.list}">
@@ -43,10 +43,10 @@
               <div class="tip">
               <p class="gray">
               <c:if test="${item.top}">
-			  <span class="label label-warning">置顶</span> <span>•</span>
+			  <span class="label label-warning">Top</span> <span>•</span>
 			  </c:if>
 			  <c:if test="${item.good}">
-			  <span class="label label-warning">精华</span> <span>•</span>
+			  <span class="label label-warning">Highlight</span> <span>•</span>
 			  </c:if>
 			  
 			  <c:if test="${not empty item.nodeTitle}">
@@ -57,24 +57,10 @@
                 <strong><a href="/user/${item.author}">${item.author}</a></strong>
                 <span class="hidden-sm hidden-xs">•</span>
                 <span class="hidden-sm hidden-xs">${item.viewCount}次点击</span>
-                <!-- 评论 -->
-                <!-- <span class="hidden-sm hidden-xs">•</span> -->
-                <%-- <span class="hidden-sm hidden-xs"><a href="/topic/41">${item.replyCount}个评论</a></span> --%>
+
                 <span>•</span>
                 <span><fmt:formatDate type="date" 
                   value="${item.createDate}" /></span>
-                  <%-- <span>${baseEntity.formatDate(item.createDate)}</span> --%>
-                  <%-- <span class="formate-date">${item.createDate}</span> --%>
-                  
-                  <!-- 最后回复用户 -->
-                  <%-- <c:if test="${item.lastReplyAuthor != null}">
-                  <span>•</span>
-                  <span>最后回复来自 <a href="/user/${item.lastReplyAuthor}">${item.lastReplyAuthor}</a></span>
-                  </c:if> --%>
-                  
-                  <!-- 标签 -->
-                  <!-- <span>•</span> -->
-                  <%-- <a href="/topic/tag/${item.tag}"><span class="label label-success">${item.tag}</span></a> --%>
                 </p>
                 </div>
               </div>
@@ -85,9 +71,6 @@
             </div>
           </c:forEach>
       </div>
-      <!-- <div class="panel-footer">
-          <ul class="pagination pagination-sm pagination2"></ul>
-      </div> -->
       <div class="panel-footer" id="paginate"></div>
     </div>
   </div>
@@ -110,17 +93,15 @@
   var search = "${search}";
   //var url = "/search?s="+search+"&";
   //$(".pagination2").pagination("${pageLike.pageNumber}","${pageLike.totalPage}",10);
-  var count = ${pageLike.totalRow};//数据总量
-  var limit = ${pageLike.pageSize};//每页显示的条数
+  var count = ${pageLike.totalRow};//total data
+  var limit = ${pageLike.pageSize};//the number of page display
   var url = "/search?s="+search+"&p=";//url
   function page(){
 	   var page = location.search.match(/p=(\d+)/);  
 	   return page ? page[1] : 1;  
 	 }
-  var p = page();//当前页数
-	 //console.log("p:"+p);
-	 //console.log(count);
-	 //console.log(url);
+  var p = page();//current page
+
   paginate(count,limit,p,url);
 </script>
 </body>
