@@ -22,7 +22,7 @@
 								</div>
 								<div style="margin-top: 15px;">
 									<a href="/topic/create?statusCd=1000" style="font-size: 14px;"><button
-											class="btn btn-success">发布帖子</button></a>
+											class="btn btn-success">Create Topic</button></a>
 								</div>
 							</div>
 							<div class="sep10" style="height: 10px;"></div>
@@ -32,15 +32,15 @@
 									<tr>
 										<td width="33%" align="center"><a href="/user/topics"
 											class="dark" style="display: block;"><span class="bigger">${sessionScope.countTopic}</span>
-												<div class="sep3"></div> <span class="fade">我的主题</span></a></td>
+												<div class="sep3"></div> <span class="fade">My Topic</span></a></td>
 										<td width="34%"
 											style="border-left: 1px solid rgba(100, 100, 100, 0.4); border-right: 1px solid rgba(100, 100, 100, 0.4);"
 											align="center"><a href="/collect/topics" class="dark"
 											style="display: block;"><span class="bigger">${sessionScope.countCollect}</span>
-												<div class="sep3"></div> <span class="fade">我的收藏</span></a></td>
+												<div class="sep3"></div> <span class="fade">My Collection</span></a></td>
 										<td width="33%" align="center"><a href="/follow/topics"
 											class="dark" style="display: block;"><span class="bigger">${sessionScope.countFollow}</span>
-												<div class="sep3"></div> <span class="fade">特别关注</span></a></td>
+												<div class="sep3"></div> <span class="fade">Follow</span></a></td>
 									</tr>
 								</tbody>
 							</table>
@@ -48,7 +48,7 @@
 						<div class="panel-footer" style="background-color: white">
 							<div class="row">
 								<span class="col-md-6"><a href="/notification/list"><span
-										id="n_count">${sessionScope.countNotReadNotice}</span> 条未读消息</a></span> <span class="col-md-6 text-right">积分：<a
+										id="n_count">${sessionScope.countNotReadNotice}</span> unread message</a></span> <span class="col-md-6 text-right">Point：<a
 									href="/top100">${sessionScope.countScore}</a></span>
 							</div>
 						</div>
@@ -57,7 +57,7 @@
 				
 				<!-- 今日热议主题 -->
     <div class="panel panel-default">
-      <div class="panel-heading"><span style="color: #ccc;">今日热议主题</span></div>
+      <div class="panel-heading"><span style="color: #ccc;">Popular Topic</span></div>
       <table class="table" style="font-size: 14px;">
         <tbody>
         <c:forEach var="item" items="${findHot}">
@@ -84,7 +84,7 @@
     </div>
     <!-- 今日等待回复的主题 -->
     <div class="panel panel-default">
-      <div class="panel-heading"><span style="color: #ccc;">今日等待回复主题</span></div>
+      <div class="panel-heading"><span style="color: #ccc;">Ready to reply</span></div>
       <table class="table" style="font-size: 14px;">
         <tbody>
         <c:forEach var="item" items="${findTodayNoReply}">
@@ -109,7 +109,7 @@
     </div>
     <!-- 积分榜 -->
     <div class="panel panel-default">
-    <div class="panel-heading"><span style="color: #ccc;">积分榜  <a class="dark" href="/top100">TOP 100 &gt;&gt;</a></span></div>
+    <div class="panel-heading"><span style="color: #ccc;">Points Rank  <a class="dark" href="/top100">TOP 100 &gt;&gt;</a></span></div>
     <div class="panel-body">
       <div class="row">
       <div class="inner top100"></div>
@@ -118,7 +118,7 @@
   </div>
     <!-- 最热标签 -->
     <div class="panel panel-default">
-    <div class="panel-heading"><span style="color: #ccc;">热门节点</span></div>
+    <div class="panel-heading"><span style="color: #ccc;">Popular Node</span></div>
     <div class="panel-body">
       <div class="row">
       <c:forEach var="item" items="${nodeList2}">
@@ -136,20 +136,20 @@
   </div>
     <!-- 社区运行状况 -->
     <div class="panel panel-default">
-    <div class="panel-heading"><span style="color: #ccc;">社区运行状况</span></div>
+    <div class="panel-heading"><span style="color: #ccc;">PetGo Community</span></div>
     <div class="cell">
     	<table cellpadding="5" cellspacing="0" border="0" width="100%">
             <tbody style="font-size: 14px;">
             <tr>
-                <td width="80" align="right"><span class="gray">注册会员：</span></td>
+                <td width="80" align="right"><span class="gray">Number of Users：</span></td>
                 <td width="auto" align="left"><strong>${countUserAll}</strong></td>
             </tr>
             <tr>
-                <td width="80" align="right" style="font-size: 14px;"><span class="gray">主题：</span></td>
+                <td width="80" align="right" style="font-size: 14px;"><span class="gray">Topic：</span></td>
                 <td width="auto" align="left"><strong>${countAllTopic}</strong></td>
             </tr>
             <tr>
-                <td width="80" align="right"><span class="gray">回复：</span></td>
+                <td width="80" align="right"><span class="gray">Reply：</span></td>
                 <td width="auto" align="left"><strong>${countAllReply}</strong></td>
             </tr>
            </tbody>

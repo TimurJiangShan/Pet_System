@@ -8,7 +8,7 @@
 		<br>
 		<p>
 			
-				<a href="/about">关于</a>
+				<a href="/about">About</a>
 				&nbsp;
 				<span class="snow" style="color: #e2e2e2;">·</span>
 				&nbsp;
@@ -16,16 +16,16 @@
 				&nbsp;
 				<span class="snow" style="color: #e2e2e2;">·</span>
 				&nbsp;
-				<a href="/mission">愿景</a>
+				<a href="/mission">Hope</a>
 				&nbsp;
 				&nbsp;
 			<span class="pull-right">
-        		<a href="/admin/login" target="_blank">登录后台</a><!-- &nbsp;|&nbsp; -->
+        		<a href="/admin/login" target="_blank">Login Backend</a><!-- &nbsp;|&nbsp; -->
       		</span>
 		</p>
 		
 
-		<p>Copyright © 2020 宠物信息服务平台. All rights reserved.</p>
+		<p>Copyright © 2020 PetGo. All rights reserved.</p>
 	</div>
 </body>
 </html>
