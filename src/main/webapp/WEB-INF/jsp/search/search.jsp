@@ -56,7 +56,7 @@
 			  	
                 <strong><a href="/user/${item.author}">${item.author}</a></strong>
                 <span class="hidden-sm hidden-xs">•</span>
-                <span class="hidden-sm hidden-xs">${item.viewCount}次点击</span>
+                <span class="hidden-sm hidden-xs">${item.viewCount}clicks</span>
 
                 <span>•</span>
                 <span><fmt:formatDate type="date" 
