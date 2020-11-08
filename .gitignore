@@ -6,7 +6,6 @@ pom.xml.releaseBackup
 pom.xml.versionsBackup
 pom.xml.next
 release.properties
-dependency-reduced-pom.xml
 buildNumber.properties
 .mvn/timing.properties
 
@@ -60,3 +59,15 @@ fabric.properties
 .idea
 .idea
 .idea
+
+.project
+.settings/
+.prefs
+.pydevproject
+.idea/
+.idea
+.DS_Store
+.cache
+*.pyc
+*.html
+*.xlm
