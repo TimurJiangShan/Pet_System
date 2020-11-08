@@ -1,18 +1,12 @@
 package com.example.enums;
 
-/**
- * 发布话题的数据字典
- * @author sen
- * 2018年5月7日
- * 下午11:57:22
- * TODO
- */
+
 public enum InsertTopicEnum {
 
-	SUCCESS(1, "发布成功"), NO_USER(0,"禁用状态"),REPEAT_USER(-1, "发布失败"),INNER_ERROR(-2, "系统异常");
+	SUCCESS(1, "post successful"), NO_USER(0,"ban"),REPEAT_USER(-1, "post failure"),INNER_ERROR(-2, "system error");
 
-	private int state;// 信息代码
-	private String stateInfo;// 信息说明
+	private int state;
+	private String stateInfo;
 	
 	private InsertTopicEnum(int state,String stateInfo) {
 		this.state = state;

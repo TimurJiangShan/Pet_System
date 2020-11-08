@@ -8,14 +8,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 
-/**
- * <pre>
- *     邮件发送业务逻辑实现类
- * </pre>
- *
- * @author : saysky
- * @date : 2018/1/23
- */
 @Service
 public class MailServiceImpl implements MailService {
 
@@ -32,16 +24,9 @@ public class MailServiceImpl implements MailService {
     private String SMTP_FROM;
 
 
-    /**
-     * 发送邮件
-     *
-     * @param to      to 接收者
-     * @param subject subject 标题
-     * @param content content 内容
-     */
     @Override
     public void sendMail(String to, String subject, String content) throws Exception {
-        //配置邮件服务器
+
 
         EmailUtils.configMail(SMTP_HOST, SMTP_USERNAME, SMTP_PASSWORD);
 
@@ -52,7 +37,7 @@ public class MailServiceImpl implements MailService {
                     .html(content)
                     .send();
         } catch (SMTPAddressFailedException e) {
-            System.out.println("部分邮件不存在");
+            System.out.println("Part of the email does not exist");
         }
 
     }

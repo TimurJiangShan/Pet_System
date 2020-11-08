@@ -20,12 +20,7 @@ import com.example.entity.SystemConfig;
 import com.example.service.SystemConfigService;
 
 
-/**
- * <p></p>
- *
- * @author: miansen.wang
- * @date: 2019-03-07
- */
+
 @Service
 public class SystemConfigServiceImpl implements SystemConfigService {
 
@@ -35,56 +30,47 @@ public class SystemConfigServiceImpl implements SystemConfigService {
     private SystemConfigDao systemConfigDao;
 
 
-    //上传配置
     private Map<String, Object> uploadConfig;
 
     private Integer age;
 
     static {
-        System.out.println("SystemConfigServiceImpl初始化。。。");
+        System.out.println("SystemConfigServiceImpl initial");
     }
 
 
     public SystemConfigServiceImpl() {
-        System.out.println("SystemConfigServiceImpl构造器初始化。。。");
+        System.out.println("SystemConfigServiceImpl initial");
     }
 
-    /**
-     * key是父节点的description,value是所有子节点对象
-     */
+
     @Override
     public Map<String, Object> getAllMap() {
         Map<String, Object> map = null;
 
         if (map != null) {
-            log.debug("从redis里面取出了【系统设置】的信息");
+            log.debug("get system setting from redis");
             return map;
         } else {
             Map<String, Object> map2 = new LinkedHashMap<>();
 
-            /*这种方法循环查询了数据库，性能开销大！*/
-			/*systemConfigDao.selectByPid(0).forEach(systemConfig -> {
-				map2.put(systemConfig.getDescription(), systemConfigDao.selectByPid(systemConfig.getSystemConfigId()));
-			});*/
 
-            // 获取所有的系统配置数据
             List<SystemConfig> systemConfigs = getAllList();
 
-            // 获取父节点
+
             List<SystemConfig> systemConfigP = systemConfigs.stream()
                     .filter(systemConfig -> systemConfig.getPid() == 0)
                     .collect(Collectors.toList());
 
-            // 遍历父节点
             systemConfigP.forEach(p -> {
-                // 通过父节点ID获取对应的子节点
+
                 List<SystemConfig> systemConfigC = systemConfigs.stream()
                         .filter(systemConfig -> systemConfig.getPid().equals(p.getSystemConfigId()))
                         .collect(Collectors.toList());
                 map2.put(p.getDescription(), systemConfigC);
             });
 
-            log.debug("从数据库里面取出了系统设置的信息");
+            log.debug("get system setting from db");
             return map2;
         }
     }
@@ -94,7 +80,7 @@ public class SystemConfigServiceImpl implements SystemConfigService {
         List<SystemConfig> systemConfigs = null;
 
         if (systemConfigs != null) {
-            log.debug("从redis里面取出了【系统设置】的信息");
+            log.debug("get system setting from redis");
             return systemConfigs;
         } else {
             systemConfigs = systemConfigDao.selectAll();
@@ -143,9 +129,7 @@ public class SystemConfigServiceImpl implements SystemConfigService {
         systemConfigDao.update(systemConfig);
     }
 
-    /**
-     * 更新配置
-     */
+
     @Override
     public void update(List<Map<String, String>> list) {
         for (Map<String, String> map : list) {
@@ -153,25 +137,21 @@ public class SystemConfigServiceImpl implements SystemConfigService {
             systemConfig.setKey(map.get("name"));
             systemConfig.setValue(map.get("value"));
             systemConfigDao.update(systemConfig);
-            // 如果更新的是上传配置
+
             if (systemConfig.getKey().equals("upload_type")) {
                 updateUploadConfig(new Integer(systemConfig.getValue()));
             }
         }
     }
 
-    /**
-     * 更新上传配置
-     */
+
     @Transactional
     @Override
     public void updateUploadConfig(Integer id) {
-        // 获取当前配置
+
         SystemConfig systemConfig = getById(id);
-        // 获取相同父节点的配置
         List<SystemConfig> list = getByPid(systemConfig.getPid());
 
-        // 将配置的 value 设置为 0，不包含 key 为 upload_type 的配置
         list.stream()
                 .filter(systemConfig2 -> !systemConfig2.getKey().equals("upload_type"))
                 .collect(Collectors.toList()).forEach(systemConfig2 -> {
@@ -179,17 +159,13 @@ public class SystemConfigServiceImpl implements SystemConfigService {
             update(systemConfig2);
         });
 
-        // 再将当前配置的 value 设置为 1
+
         systemConfig.setValue("1");
         update(systemConfig);
 
-        // 更新uploadType
         uploadConfig = null;
     }
 
-    /**
-     * 获取上传数据
-     */
     @Override
     public Map<String, Object> getUploadConfig() {
         if (uploadConfig != null) {

@@ -2,20 +2,14 @@ package com.example.entity;
 
 import java.util.Date;
 
-/**
- * 根据评论人昵称关联话题表查询全部评论
- * @author sen
- * 2018年6月3日
- * 下午5:55:06
- * TODO
- */
+
 public class ReplyAndTopicByName {
 
-	private Date createDate;//评论时间
-	private String author;//话题作者的昵称
-	private Integer topicId;//话题ID
-	private String title;//话题的标题
-	private String replyContent;//评论的内容
+	private Date createDate;
+	private String author;
+	private Integer topicId;
+	private String title;
+	private String replyContent;
 	public Date getCreateDate() {
 		return createDate;
 	}

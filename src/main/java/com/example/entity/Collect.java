@@ -2,30 +2,18 @@ package com.example.entity;
 
 import java.util.Date;
 
-/**
- * 收藏实体
- * @author sen
- * 2018年6月29日
- * 下午5:15:14
- * TODO
- */
+//collect
 public class Collect {
 
-	/**
-	 * 唯一标识
-	 */
+	//key
 	private Integer id;
-	/**
-	 * 用户ID
-	 */
+
+	//userid
 	private Integer uid;
-	/**
-	 * 主题ID
-	 */
+
+	//topic id
 	private Integer tid;
-	/**
-	 * 创建时间
-	 */
+
 	private Date createDate;
 	
 	public Integer getId() {

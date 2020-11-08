@@ -1,27 +1,27 @@
 package com.example.dto;
 
 /**
- * 封装JSON对象，所有的返回结果都使用它
+ * json
  * @author Jiangshan
  * @param <T>
  * TBD
  */
 public class Result<T> {
 
-	private boolean success;//是否成功标志
-	private T data;//成功时返回的对象
-	private String error;//错误信息
+	private boolean success;
+	private T data;
+	private String error;
 	public Result() {
 		
 	}
 
-	// 成功时的构造器
+	//Constructor on successful
 	public Result(boolean success, T data) {
 		this.success = success;
 		this.data = data;
 	}
 
-	// 失败时的构造器
+	//Constructor on failure
 	public Result(boolean success, String error) {
 		this.success = success;
 		this.error = error;

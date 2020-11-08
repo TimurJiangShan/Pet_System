@@ -2,118 +2,57 @@ package com.example.entity;
 
 import java.util.Date;
 
-/**
- * @author sen
- * 2018年5月5日
- * 下午8:46:50
- * 用户实体
- * Table: root_user
- */
 public class User {
 
-	/**
-	 * 用户标识
-	 */
 	private Integer userId;
 	
-	/**
-	 * 用户昵称
-	 */
+
 	private String userName;
-	
-	/**
-	 * 用户密码
-	 */
+
 	private String password;
-	
-	/**
-	 * 用户性别
-	 */
+
 	private String userSex;
-	
-	/**
-	 * 用户地址
-	 */
+
 	private String userAddr;
-	
-	/**
-	 * 积分
-	 */
+
 	private Integer score;
-	
-	/**
-	 * 头像
-	 */
+
 	private String avatar;
 	
-	/**
-	 * 邮箱
-	 */
+
 	private String email;
 	
-	/**
-	 * 个人主页
-	 */
+
 	private String url;
-	
-	/**
-	 * 个性签名
-	 */
+
 	private String signature;
 	
-	/**
-	 * 第三方账户ID
-	 */
+
 	private String thirdId;
-	
-	/**
-	 * 邮箱是否接收社区消息
-	 */
+
 	private Boolean receiveMsg;
-	
-	/**
-	 * 创建时间
-	 */
+
 	private Date createDate;
 	
-	/**
-	 * 修改时间
-	 */
+
 	private Date updateDate;
-	
-	/**
-	 * 禁用 0：默认 1：禁用
-	 */
+
 	private Boolean isBlock;
 	
-	/**
-	 * 第三方登录获取的access_token
-	 */
+
 	private String thirdAccessToken;
-	
-	/**
-	 * 用户状态 1000:有效 1100:无效 1200:未生效
-	 */
+
 	private String statusCd;
 	
-	/**
-	 * 用户登入ip
-	 */
+
 	private String loginIp;
 	
-	/**
-	 * 用户最后登入ip
-	 */
+
 	private String lastLoginIp;
 	
-	/**
-	 * 用户类型 0:超级管理员 1:版主 2:普通用户
-	 */
+
 	private String userType;
-	
-	/**
-	 * 备注
-	 */
+
 	private String remark;
 
 	public Integer getUserId() {

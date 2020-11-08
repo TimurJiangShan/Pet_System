@@ -2,43 +2,23 @@ package com.example.entity;
 
 import java.util.Date;
 
-/**
- * 点赞
- * @author sen
- * 2018年8月11日
- * 上午10:31:00
- * TODO
- */
+
 public class UpDown {
 
-	/**
-	 * 主键ID
-	 */
+
 	private Integer id;
 	
-	/**
-	 * 用户ID
-	 */
+
 	private Integer uid;
-	
-	/**
-	 * 话题ID
-	 */
+
 	private Integer tid;
 	
-	/**
-	 * true:up false:down
-	 */
+
 	private boolean upDown;
-	
-	/**
-	 * 创建时间
-	 */
+
 	private Date createDate;
 	
-	/**
-	 * 是否删除 true:否  false:是
-	 */
+
 	private boolean isDelete;
 
 	public Integer getId() {

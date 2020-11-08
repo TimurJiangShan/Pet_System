@@ -17,19 +17,14 @@ public class BaseEntity {
 	private static final long MONTH = 31 * DAY;
 	private static final long YEAR = 12 * MONTH;
 
-	/**
-	 * 格式化日期
-	 * @param date
-	 * @return
-	 * @throws Exception 
-	 */
+	//format date
 	public static String formatDate(Date date) throws Exception {
 		
-		String str = "个月前";
+		String str = "months ago";
 		byte[] bytes = str.getBytes();
 		str = new String(bytes,"UTF-8");
 		
-		String str2 = "周前";
+		String str2 = "weeks ago";
 		byte[] bytes2 = str2.getBytes();
 		str2 = new String(bytes2,"UTF-8");
 		
@@ -38,19 +33,19 @@ public class BaseEntity {
 
 		long offset = System.currentTimeMillis() - date.getTime();
 		if (offset > YEAR) {
-			return (offset / YEAR) + "年前";
+			return (offset / YEAR) + "years ago";
 		} else if (offset > MONTH) {
 			return (offset / MONTH) + str;
 		} else if (offset > WEEK) {
 			return (offset / WEEK) + str2;
 		} else if (offset > DAY) {
-			return (offset / DAY) + "天前";
+			return (offset / DAY) + "days ago";
 		} else if (offset > HOUR) {
-			return (offset / HOUR) + "小时前";
+			return (offset / HOUR) + "hours ago";
 		} else if (offset > MINUTE) {
-			return (offset / MINUTE) + "分钟前";
+			return (offset / MINUTE) + "min ago";
 		} else {
-			return "刚刚";
+			return "just now";
 		}
 	}
 }

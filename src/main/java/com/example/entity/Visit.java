@@ -2,38 +2,19 @@ package com.example.entity;
 
 import java.util.Date;
 
-/**
- * 访问记录
- * @author sen
- * 2018年8月4日
- * 上午11:28:01
- * TODO
- */
+
 public class Visit {
 
-	/**
-	 * 主键
-	 */
 	private Integer id;
 	
-	/**
-	 * 访问者ID
-	 */
+
 	private Integer uid;
-	
-	/**
-	 * 被访问者ID
-	 */
+
 	private Integer vid;
 	
-	/**
-	 * 创建时间
-	 */
+
 	private Date createDate;
 
-	/**
-	 * 是否删除 false 否 true 是
-	 */
 	private boolean isDelete;
 	
 	public Integer getId() {

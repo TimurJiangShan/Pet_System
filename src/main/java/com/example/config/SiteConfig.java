@@ -4,13 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
-/**
- * 
- * @author sen
- * 2018年8月29日
- * 下午3:17:20
- * TODO
- */
 @Component
 public class SiteConfig {
 

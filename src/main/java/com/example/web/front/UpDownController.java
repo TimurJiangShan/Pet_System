@@ -13,13 +13,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.dto.DMLExecution;
 import com.example.dto.Result;
 
-/**
- * like or dislike
- * @Chao Wang
- * 10/10/2020
- * 13:14:18
- * TODO
- */
 @RestController
 @RequestMapping(value = "/topic")
 public class UpDownController extends BaseController{

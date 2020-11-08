@@ -17,19 +17,14 @@ import com.example.enums.InsertEnum;
 import com.example.enums.UpdateEnum;
 import com.example.service.VisitService;
 
-/**
- * 
- * @author sen 2018年8月4日 下午3:34:37 TODO
- */
+
 @Service
 public class VisitServiceImpl implements VisitService {
 
 	@Autowired
 	private VisitDao visitDao;
 
-	/**
-	 * 分页查询访问记录
-	 */
+
 	@Override
 	public PageDataBody<User> page(Integer vid, Integer pageNumber, Integer pageSize) {
 		int totalRow = visitDao.count(vid);
@@ -37,30 +32,28 @@ public class VisitServiceImpl implements VisitService {
 		return new PageDataBody<>(list, pageNumber, pageSize, totalRow);
 	}
 
-	/**
-	 * 添加访问记录
-	 */
+
 	@Override
 	@Transactional
 	public DMLExecution save(Visit visit) {
 		try {
 			if (visit.getUid() == visit.getVid()) {
-				throw new OperationRepeaException("访问者与被访问者为同一用户！");
+				throw new OperationRepeaException("The visitor and the interviewee are the same user！");
 			}
 			int isVisit = visitDao.isVisit(visit.getUid(), visit.getVid());
 			if (isVisit == 0) {
 				int insert = visitDao.insert(visit);
 				if (insert <= 0) {
-					throw new OperationFailedException("添加失败!");
+					throw new OperationFailedException("add failure!");
 				} else {
-					return new DMLExecution("添加访问记录", InsertEnum.SUCCESS, visit);
+					return new DMLExecution("Add access record", InsertEnum.SUCCESS, visit);
 				}
 			} else {
 				int update = visitDao.update(visit);
 				if (update <= 0) {
-					throw new OperationFailedException("更新失败!");
+					throw new OperationFailedException("update failure!");
 				} else {
-					return new DMLExecution("更新访问记录", UpdateEnum.SUCCESS, visit);
+					return new DMLExecution("Update access records", UpdateEnum.SUCCESS, visit);
 				}
 			}
 		} catch (OperationRepeaException e2) {

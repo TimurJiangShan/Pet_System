@@ -2,99 +2,48 @@ package com.example.entity;
 
 import java.util.Date;
 
-/**
- * 回复实体
- * Table: root_notice
- * @author sen
- * 2018年5月5日
- * 下午9:39:24
- * TODO
- */
+
 public class Notice {
 
-	/**
-	 * 消息通知标识
-	 */
 	private Integer noticeId;
 	
-	/**
-	 * 通知标题
-	 */
+
 	private String noticeTitle;
-	
-	/**
-	 * 是否已读：0:未读 1:已读
-	 */
+
 	private Boolean isRead;
-	
-	/**
-	 * 发起通知用户id
-	 */
+
 	private Integer noticeAuthorId;
 	
-	/**
-	 * 发起通知用户昵称
-	 */
+
 	private String noticeAuthorName;
-	
-	/**
-	 * 要通知用户id
-	 */
+
 	private Integer targetAuthorId;
 	
-	/**
-	 * 要通知用户的昵称
-	 */
+
 	private String targetAuthorName;
 	
-	/**
-	 * 创建时间
-	 */
+
 	private Date createDate;
-	
-	/**
-	 * 阅读时间
-	 */
+
 	private Date updateDate;
-	
-	/**
-	 * 通知动作
-	 */
+
 	private String noticeAction;
 	
-	/**
-	 * 话题id
-	 */
+
 	private Integer topicId;
-	
-	/**
-	 * 话题作者id
-	 */
+
 	private Integer topicAuthorId;
-	
-	/**
-	 * 话题板块id
-	 */
+
 	private Integer topicSectionId;
 	
-	/**
-	 * 通知内容
-	 */
+
 	private String noticeContent;
-	
-	/**
-	 * 通知状态 1000:有效 1100:无效 1200:未生效
-	 */
+
 	private String statusCd;
-	
-	/**
-	 * 要通知的主题
-	 */
+
 	private String title;
 	
-	/**
-	 * 发起通知用户的头像
-	 */
+
 	private String avatar;	
 	
 	public String getTitle() {

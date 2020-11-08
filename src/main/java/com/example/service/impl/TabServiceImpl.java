@@ -17,10 +17,7 @@ public class TabServiceImpl implements TabService{
 	@Autowired
 	private TabDao tabDao;
 
-	
-	/**
-	 * 查询所有板块
-	 */
+
 	@Override
 	public List<Tab> selectAll() {
 		return tabDao.selectAll();
