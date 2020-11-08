@@ -8,19 +8,19 @@
 <div class="content-wrapper" style="padding: 50px 0 40px;">
 	<section class="content-header">
     <h1>
-      用户
-      <small>编辑</small>
+      User
+      <small>Edit</small>
     </h1>
     <ol class="breadcrumb">
-      <li><a href="/admin/index"><i class="fa fa-dashboard"></i> 首页</a></li>
-      <li><a href="/admin/admin_user/list">用户</a></li>
-      <li class="active">编辑</li>
+      <li><a href="/admin/index"><i class="fa fa-dashboard"></i> HomePage</a></li>
+      <li><a href="/admin/admin_user/list">User</a></li>
+      <li class="active">Edit</li>
     </ol>
   </section>
   <section class="content">
     <div class="box box-warning">
       <div class="box-header with-border">
-        <h3 class="box-title">用户编辑</h3>
+        <h3 class="box-title">User Edit</h3>
       </div>
       <!-- /.box-header -->
       <div class="box-body">
@@ -29,18 +29,18 @@
             <form id="form" action="/admin/admin_user/edit" method="post">
               <input type="hidden" name="id" value="${adminUser.adminUserId}">
               <div class="form-group">
-                <label>用户名</label>
-                <input type="text" id="username" name="username" value="${adminUser.username}" class="form-control" placeholder="用户名" disabled>
+                <label>Username</label>
+                <input type="text" id="username" name="username" value="${adminUser.username}" class="form-control" placeholder="username" disabled>
               </div>
               <div class="form-group">
-                <label>密码</label>
-                <input type="password" id="password" name="password" class="form-control" placeholder="密码为空则不修改">
+                <label>Password</label>
+                <input type="password" id="password" name="password" class="form-control" placeholder="If the password is empty, it cannot be edited">
               </div>
               <div class="form-group">
-                <label>头像</label>
+                <label>Avatar</label>
                 <p>
-          			<button type="button" class="btn btn-warning" id="choiceAvatarBtn">选择头像</button>
-         			<button type="button" class="btn btn-success" id="confirmAvatarBtn">确认头像</button>
+          			<button type="button" class="btn btn-warning" id="choiceAvatarBtn">Choose Avatar</button>
+         			<button type="button" class="btn btn-success" id="confirmAvatarBtn">Confirm Avatar</button>
           			<input type="file" class="hidden" id="newAvatarFile" name="newAvatarFile">
           			<input type="hidden" value="${adminUser.avatar}" name="adminUserAvatar" id="adminUserAvatar">
         		</p>
@@ -53,7 +53,7 @@
           			</div>
         		</div>
               </div>
-              <button type="submit" class="btn btn-warning">保存</button>
+              <button type="submit" class="btn btn-warning">Save</button>
             </form>
           </div>
         </div>
@@ -90,10 +90,10 @@
   	          if(data.success === true) {
   	            // 如果修改的是当前登录用户，则强制重新登录
   	            if(data.data.logout){
-  	            	alert('修改成功，请重新登录');
+  	            	alert('Edit success, please relogin');
   	            	window.location.href = '/admin/logout';
   	            }else{
-  	            	toast('修改成功','success');
+  	            	toast('Edit success','success');
   	            	setTimeout(function() {
   	  	              window.location.href = '/admin/admin_user/list';
   	  	            }, 1000);
