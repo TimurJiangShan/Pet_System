@@ -17,5 +17,5 @@ function getNode(){
 		}
 	});
 };
-//打开页面默认触发事件
+//Open page default trigger event
 window.onLoad = getNode();

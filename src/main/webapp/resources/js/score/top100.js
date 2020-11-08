@@ -12,10 +12,10 @@ $(function(){
 						<thead>\
 						<tr>\
 						<th>#</th>\
-						<th>用户名</th>\
-						<th>积分</th>\
-						<th>主题数</th>\
-						<th>评论数</th>\
+						<th>User name</th>\
+						<th>Credits</th>\
+						<th>Number of topics</th>\
+						<th>Number of comments</th>\
 						</tr>\
 						</thead>\
 						<tbody>\
