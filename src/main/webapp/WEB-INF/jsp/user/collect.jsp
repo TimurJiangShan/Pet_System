@@ -49,8 +49,9 @@
                                         <span>•</span>
                                         <strong><a href="/user/${item.author}">${item.author}</a></strong>
                                         <span class="hidden-sm hidden-xs">•</span>
-                                        <span class="hidden-sm hidden-xs">${item.viewCount} Clicks</span>
+                                        <span class="hidden-sm hidden-xs">${item.viewCount}Clicks</span>
                                         <!-- <span class="hidden-sm hidden-xs">•</span> -->
+                                            <%-- <span class="hidden-sm hidden-xs"><a href="/topic/${item.topicId}">${item.replyCount}个评论</a></span> --%>
                                         <span>•</span>
                                         <span><fmt:formatDate type="date" value="${item.createDate}" /></span>
 
@@ -88,6 +89,9 @@
         return page ? page[1] : 1;
     }
     var p = page();//Current page number
+    //console.log("p:"+p);
+    //console.log(count);
+    //console.log(url);
     paginate(count,limit,p,url);
 </script>
 </body>

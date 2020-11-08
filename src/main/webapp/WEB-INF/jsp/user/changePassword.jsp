@@ -39,7 +39,7 @@
             <input type="password" class="form-control" id="newPassword" name="newPassword">
           </div>
           <div class="form-group">
-            <label for="newPassword2">Plz type new password again</label>
+            <label for="newPassword2">New password again</label>
             <input type="password" class="form-control" id="newPassword2" name="newPassword2">
           </div>
           <button type="submit" class="btn btn-warning">Change Password</button>
