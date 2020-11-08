@@ -42,45 +42,43 @@ public class ReplyController extends BaseController{
 	private Result<ReplyExecution> save(HttpServletRequest request, 
 			@RequestParam("topicId") Integer topicId,
 			@RequestParam("content") String content){
-			//String cookie = CookieAndSessionUtil.getCookie(request, "user");
-			//RootUser user = rootUserService.findByName(Base64Util.decode(cookie));//当前用户
 			User user = getUser(request);
 			Reply reply = new Reply();
-			reply.setTopicId(topicId);//话题id
-			reply.setReplyContent(content);//回复内容
-			reply.setCreateDate(new Date());//回复时间
-			reply.setUpdateDate(new Date());//更新时间
-			reply.setReplyAuthorId(user.getUserId());//当前回复用户ID
-			reply.setReplyAuthorName(user.getUserName());//当前回复用户昵称
-			reply.setIsDelete(false);//是否删除 0:默认 1:删除
-			reply.setIsRead(false);//是否已读 0:默认 1:未读
-			reply.setIsShow(false);//是否可见 0:默认 1:不可见
-			reply.setReplyGoodCount(0);//点赞
-			reply.setReplyBadCount(0);//踩数
+			reply.setTopicId(topicId);
+			reply.setReplyContent(content);
+			reply.setCreateDate(new Date());
+			reply.setUpdateDate(new Date());
+			reply.setReplyAuthorId(user.getUserId());
+			reply.setReplyAuthorName(user.getUserName());
+			reply.setIsDelete(false);
+			reply.setIsRead(false);
+			reply.setIsShow(false);
+			reply.setReplyGoodCount(0);
+			reply.setReplyBadCount(0);
 			reply.setReplyType(null);
 			reply.setReplyReadCount(0);
-			reply.setStatusCd("1000");//回复状态 1000:有效 1100:无效 1200:未生效
-			ReplyExecution save = rootReplyService.save(reply);//添加回复
+			reply.setStatusCd("1000");
+			ReplyExecution save = rootReplyService.save(reply);
 			Topic findByTopicId = rootTopicService.findByTopicId(topicId);
-			findByTopicId.setReplyCount(findByTopicId.getReplyCount()+1);//回复量+1
-			findByTopicId.setLastReplyAuthor(user.getUserName());//最后回复人昵称
-			findByTopicId.setLastReplyTime(new Date());//最后回复时间
-			rootTopicService.updateTopic(findByTopicId);//更新话题
+			findByTopicId.setReplyCount(findByTopicId.getReplyCount()+1);
+			findByTopicId.setLastReplyAuthor(user.getUserName());
+			findByTopicId.setLastReplyTime(new Date());
+			rootTopicService.updateTopic(findByTopicId);
+
 			//回复者与话题作者不是同一个人的时候发送通知
 			if(!user.getUserName().equals(findByTopicId.getAuthor())) {
 				Notice notice = new Notice();
-				//notice.setNoticeTitle(noticeTitle);//通知标题
-				notice.setIsRead(false);//是否已读：0:默认 1:已读
-				notice.setNoticeAuthorId(user.getUserId());//发起通知用户ID
-				notice.setNoticeAuthorName(user.getUserName());//发起通知用户昵称
-				notice.setTargetAuthorName(findByTopicId.getAuthor());//要通知用户的昵称
-				notice.setCreateDate(new Date());//创建时间
-				notice.setUpdateDate(new Date());//更新时间
-				notice.setNoticeAction("reply");//通知动作
-				notice.setTopicId(findByTopicId.getTopicId());//话题ID
-				notice.setNoticeContent(content);//通知内容
-				notice.setStatusCd("1000");//通知状态 1000:有效 1100:无效 1200:未生效
-				rootNoticeService.save(notice);//添加通知
+				notice.setIsRead(false);
+				notice.setNoticeAuthorId(user.getUserId());
+				notice.setNoticeAuthorName(user.getUserName());
+				notice.setTargetAuthorName(findByTopicId.getAuthor());
+				notice.setCreateDate(new Date());
+				notice.setUpdateDate(new Date());
+				notice.setNoticeAction("reply");
+				notice.setTopicId(findByTopicId.getTopicId());
+				notice.setNoticeContent(content);
+				notice.setStatusCd("1000");
+				rootNoticeService.save(notice);
 			}
 			return new Result<ReplyExecution>(true, save);
 	}

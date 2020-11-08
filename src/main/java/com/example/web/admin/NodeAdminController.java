@@ -16,10 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.example.dto.PageDataBody;
 import com.example.dto.Result;
 
-/**
- * @author: miansen.wang
- * @date: 2019-04-03
- */
+
 @Controller
 @RequestMapping("/admin/node")
 public class NodeAdminController {
@@ -48,19 +45,16 @@ public class NodeAdminController {
 	@RequestMapping(value = "/edit",method = RequestMethod.POST)
 	@ResponseBody
 	public Result<String> edit(Integer nodeId, String nodeTitle, String avatarNormal, String avatarLarge, String nodeDesc, Integer sort) {
-		ApiAssert.notNull(nodeId, "板块ID不能为空");
-		ApiAssert.notEmpty(nodeTitle, "板块名称不能为空");
+		ApiAssert.notNull(nodeId, "Node ID cannot be empty");
+		ApiAssert.notEmpty(nodeTitle, "Node Name cannot be empty");
 		if(StringUtils.isEmpty(avatarNormal)) avatarNormal = null;
 		if(StringUtils.isEmpty(avatarLarge)) avatarLarge = null;
 		if(StringUtils.isEmpty(nodeDesc)) nodeDesc = null;
 		nodeService.update(nodeId, nodeTitle, avatarNormal, avatarLarge, nodeDesc, sort);
-		return new Result<>(true, "更新成功");
+		return new Result<>(true, "Update success");
 	}
 	
-	/**
-	 * 添加板块页面
-	 * @return
-	 */
+
 	@RequestMapping(value = "/add",method = RequestMethod.GET)
 	public String add() {
 		return "admin/node/add";
@@ -69,21 +63,21 @@ public class NodeAdminController {
 	@RequestMapping(value = "/add",method = RequestMethod.POST)
 	@ResponseBody
 	public Result<String> add(Integer nodeId, String nodeTitle, String avatarNormal, String avatarLarge, String nodeDesc, Integer sort) {
-		ApiAssert.notEmpty(nodeTitle, "板块名称不能为空");
+		ApiAssert.notEmpty(nodeTitle, "Node Name cannot be empty");
 		if(StringUtils.isEmpty(avatarNormal)) avatarNormal = null;
 		if(StringUtils.isEmpty(avatarLarge)) avatarLarge = null;
 		if(StringUtils.isEmpty(nodeDesc)) nodeDesc = null;
 		nodeService.save(nodeId, nodeTitle, avatarNormal, avatarLarge, nodeDesc, sort);
-		return new Result<>(true, "添加成功");
+		return new Result<>(true, "Add Success");
 	}
 
 	
 	@RequestMapping(value = "/delete",method = RequestMethod.POST)
 	@ResponseBody
 	public Result<String> delete(Integer id){
-		ApiAssert.notNull(id, "板块ID不能为空");
+		ApiAssert.notNull(id, "Node ID cannot be empty");
 		nodeService.deleteById(id);
-		return new Result<>(true, "删除成功");
+		return new Result<>(true, "Delete success");
 	}
 	
 	@RequestMapping(value = "/add/index",method = RequestMethod.GET)
@@ -91,11 +85,11 @@ public class NodeAdminController {
 	public Result<String> addIndex(@RequestParam(value = "id") Integer id, @RequestParam(value = "status") boolean status){
 		Node node = nodeService.findById(id);
 		if (node == null) {
-			return new Result<>(false, "板块不存在");
+			return new Result<>(false, "Node does not exists");
 		}
 		node.setAddIndex(status);
 		nodeService.update(node);
-		return new Result<>(true, "操作成功");
+		return new Result<>(true, "Success");
 	}
 	
 	@RequestMapping(value = "/add/nav",method = RequestMethod.GET)
@@ -103,11 +97,11 @@ public class NodeAdminController {
 	public Result<String> addNav(@RequestParam(value = "id") Integer id, @RequestParam(value = "status") boolean status){
 		Node node = nodeService.findById(id);
 		if (node == null) {
-			return new Result<>(false, "板块不存在");
+			return new Result<>(false, "Node does not exists");
 		}
 		node.setAddNav(status);
 		nodeService.update(node);
-		return new Result<>(true, "操作成功");
+		return new Result<>(true, "Success");
 	}
 	
 	

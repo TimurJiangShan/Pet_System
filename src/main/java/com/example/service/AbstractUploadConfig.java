@@ -6,11 +6,6 @@ import java.util.List;
 import java.util.Map;
 import com.example.entity.SystemConfig;
 
-/**
- * <p></p>
- * @author: miansen.wang
- * @date: 2019-04-02
- */
 public abstract class AbstractUploadConfig implements SystemConfigService{
 
 	@Override

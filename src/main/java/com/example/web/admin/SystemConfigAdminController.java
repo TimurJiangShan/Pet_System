@@ -16,13 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import com.example.dto.Result;
 
-/**
- * <p>
- * </p>
- * 
- * @author: miansen.wang
- * @date: 2019-03-11
- */
+
 @Controller
 @RequestMapping("/admin/system")
 public class SystemConfigAdminController {
@@ -31,18 +25,9 @@ public class SystemConfigAdminController {
 	@Qualifier("systemConfigServiceImpl")
 	private SystemConfigService systemConfigService;
 
-	/**
-	 * 获取系统配置
-	 * @param pid:父级ID
-	 * @param index:当前点击的<li>标签
-	 * @param model
-	 * @return
-	 */
 	@RequestMapping(value = "/edit", method = RequestMethod.GET)
 	public String edit(@RequestParam(value = "pid", defaultValue = "1") Integer pid, @RequestParam(value = "index", defaultValue = "0") Integer index, Model model) {
-		// 父级配置
 		SystemConfig systemConfig = systemConfigService.getById(pid);
-		// 子配置
 		List<SystemConfig> systemConfigs = systemConfigService.getByPid(pid);
 		model.addAttribute("systemConfig", systemConfig);
 		model.addAttribute("systemConfigs", systemConfigs);
@@ -50,11 +35,6 @@ public class SystemConfigAdminController {
 		return "admin/system/edit";
 	}
 
-	/**
-	 * 根据父级ID获取对应的子元素，主要用于获取上传配置
-	 * @param pid:父级ID
-	 * @return
-	 */
 	@RequestMapping(value = "/upload/list", method = RequestMethod.GET)
 	@ResponseBody
 	public Result<List<SystemConfig>> list(Integer pid) {

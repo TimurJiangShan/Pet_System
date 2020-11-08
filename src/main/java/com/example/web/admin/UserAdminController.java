@@ -21,11 +21,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.context.request.WebRequest;
 import com.example.dto.Result;
 
-/**
- * <p></p>
- * @author: miansen.wang
- * @date: 2019-05-01
- */
 @Controller
 @RequestMapping("/admin/user")
 public class UserAdminController {
@@ -34,7 +29,7 @@ public class UserAdminController {
 	private UserService userService;
 	
 	/**
-	 * 用户列表
+	 * User List
 	 * @param username
 	 * @param email
 	 * @param p
@@ -51,45 +46,29 @@ public class UserAdminController {
 		model.addAttribute("page", userService.pageForAdmin(username, email, p, 25));
 		return "/admin/user/list";
 	}
-	
-	/**
-	 * 编辑用户界面
-	 * @param id
-	 * @param model
-	 * @return
-	 */
+
 	@RequestMapping(value = "/edit",method = RequestMethod.GET)
 	public String edit(Integer id, Model model) {
 		model.addAttribute("user", userService.findById(id));
 		return "/admin/user/edit";
 	}
 	
-	/**
-	 * 编辑用户接口
-	 * @param user
-	 * @return
-	 */
 	@RequestMapping(value = "/edit",method = RequestMethod.POST)
 	@ResponseBody
 	public Result<String> edit(User user){
 		userService.updateAdmin(user);
-		return new Result<>(true, "编辑成功");
+		return new Result<>(true, "Success");
 	}
 	
-	/**
-	 * 删除用户
-	 * @param id
-	 * @return
-	 */
 	@RequestMapping(value = "/delete",method = RequestMethod.GET)
 	@ResponseBody
 	public Result<String> delete(Integer id){
 		userService.deleteAdmin(id);
-		return new Result<>(true, "删除成功");
+		return new Result<>(true, "Delete success");
 	}
 	
 	/**
-	 * 刷新Token
+	 * refresh Token
 	 * @return
 	 */
 	@RequestMapping(value = "/refreshToken",method = RequestMethod.GET)
@@ -98,22 +77,17 @@ public class UserAdminController {
 		return new Result<>(true, StringUtil.getUUID());
 	}
 	
-	/**
-	 * 局部日期转换，将 String 类型的时间数据转化为 Date 类型
-	 * @param binder
-	 * @param request
-	 */
+
 	@InitBinder
     public void initBinder(WebDataBinder binder, WebRequest request) {
-        // 转换日期 注意这里的转化要和传进来的字符串的格式一直 如2015-9-9 就应该为yyyy-MM-dd
+        // 转换日期 注意这里的转化要和传进来的字符串的格式一直 如2020-10-9 就应该为yyyy-MM-dd
         DateFormat dateFormat=new SimpleDateFormat("yyyy-MM-dd");
         // CustomDateEditor为自定义日期编辑器
         binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));
     }
 	
 	/**
-	 * 锁定用户
-	 * 
+	 * block user
 	 * @param id
 	 * @param status
 	 * @return
@@ -123,10 +97,10 @@ public class UserAdminController {
 	public Result<String> block(@RequestParam(value = "id") Integer id, @RequestParam(value = "status") boolean status){
 		User user = userService.findById(id);
 		if (user == null) {
-			return new Result<>(false, "用户不存在");
+			return new Result<>(false, "User does not exists");
 		}
 		user.setIsBlock(status);
 		userService.updateUser(user);
-		return new Result<>(true, "操作成功");
+		return new Result<>(true, "Success");
 	}
 }

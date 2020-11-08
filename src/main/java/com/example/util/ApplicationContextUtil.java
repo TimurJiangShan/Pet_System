@@ -6,10 +6,6 @@ import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 
-/**
- * @author: miansen.wang
- * @date: 2019-04-01
- */
 public class ApplicationContextUtil implements ApplicationContextAware {
 
 	private static Logger log = LoggerFactory.getLogger(ApplicationContextUtil.class);
