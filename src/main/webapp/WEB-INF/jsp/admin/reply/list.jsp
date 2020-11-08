@@ -8,42 +8,42 @@
 <div class="content-wrapper" style="padding: 50px 0 40px;">
 	<section class="content-header">
     <h1>
-      评论
-      <small>列表</small>
+      Reply
+      <small>Reply List</small>
     </h1>
     <ol class="breadcrumb">
-      <li><a href="/admin/index"><i class="fa fa-dashboard"></i> 首页</a></li>
-      <li><a href="/admin/reply/list">评论</a></li>
-      <li class="active">列表</li>
+      <li><a href="/admin/index"><i class="fa fa-dashboard"></i> HomePage</a></li>
+      <li><a href="/admin/reply/list">Reply</a></li>
+      <li class="active">List</li>
     </ol>
   </section>
   <section class="content">
     <div class="box box-warning">
       <div class="box-header with-border">
-        <h3 class="box-title">评论列表</h3>
+        <h3 class="box-title">Reply List</h3>
       </div>
       <!-- /.box-header -->
       <div class="box-body">
         <form action="/admin/reply/list" method="get" class="form-inline">
           <div class="form-group" style="margin-bottom: 10px;">
             <input type="text" readonly id="startDate" name="startDate" value="${startDate}"
-                   class="form-control" placeholder="开始时间">
+                   class="form-control" placeholder="Start time">
             <input type="text" readonly id="endDate" name="endDate" value="${endDate}"
-                   class="form-control" placeholder="结束时间">
-            <input type="text" name="author" value="${author}" class="form-control" placeholder="用户名">
-            <input type="text" name="topic" value="${topic}" class="form-control" placeholder="话题">
-            <button type="submit" class="btn btn-warning btn-sm">搜索</button>
+                   class="form-control" placeholder="End time">
+            <input type="text" name="author" value="${author}" class="form-control" placeholder="username">
+            <input type="text" name="topic" value="${topic}" class="form-control" placeholder="Topic">
+            <button type="submit" class="btn btn-warning btn-sm">Search</button>
           </div>
         </form>
         <table class="table table-bordered">
           <thead>
           <tr>
             <th>#</th>
-            <th>评论</th>
-            <th>话题</th>
-            <th>用户</th>
-            <th>时间</th>
-            <th>操作</th>
+            <th>Reply</th>
+            <th>Topic</th>
+            <th>User</th>
+            <th>Time</th>
+            <th>Operation</th>
           </tr>
           </thead>
           <tbody>
@@ -55,8 +55,8 @@
               <td><a href="/user/${reply.reply_author_name}" target="_blank">${reply.reply_author_name}</a></td>
               <td><fmt:formatDate type="both" value="${reply.create_date}" /></td>
               <td>
-                  	<a href="/admin/reply/edit?id=${reply.reply_id}" class="btn btn-xs btn-warning">编辑</a>
-                  	<button onclick="actionBtn('${reply.reply_id}', 'delete', this)" class="btn btn-xs btn-danger">删除</button>
+                  	<a href="/admin/reply/edit?id=${reply.reply_id}" class="btn btn-xs btn-warning">Edit</a>
+                  	<button onclick="actionBtn('${reply.reply_id}', 'delete', this)" class="btn btn-xs btn-danger">Delete</button>
               </td>
             </tr>
 			</c:forEach>
@@ -98,7 +98,7 @@
   		var tip = $(self).text().replace(/[\r\n]/g, '').trim();
   		if(action === 'delete'){
   			url = '/admin/reply/delete?id=' + id;
-  	    	msg = '确定要'+tip+'这条评论吗？';
+  	    	msg = 'Are you sure '+tip+'this reply？';
   		}
   		if(confirm(msg)){
   			$.get(url,function(data){
