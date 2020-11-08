@@ -3,7 +3,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-  <title>宠物信息服务平台-503</title>
+  <title>PetGo-503</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <!-- 引入 Bootstrap -->
   <link href="/resources/css/bootstrap.min.css" rel="stylesheet">
@@ -17,7 +17,7 @@
   <div class="panel panel-default">
     <div class="panel-body">
       <h1>: (</h1>
-      <p>啊哦，服务器出错了~~</p>
+      <p>Ops~~ Sever has some problems</p>
     </div>
   </div>
 </div>
