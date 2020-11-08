@@ -2,7 +2,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java"%>
 <html>
 <head>
-<title>愿景-宠物信息服务平台</title>
+<title>Hope - PetGo</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link href="/resources/css/bootstrap.min.css" rel="stylesheet">
 <link href="/resources/css/app.css" rel="stylesheet" type="text/css">
@@ -15,11 +15,11 @@
 			<div class="col-md-9">
 				<div class="panel panel-default">
 					<div class="panel-heading">
-						<a href="/">主页</a> / 愿景
+						<a href="/">HomePage</a> / Hope
 					</div>
 					<div class="panel-body" style="color: #333;">
-						<h1 style="margin-top: 0px;">愿景</h1>
-						宠物信息服务平台的愿景是为喜欢代码的伙伴提供一点微小的帮助。
+						<h1 style="margin-top: 0px;">Hope</h1>
+						PetGo NO.1
 					</div>
 				</div>
 			</div>

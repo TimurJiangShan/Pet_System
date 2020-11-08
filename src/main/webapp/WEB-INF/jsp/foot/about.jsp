@@ -2,7 +2,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java"%>
 <html>
 <head>
-<title>关于-宠物信息服务平台</title>
+<title>About-PetGo</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link href="/resources/css/bootstrap.min.css" rel="stylesheet">
 <link href="/resources/css/app.css" rel="stylesheet" type="text/css">
@@ -15,30 +15,13 @@
 			<div class="col-md-9">
 				<div class="panel panel-default">
 					<div class="panel-heading">
-						<a href="/">主页</a> / About
+						<a href="/">HomePage</a> / About
 					</div>
 					<div class="panel-body" style="color: #333;">
-						<h1 style="margin-top: 0px;">About 宠物信息服务平台</h1>
-<br>宠物信息服务平台 是技术与资讯的社区，您可以在这里发表自己正在做的有趣事物。
-<br>
-<br>为了保持这里的良好氛围，宠物信息服务平台 有自己的明确规则：
-<br>
-<br>• 禁止分享或讨论任何涉及版权盗用的内容
-<br>
-<br>• 禁止未经原作者授权的内容转载
-<br>
-<br>• 虽不反对水贴，但也请尽量不要水贴
-<br>
-<br>• 尊重和鼓励原创
-<br>
-<br>• 分享自己见解的同时请对他人保持友善
-<br>
-<br>• 这里禁止发布人身攻击、仇恨、暴力、侮辱性的言辞、暴露他人隐私的“人肉贴”
-<br>
-<br>• 遵守中国的法律
-<br>
+						<h1 style="margin-top: 0px;">About PetGo</h1>
+<br> This is PetGo for the course ELEC5619
 
-<br>为了获得访问 宠物信息服务平台 的最佳体验，我们推荐使用 <a href="http://chrome.google.com/" target="_blank">Google Chrome</a> 或 <a href="http://www.getfirefox.com/" target="_blank">Mozilla Firefox</a> 浏览器。
+<br>We recommend the  <a href="http://chrome.google.com/" target="_blank">Google Chrome</a> or <a href="http://www.getfirefox.com/" target="_blank">Mozilla Firefox</a> Browser to get the better experience。
 					</div>
 				</div>
 			</div>
