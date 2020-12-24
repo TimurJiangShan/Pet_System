@@ -1,4 +1,12 @@
-PetGo
+PetGo is a social networking site for contemporary pet owners. The website can not only
+provide communication problems between pet owners and pet lovers, but also enable pet
+shops to display the content and particularities of their stores on the website, so that pet
+owners can have a more professional platform to solve problems with pets. Related issues.
+Each user can post a description of the problem or show a pet, and other users can comment
+or answer the post. In this way, users can communicate well through the platform, and users
+can get to know each other. Pet shops can display their shop pairs on the map provided by the
+platform. When choosing a pet shop, users can be more targeted.
+
 ====
 Overview
 ----
